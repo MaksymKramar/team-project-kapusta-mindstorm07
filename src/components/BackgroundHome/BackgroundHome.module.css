@@ -1,0 +1,115 @@
+.wrapper {
+  background-color: #f5f6fb;
+
+  height: 220px;
+
+  border-bottom-left-radius: 20%;
+  position: relative;
+}
+
+.logoIcon {
+  margin-top: 86px;
+  margin-left: 30px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 1.6;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  color: var(--main-color);
+
+  margin-left: 41px;
+  position: relative;
+}
+
+.logoCabbageMobile {
+  position: absolute;
+  top: 767px;
+  left: 35px;
+  z-index: 1;
+}
+
+.logoCabbage2Mobile {
+  position: absolute;
+  top: 104px;
+  right: 0px;
+  z-index: 1;
+}
+
+.logoTwoCabbages {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    background-color: #f5f6fb;
+    background-image: url(../../images/GroupCabbages.png);
+    background-repeat: repeat-x;
+    background-position: 0 28px;
+
+    height: 526px;
+
+    border-bottom-left-radius: 20%;
+    position: relative;
+  }
+
+  .logoCabbageMobile {
+    display: none;
+  }
+
+  .logoCabbage2Mobile {
+    display: none;
+  }
+
+  .logoIcon {
+    width: 307px;
+    height: 78px;
+
+    margin-top: 90px;
+    margin-left: 145px;
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 1.9;
+
+    letter-spacing: 0.18em;
+    margin-left: 200px;
+    margin-top: -5px;
+  }
+
+  .logoTwoCabbages {
+    display: block;
+    position: absolute;
+    top: 770px;
+    left: 103px;
+    z-index: 1;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .logoIcon {
+    width: 377px;
+    height: 120px;
+
+    margin-top: 308px;
+    margin-left: 204px;
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 1.9;
+
+    letter-spacing: 0.18em;
+    margin-left: 276px;
+    margin-top: -5px;
+  }
+
+  .logoTwoCabbages {
+    top: 602px;
+    left: 230px;
+  }
+}
