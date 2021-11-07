@@ -1,7 +1,7 @@
 .wrapper {
   background-color: #f5f6fb;
 
-  height: 220px;
+  height: 230px;
 
   border-bottom-left-radius: 20%;
   position: relative;
@@ -27,7 +27,7 @@
 
 .logoCabbageMobile {
   position: absolute;
-  top: 767px;
+  top: 711px;
   left: 35px;
   z-index: 1;
 }
