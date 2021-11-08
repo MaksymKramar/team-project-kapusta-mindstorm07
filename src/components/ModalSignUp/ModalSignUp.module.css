@@ -20,6 +20,34 @@
   box-shadow: 5px 10px 20px rgba(214, 114, 0, 0.993);
 }
 
+/*--------------------------------- Ошибка для пустого email и password */
+
+.input:invalid {
+  border: 1px solid rgb(255, 4, 4);
+}
+
+.input:valid {
+  border: 1px solid rgb(51, 112, 49);
+}
+
+.error {
+  color: red;
+  display: block;
+  position: absolute;
+  top: 83px;
+  width: 250px;
+  font-size: 8px;
+}
+
+.error::before {
+  content: "*";
+  position: absolute;
+  top: -83px;
+  left: 7px;
+}
+
+/*-------------------------------------------------------------*/
+
 .text {
   font-size: 10px;
   line-height: 1.2;
@@ -81,6 +109,7 @@
   letter-spacing: 0.04em;
   color: var(--black-color);
   margin-left: 12px;
+  position: relative;
 }
 
 .input {
@@ -99,10 +128,6 @@
   margin-left: 12px;
 
   /* transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1); */
-}
-
-.input:valid {
-  border: 2px solid rgb(51, 112, 49);
 }
 
 .input:focus {
@@ -153,6 +178,13 @@ input::placeholder {
   cursor: pointer;
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+  color: var(--main-color);
+  background: #f6f7fb;
+}
+
 .button:not(:last-child) {
   margin-bottom: 20px;
 }
@@ -174,6 +206,15 @@ input::placeholder {
 
   .text {
     margin-bottom: 20px;
+  }
+
+  .error::before {
+    top: -83px;
+    left: -4px;
+  }
+
+  .error {
+    font-size: 10px;
   }
 }
 

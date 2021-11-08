@@ -1,6 +1,6 @@
 import styles from "./ModalLogIn.module.css";
 import sprite from "../../images/sprite.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/auth-operation";
@@ -9,19 +9,54 @@ export default function ModalLogIn() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
 
-  const handleChange = ({ target: { name, value } }) => {
-    console.log(name);
-    console.log(value);
-    switch (name) {
-      case "email":
-        return setEmail(value);
-      case "password":
-        return setPassword(value);
-      default:
-        return;
+  const [emailDirty, setEmailDirty] = useState(false);
+  const [passwordDirty, setPasswordDirty] = useState(false);
+  const [emailError, setEmailError] = useState("Это обязательное поле");
+  const [passwordError, setPasswordError] = useState("Это обязательное поле");
+  const [formValid, setFormValid] = useState(true);
+
+  // const handleChange = ({ target: { name, value } }) => {
+  //   console.log(name)
+  //   console.log(value)
+  //   switch (name) {
+  //     case 'email':
+  //       return setEmail(value)
+  //     case 'password':
+  //       return setPassword(value)
+  //     default:
+  //       return
+  //   }
+  // }
+
+  useEffect(() => {
+    if (emailError || passwordError) {
+      setFormValid(false);
+    } else {
+      setFormValid(true);
+    }
+  }, [emailError, passwordError]);
+
+  const handlerEmail = (e) => {
+    console.log(e.target.value);
+    setEmail(e.target.value);
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(String(e.target.value).toLowerCase())) {
+      setEmailError("Некоректный email");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handlerPassword = (e) => {
+    setPassword(e.target.value);
+    if (e.target.value.length < 6) {
+      setPasswordError("Пароль должен быть длинее 6 символов");
+      if (!e.target.value) {
+        setPasswordError("Это обязательное поле");
+      }
+    } else {
+      setPasswordError("");
     }
   };
 
@@ -31,6 +66,17 @@ export default function ModalLogIn() {
     dispatch(logIn({ email, password }));
     setEmail("");
     setPassword("");
+  };
+
+  const handleBlur = (e) => {
+    switch (e.target.name) {
+      case "email":
+        setEmailDirty(true);
+        break;
+      case "password":
+        setPasswordDirty(true);
+        break;
+    }
   };
 
   return (
@@ -55,7 +101,7 @@ export default function ModalLogIn() {
 
       <form onSubmit={handleSubmit}>
         <label className={styles.modalLabel}>
-          <span className={styles.emailError}>*</span>Электронная почта:
+          Электронная почта:
           <input
             className={styles.input}
             autoComplete="off"
@@ -65,14 +111,17 @@ export default function ModalLogIn() {
             name="email"
             id="email"
             value={email}
-            onChange={handleChange}
+            onChange={handlerEmail}
+            onBlur={(e) => handleBlur(e)}
             title="Email должен собержать @"
-            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           />
+          {emailDirty && emailError && (
+            <span className={styles.error}>{emailError}</span>
+          )}
         </label>
 
         <label className={styles.modalLabel}>
-          <span className={styles.passwordError}>*</span>Пароль:
+          Пароль:
           <input
             required
             className={styles.input}
@@ -82,19 +131,17 @@ export default function ModalLogIn() {
             name="password"
             id="password"
             value={password}
-            onChange={handleChange}
+            onChange={handlerPassword}
+            onBlur={(e) => handleBlur(e)}
+            pattern=".{6,}"
             title="Пароль может состоять из букв и цыфр. Не менее 6 символов"
-            // error={password.length < 1 || password.length > 6 ? false : true}
-            // helperText={
-            //   password.length < 1 || password.length > 6
-            //     ? ''
-            //     : 'need more symbols'
-            // }
           />
+          {passwordDirty && passwordError && (
+            <span className={styles.error}>{passwordError}</span>
+          )}
         </label>
-
         <div className={styles.buttonsWrapper}>
-          <button className={styles.button} type="submit">
+          <button disabled={!formValid} className={styles.button} type="submit">
             Войти
           </button>
 
