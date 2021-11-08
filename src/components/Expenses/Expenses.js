@@ -19,7 +19,6 @@ export default function Expenses() {
                 </div>
                 <p className={s.category}>Продукты</p>
               </li>
-
               <li className={s.item}>
                 <span className={s.price}></span>
                 <div className={s.bg}>
