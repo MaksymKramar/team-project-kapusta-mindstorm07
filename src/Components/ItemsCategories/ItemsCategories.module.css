@@ -1,0 +1,41 @@
+@media screen and (min-width: 320px) {
+.itemsCategoriesGroup {
+    display: block;
+    width: 282px;
+    height: 44px;
+    margin: 0 auto;
+
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 1.667;
+    letter-spacing: 0.02em;
+
+    color: #C7CCDC;
+    background: #F5F6FB;
+
+    padding-left: 21px;
+    padding-right: 41px;
+
+    border: 2px solid #FFFFFF;
+    border-radius: 16px;
+}
+
+.itemCategory {
+    height: 44px;
+
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    align-items: center;
+    letter-spacing: 0.02em;
+
+    color: #C7CCDC;
+
+    padding-left: 20px;
+
+   
+    background: #FFFFFF;
+    border: 2px solid #F5F6FB;
+    box-shadow: 0px 3px 4px rgba(170, 178, 197, 0.4);
+}
+}
