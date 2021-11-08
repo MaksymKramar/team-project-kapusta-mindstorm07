@@ -42,3 +42,46 @@ export const logOut = createAsyncThunk("auth/logout", async () => {
     return data;
   } catch (error) {}
 });
+
+// export const fetchCurrentUser = createAsyncThunk(
+//   'auth/refreh',
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState()
+//     const persistedToken = state.auth.token
+
+//     console.log(persistedToken)
+//     if (!persistedToken) {
+//       return state
+//       //thunkAPI.rejectWithValue()
+//     }
+
+//     token.set(persistedToken)
+
+//     try {
+//       const { data } = await axios.get('/users/current')
+//       return data
+//     } catch (error) {
+//       return Promise.reject(error)
+//     }
+//   },
+// )
+
+export const fetchCurrentUser = createAsyncThunk(
+  "auth/refreh",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    console.log(persistedToken);
+    try {
+      if (persistedToken === null) {
+        return thunkAPI.rejectWithValue();
+      }
+      token.set(persistedToken);
+      const { data } = await axios.get("/users/current");
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

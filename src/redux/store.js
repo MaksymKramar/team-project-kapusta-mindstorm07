@@ -5,8 +5,8 @@ import {
 } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import {
-  // persistStore,
-  // persistReducer,
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -14,10 +14,18 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth";
 
+const persistConfig = {
+  key: "auth",
+  storage,
+  whiteList: ["token", "user.name"],
+  // blacklist: ['isFetchingCurrent', 'isLoggedIn', 'isLoading'],
+};
+
 const rootReducer = combineReducers({
-  auth: authReducer,
+  auth: persistReducer(persistConfig, authReducer),
 });
 
 const middleware = [
@@ -35,4 +43,6 @@ const store = configureStore({
   devTools: process.env.NODE_ENV === "development",
 });
 
-export default { store };
+const persistor = persistStore(store);
+
+export default { store, persistor };
