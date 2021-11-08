@@ -1,16 +1,26 @@
-.linkLogOut {
+.buttonLogOut {
   padding-top: 4px;
   display: block;
   text-align: center;
+  outline: none;
+  background-color: #fff;
+  border: 0;
+}
+
+.buttonLogOut {
+  cursor: pointer;
 }
 
 .logOutIcon {
   fill: #cbccd0;
+  outline: none;
 }
 
 .logOutIcon:hover,
 .logOutIcon:focus {
   fill: var(--accent-color);
+  cursor: pointer;
+  outline: none;
 }
 
 .wrapper {
@@ -62,7 +72,7 @@
     color: var(--main-color);
   }
 
-  .linkLogOut {
+  .buttonLogOut {
     padding-top: 0;
   }
 
