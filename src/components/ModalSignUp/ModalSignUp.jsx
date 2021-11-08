@@ -2,10 +2,14 @@ import styles from "./ModalSignUp.module.css";
 import sprite from "../../images/sprite.svg";
 import { useState, useEffect } from "react";
 import { signUp } from "../../redux/auth/auth-operation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import authSelector from "../../redux/auth/auth-selector";
+import Spinner from "../Spinner/Spiner";
 
 export default function ModalSignUp() {
   const dispatch = useDispatch();
+  const isLoading = useSelector(authSelector.getIsLoading);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -125,6 +129,7 @@ export default function ModalSignUp() {
             type="text"
             name="name"
             value={name}
+            pattern=".{2,}"
             onBlur={(e) => handleBlur(e)}
             onChange={handlerName}
           />
@@ -173,6 +178,7 @@ export default function ModalSignUp() {
 
         <div className={styles.buttonsWrapper}>
           <button disabled={!formValid} type="submit" className={styles.button}>
+            {isLoading && <Spinner />}
             Зарегистрироваться
           </button>
           <button className={styles.button}>Вход</button>

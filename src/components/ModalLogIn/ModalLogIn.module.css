@@ -150,13 +150,15 @@ input::placeholder {
 }
 
 .button {
-  width: 125px;
-  min-height: 44px;
+  display: flex;
+
+  min-width: 125px;
+  height: 44px;
 
   border-radius: 16px;
   border: none;
-  text-align: center;
-  justify-content: center;
+  /* text-align: center;
+  justify-content: center; */
   font-weight: bold;
   font-size: 12px;
   line-height: 1.2;
@@ -168,6 +170,9 @@ input::placeholder {
 
   color: var(--main-color);
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  align-items: center;
+  justify-content: center;
 }
 
 .button:hover,
