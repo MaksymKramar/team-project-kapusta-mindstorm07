@@ -1,0 +1,94 @@
+.amount {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 282px;
+  height: 85px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  background: #ffffff;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  border-radius: 20px;
+
+  font-size: 14px;
+  line-height: 16px;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 1px;
+    height: 70.5px;
+    background: #e0e5eb;
+  }
+}
+
+.amountExpenses {
+  margin-right: 25px;
+}
+
+.amountTitle {
+  font-weight: bold;
+  color: #52555f;
+}
+
+.amountExpensesSum {
+  font-weight: bold;
+  color: #e53935;
+}
+
+.amountIncomeSum {
+  font-weight: bold;
+  color: #407946;
+}
+
+@media screen and (min-width: 768px) {
+  .amount {
+    width: 668px;
+    height: 50px;
+
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 30px;
+
+    &::before {
+      height: 36px;
+      background: #e0e5eb;
+    }
+  }
+
+  .amountExpenses {
+    display: flex;
+    margin-right: 40px;
+  }
+
+  .amountExpensesSum {
+    margin-left: 15px;
+  }
+
+  .amountIncome {
+    display: flex;
+  }
+
+  .amountIncomeSum {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .amount {
+    width: 1060px;
+  }
+
+  .amountExpensesSum {
+    margin-left: 20px;
+  }
+
+  .amountIncomeSum {
+    margin-left: 20px;
+  }
+}
