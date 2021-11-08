@@ -29,14 +29,14 @@
   position: absolute;
   top: 711px;
   left: 35px;
-  z-index: 1;
+  z-index: -1;
 }
 
 .logoCabbage2Mobile {
   position: absolute;
   top: 104px;
   right: 0px;
-  z-index: 1;
+  z-index: -1;
 }
 
 .logoTwoCabbages {
@@ -86,7 +86,7 @@
     position: absolute;
     top: 770px;
     left: 103px;
-    z-index: 1;
+    z-index: -1;
   }
 }
 
