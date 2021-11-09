@@ -448,6 +448,14 @@
       />
 </symbol>
 
+<symbol id="icon-previous" viewBox="0 0 19 32">
+  <path fill="none" stroke="#ff751d" style="stroke:var(--color1, #ff751d)" stroke-width="5.333" d="M16 2.667 5.333 16 16 29.333"/>
+</symbol>
+
+<symbol id="icon-next" viewBox="0 0 19 32">
+  <path fill="none" stroke="#ff751d" style="stroke:var(--color1, #ff751d)" stroke-width="5.333" d="M2.667 2.667 13.334 16 2.667 29.333"/>
+</symbol>
+
 </defs>
 </svg>
 
