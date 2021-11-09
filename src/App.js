@@ -1,3 +1,7 @@
+import { useState } from "react";
+import Modal from "./modal/modal";
+import ModalExit from "./modal/modalExit";
+import Container from "./components/Container/Container";
 import "./App.css";
 import { useEffect } from "react";
 import { fetchCurrentUser } from "./redux/auth/auth-operation";
@@ -16,9 +20,12 @@ function App() {
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
-
+  
+const [modalActive, setModalActive] = useState(true);
+  
   return (
-    <Switch>
+    <div className="App">
+        <Switch>
       <Suspense fallback={null}>
         <PubliceRoute path="/" exact>
           {<HomePage />}
@@ -30,13 +37,14 @@ function App() {
 
         <PubliceRoute path="/signup" restricted>
           {<SignUpPage />}
-        </PubliceRoute>
-        {/* <div className="App">
-        <HomePage />
-      </div> */}
+        </PubliceRoute>        
       </Suspense>
     </Switch>
-  );
-}
 
+      <Modal active={modalActive} setActive={setModalActive} />
+      <ModalExit />
+      <Container />
+    </div>   
+    );
+}
 export default App;

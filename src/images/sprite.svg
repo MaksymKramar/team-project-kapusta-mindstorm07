@@ -339,6 +339,11 @@
       />
 </symbol>
 
+<symbol id="icon-close_24px" viewBox="0 0 32 32">
+<path d="M31.439 3.166l-3.166-3.166-12.553 12.553-12.553-12.553-3.166 3.166 12.553 12.553-12.553 12.553 3.166 3.166 12.553-12.553 12.553 12.553 3.166-3.166-12.553-12.553 12.553-12.553z"></path>
+</symbol>
+
+
 <symbol id="icon-logout" viewBox="0 0 32 32">
 <path d="M20 28h-16v-24h16v2h4v-6h-24v32h24v-6h-4v2h-0z" />
 <path
@@ -443,5 +448,15 @@
       />
 </symbol>
 
+<symbol id="icon-previous" viewBox="0 0 19 32">
+  <path fill="none" stroke="#ff751d" style="stroke:var(--color1, #ff751d)" stroke-width="5.333" d="M16 2.667 5.333 16 16 29.333"/>
+</symbol>
+
+<symbol id="icon-next" viewBox="0 0 19 32">
+  <path fill="none" stroke="#ff751d" style="stroke:var(--color1, #ff751d)" stroke-width="5.333" d="M2.667 2.667 13.334 16 2.667 29.333"/>
+</symbol>
+
 </defs>
 </svg>
+
+
