@@ -9,6 +9,7 @@ export default function ExpensesIncome() {
           <h3 className={s.amountTitle}>Расходы:</h3>
           <span className={s.amountExpensesSum}>- 18 000.00 грн.</span>
         </div>
+
         <div className={s.amountIncome}>
           <h3 className={s.amountTitle}>Доходы:</h3>
           <span className={s.amountIncomeSum}>+ 45 000.00 грн.</span>
