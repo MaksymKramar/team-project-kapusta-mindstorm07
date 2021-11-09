@@ -3,6 +3,7 @@
   height: 38px;
   background-color: #f5f6fb;
   border: solid 2px #ffff;
+  text-align: center;
 }
 
 .name {
@@ -11,5 +12,18 @@
   font-size: 12px;
   line-height: 1.21px;
   text-align: center;
-  justify-content: center;
+}
+
+.month,
+.summa {
+  font-family: "Roboto";
+  font-weight: 400px;
+  font-size: 12px;
+  line-height: 1.21px;
+  color: #52555f;
+  text-align: center;
+}
+.month {
+  padding-right: ;
+  margin-right: 20px;
 }
