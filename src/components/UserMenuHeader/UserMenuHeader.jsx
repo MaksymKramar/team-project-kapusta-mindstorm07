@@ -7,6 +7,7 @@ import { logOut } from "../../redux/auth/auth-operation";
 export default function UserMenuHeader() {
   const dispatch = useDispatch();
   const name = useSelector(authSelector.getUserName);
+
   const firstLetterName = name.slice(0, 1);
 
   return (
