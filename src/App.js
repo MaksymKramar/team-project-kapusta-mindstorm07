@@ -20,31 +20,31 @@ function App() {
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
-  
-const [modalActive, setModalActive] = useState(true);
-  
+
+  const [modalActive, setModalActive] = useState(true);
+
   return (
     <div className="App">
-        <Switch>
-      <Suspense fallback={null}>
-        <PubliceRoute path="/" exact>
-          {<HomePage />}
-        </PubliceRoute>
+      <Switch>
+        <Suspense fallback={null}>
+          <PubliceRoute path="/" exact>
+            {<HomePage />}
+          </PubliceRoute>
 
-        <PubliceRoute path="/login" restricted redirectTo="/">
-          {<HomePage />}
-        </PubliceRoute>
+          <PubliceRoute path="/login" restricted redirectTo="/">
+            {<HomePage />}
+          </PubliceRoute>
 
-        <PubliceRoute path="/signup" restricted>
-          {<SignUpPage />}
-        </PubliceRoute>        
-      </Suspense>
-    </Switch>
+          <PubliceRoute path="/signup" restricted>
+            {<SignUpPage />}
+          </PubliceRoute>
+        </Suspense>
+      </Switch>
 
-      <Modal active={modalActive} setActive={setModalActive} />
-      <ModalExit />
-      <Container />
-    </div>   
-    );
+      {/* <Modal active={modalActive} setActive={setModalActive} /> */}
+      {/* <ModalExit active={modalActive} setActive={setModalActive} /> */}
+      {/* <Container /> */}
+    </div>
+  );
 }
 export default App;
