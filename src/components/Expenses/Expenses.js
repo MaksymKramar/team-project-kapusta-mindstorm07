@@ -5,7 +5,21 @@ export default function Expenses() {
   return (
     <div className={s.expenses}>
       <div className={s.blok}>
-        <p className={s.title}>Расходы</p>
+        <div className={s.navigation}>
+          <a src="">
+            <svg className={s.iconPrevious}>
+              <use href={sprite + "#icon-previous"}></use>
+            </svg>
+          </a>
+
+          <p className={s.title}>Расходы</p>
+
+          <a src="">
+            <svg className={s.iconNext}>
+              <use href={sprite + "#icon-next"}></use>
+            </svg>
+          </a>
+        </div>
 
         <div>
           <ul className={s.list}>

@@ -1,3 +1,22 @@
+.blok {
+  padding-top: 20px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+}
+
+.iconPrevious {
+  width: 8px;
+  height: 14px;
+}
+
+.iconNext {
+  width: 8px;
+  height: 14px;
+}
+
 .title {
   text-align: center;
   font-weight: bold;
@@ -8,13 +27,15 @@
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 20px;
-  color: #000000;
+  color: var(-black-color);
 }
 
 .list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  list-style: none;
+  list-style-type: none;
 }
 
 .pseudoelementFirst {
@@ -37,13 +58,13 @@
 }
 
 .icon {
-  fill: #071f41;
+  fill: var(--dark-blue-color);
   width: 65px;
   height: 56px;
 
   &:hover,
   &:focus {
-    fill: #ff751d;
+    fill: var(--accent-color);
   }
 }
 
@@ -57,7 +78,10 @@
     top: 10px;
     left: 10px;
     z-index: -1;
-    background: linear-gradient(#f5f6fb, #f5f6fb);
+    background: linear-gradient(
+      var(--light-gray-color),
+      var(--light-gray-color)
+    );
     border-radius: 20px;
     width: 59px;
     height: 46px;
@@ -65,7 +89,10 @@
 
   &:hover:after,
   &:focus:after {
-    background-image: linear-gradient(#ffdac0, #ffdac0);
+    background-image: linear-gradient(
+      var(--light-orange-color),
+      var(--light-orange-color)
+    );
   }
 }
 
@@ -75,7 +102,7 @@
   text-align: center;
   text-transform: uppercase;
 
-  color: #52555f;
+  color: var(--main-color);
 }
 
 .category {
@@ -84,7 +111,12 @@
   text-align: center;
   text-transform: uppercase;
 
-  color: #52555f;
+  color: var(--main-color);
+}
+
+.costsList {
+  list-style: none;
+  list-style-type: none;
 }
 
 .costsItem {
@@ -94,13 +126,13 @@
 .costsType {
   font-size: 10px;
   line-height: 12px;
-  color: #52555f;
+  color: var(--main-color);
 }
 
 .costsPrice {
   font-size: 10px;
   line-height: 12px;
-  color: #52555f;
+  color: var(--main-color);
 }
 
 @media screen and (max-width: 767px) {
@@ -115,7 +147,7 @@
       left: 0;
       width: 280px;
       height: 1px;
-      background: #e0e5eb;
+      background: var(--light-gray-color);
       margin-bottom: 20px;
     }
   }
@@ -131,7 +163,7 @@
       left: 0;
       width: 280px;
       height: 1px;
-      background: #e0e5eb;
+      background: var(--light-gray-color);
       margin-bottom: 20px;
     }
   }
@@ -147,7 +179,7 @@
       left: 0;
       width: 280px;
       height: 1px;
-      background: #e0e5eb;
+      background: var(--light-gray-color);
       margin-bottom: 20px;
     }
   }
@@ -156,8 +188,9 @@
 @media screen and (min-width: 768px) {
   .blok {
     width: 666px;
-    padding-left: 30px;
-    padding-top: 20px;
+    margin: 0 auto;
+    padding-left: 25px;
+    padding-left: 25px;
     padding-bottom: 10px;
     margin-bottom: 30px;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);

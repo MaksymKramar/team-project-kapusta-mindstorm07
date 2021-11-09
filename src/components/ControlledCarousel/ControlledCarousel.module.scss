@@ -1,7 +1,3 @@
-// font-weight: bold;
-// font-size: 24px;
-// color: #FF751D;
-
 .carousel {
   position: relative;
   width: 100%;
@@ -43,49 +39,4 @@
   vertical-align: top;
   white-space: normal;
   line-height: 0;
-}
-
-.active {
-}
-
-.target {
-}
-
-//
-.prevBtn {
-  text-align: right;
-  display: inline-block;
-  box-sizing: border-box;
-  width: 50%;
-  padding: 10px 5px;
-}
-
-.prevBtnWrapper {
-}
-
-.prevBtnItem {
-  display: inline-block;
-  cursor: pointer;
-  padding: 5 px;
-  margin: 0;
-  color: #465798;
-}
-
-.inactive {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.nextBtn {
-}
-
-.nextBtnWrapper {
-}
-
-.nextBtnItem {
-  display: inline-block;
-  cursor: pointer;
-  padding: 5 px;
-  margin: 0;
-  color: #465798;
 }
