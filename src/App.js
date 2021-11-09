@@ -21,18 +21,22 @@ function App() {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-  const [modalActive, setModalActive] = useState(true);
+  const [modalActive, setModalActive] = useState(false);
+  const handleModal = () => {
+    setModalActive(!modalActive);
+    console.log({ modalActive });
+  };
 
   return (
     <div className="App">
       <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
-            {<HomePage />}
+            {<HomePage setActive={setModalActive} />}
           </PubliceRoute>
 
           <PubliceRoute path="/login" restricted redirectTo="/">
-            {<HomePage />}
+            {<HomePage setActive={setModalActive} />}
           </PubliceRoute>
 
           <PubliceRoute path="/signup" restricted>
@@ -42,7 +46,7 @@ function App() {
       </Switch>
 
       {/* <Modal active={modalActive} setActive={setModalActive} /> */}
-      {/* <ModalExit active={modalActive} setActive={setModalActive} /> */}
+      <ModalExit active={modalActive} setActive={setModalActive} />
       {/* <Container /> */}
     </div>
   );
