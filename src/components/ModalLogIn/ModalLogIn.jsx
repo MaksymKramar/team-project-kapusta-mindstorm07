@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../redux/auth/auth-operation";
 import authSelector from "../../redux/auth/auth-selector";
+import { NavLink } from "react-router-dom";
 
 import Spinner from "../Spinner/Spiner";
 
@@ -147,11 +148,13 @@ export default function ModalLogIn() {
         </label>
         <div className={styles.buttonsWrapper}>
           <button disabled={!formValid} className={styles.button} type="submit">
-            {isLoading && <Spinner />}
+            {isLoading && <Spinner width="20px" height="20px" />}
             Войти
           </button>
 
-          <button className={styles.button}>Регистрация</button>
+          <NavLink to="/signup" exact className={styles.button}>
+            Регистрация
+          </NavLink>
         </div>
       </form>
     </div>

@@ -12,17 +12,6 @@ const token = {
   },
 };
 
-export const signUp = createAsyncThunk("auth/signup", async (credentials) => {
-  try {
-    const { data } = await axios.post("/users/signup", credentials);
-    token.set(data.token);
-
-    return data;
-  } catch (error) {
-    return Promise.reject(error);
-  }
-});
-
 export const logIn = createAsyncThunk("auth/login", async (credentials) => {
   try {
     const { data } = await axios.post("/users/login", credentials);
@@ -33,6 +22,39 @@ export const logIn = createAsyncThunk("auth/login", async (credentials) => {
     return Promise.reject(error);
   }
 });
+
+export const signUp = createAsyncThunk("auth/signup", async (credentials) => {
+  try {
+    const { data } = await axios.post("/users/signup", credentials);
+
+    token.set(data.token);
+
+    return data;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+});
+
+// export const signUp = createAsyncThunk('auth/signup', async (credentials) => {
+//   try {
+//     const { data } = await axios.post('/users/signup', credentials)
+
+//     if (data) {
+//       try {
+//         const { data } = await axios.post('/users/login', credentials)
+//         token.set(data.token)
+
+//         return data
+//       } catch (error) {
+//         return Promise.reject(error)
+//       }
+//     }
+
+//     return data
+//   } catch (error) {
+//     return Promise.reject(error)
+//   }
+// })
 
 export const logOut = createAsyncThunk("auth/logout", async () => {
   try {
