@@ -1,0 +1,15 @@
+.tr {
+  width: 230px;
+  height: 38px;
+  background-color: #f5f6fb;
+  border: solid 2px #ffff;
+}
+
+.name {
+  font-family: "Roboto";
+  font-weight: 700px;
+  font-size: 12px;
+  line-height: 1.21px;
+  text-align: center;
+  justify-content: center;
+}
