@@ -1,5 +1,5 @@
 import s from "./ExpensesIncome.module.scss";
-import ControlledCarousel from "../ControlledCarousel/ControlledCarousel";
+import SwitchExpensesIncome from "../SwitchExpensesIncome/SwitchExpensesIncome";
 
 export default function ExpensesIncome() {
   return (
@@ -15,7 +15,7 @@ export default function ExpensesIncome() {
         </div>
       </div>
 
-      <ControlledCarousel />
+      <SwitchExpensesIncome />
     </section>
   );
 }
