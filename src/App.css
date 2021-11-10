@@ -1,9 +1,11 @@
 :root {
   --accent-color: #ff751d;
   --main-color: #52555f;
+  --light-gray-color: #f5f6fb;
   --balance-minus: #e53935;
   --balance-plus: #407946;
   --white-color: #ffffff;
+  --second-white-color: #C7CCDC;
   --black-color: #000;
   --main-font: "Roboto", sans-serif;
   --font-size: 12px;
