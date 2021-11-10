@@ -5,9 +5,9 @@ const Summary = () => {
     return (
         <table className={s.table}>
             <div className={s.tr}>
-<tr >
-  <th className={s.name}>Сводка</th>
-  </tr>
+
+  <tr className={s.name}>Сводка</tr>
+  
             </div>
             <div className={s.tr}>
  <tr >
@@ -16,10 +16,23 @@ const Summary = () => {
                 </tr></div>
             <div className={s.tr}>
 <tr >
-  <td className={s.month}>Декабрь</td>
+  <td className={s.month}>Октябрь</td>
 <td className={s.summa}>30 000.00</td>
 </tr>
-</div>
+            </div>
+            <div className={s.tr}>
+<tr >
+  <td className={s.month}>Сентябрь</td>
+<td className={s.summa}>30 000.00</td>
+</tr>
+            </div>
+            <div className={s.tr}>
+<tr >
+  <td className={s.month}>Август</td>
+<td className={s.summa}>30 000.00</td>
+</tr>
+            </div>
+           
 </table>
     )
 }

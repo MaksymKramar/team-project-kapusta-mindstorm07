@@ -4,14 +4,19 @@
   background-color: #f5f6fb;
   border: solid 2px #ffff;
   text-align: center;
+  justify-content: center;
 }
-
+.tr:first-child {
+  border-radius: 100px 100px 30px 30px;
+}
+.tr:last-child {
+  border-radius: 30px 30px 100px 100px;
+}
 .name {
   font-family: "Roboto";
   font-weight: 700px;
   font-size: 12px;
   line-height: 1.21px;
-  text-align: center;
 }
 
 .month,
@@ -21,9 +26,17 @@
   font-size: 12px;
   line-height: 1.21px;
   color: #52555f;
-  text-align: center;
 }
-.month {
-  padding-right: ;
-  margin-right: 20px;
+
+@media screen and (min-width: 1200px) {
+  table {
+    position: absolute;
+    right: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  table {
+    visibility: hidden;
+    display: none;
+  }
 }
