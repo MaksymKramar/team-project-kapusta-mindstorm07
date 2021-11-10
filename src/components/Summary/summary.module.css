@@ -5,6 +5,8 @@
   border: solid 2px #ffff;
   text-align: center;
   justify-content: center;
+  display: flex;
+  padding-top: 6px;
 }
 .tr:first-child {
   border-radius: 100px 100px 30px 30px;
@@ -14,18 +16,27 @@
 }
 .name {
   font-family: "Roboto";
-  font-weight: 700px;
+  font-weight: 700;
   font-size: 12px;
   line-height: 1.21px;
+  display: contents;
 }
 
 .month,
 .summa {
   font-family: "Roboto";
-  font-weight: 400px;
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.21px;
   color: #52555f;
+  width: 84px;
+  height: 38px;
+  text-align: center;
+  justify-content: center;
+  display: inline-block;
+}
+.month {
+  margin-left: 20px;
 }
 
 @media screen and (min-width: 1200px) {
