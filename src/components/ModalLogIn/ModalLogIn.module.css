@@ -50,6 +50,14 @@
   font-size: 8px;
 }
 
+.isError {
+  color: red;
+  display: block;
+  font-size: 9px;
+  position: absolute;
+  bottom: 115px;
+}
+
 /*-------------------------------------------------------------*/
 
 .text {
@@ -223,6 +231,12 @@ input::placeholder {
   }
 
   .error {
+    font-size: 10px;
+  }
+
+  .isError {
+    color: red;
+    display: block;
     font-size: 10px;
   }
 }

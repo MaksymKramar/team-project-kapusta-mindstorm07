@@ -13,6 +13,8 @@ export default function ModalLogIn() {
   const dispatch = useDispatch();
   const isLoading = useSelector(authSelector.getIsLoading);
 
+  const isErrorLogIn = useSelector(authSelector.getIsErrorLogIn);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -146,6 +148,13 @@ export default function ModalLogIn() {
             <span className={styles.error}>{passwordError}</span>
           )}
         </label>
+
+        {isErrorLogIn && (
+          <span className={styles.isError}>
+            Неправильный E-mail или пароль. Попробуйте еще раз!
+          </span>
+        )}
+
         <div className={styles.buttonsWrapper}>
           <button disabled={!formValid} className={styles.button} type="submit">
             {isLoading && <Spinner width="20px" height="20px" />}

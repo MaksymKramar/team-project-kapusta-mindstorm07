@@ -23,6 +23,8 @@ export default function ModalSignUp() {
   const [passwordError, setPasswordError] = useState("Это обязательное поле");
   const [formValid, setFormValid] = useState(true);
 
+  const isErrorSignUp = useSelector(authSelector.getIsErrorSignUp);
+
   const handleChange = ({ target: { name, value } }) => {
     console.log(name);
     console.log(value);
@@ -176,6 +178,11 @@ export default function ModalSignUp() {
             <span className={styles.error}>{passwordError}</span>
           )}
         </label>
+        {isErrorSignUp && (
+          <span className={styles.isError}>
+            Что-то пошло не так. Попробуйте еще раз!
+          </span>
+        )}
 
         <div className={styles.buttonsWrapper}>
           <button disabled={!formValid} type="submit" className={styles.button}>

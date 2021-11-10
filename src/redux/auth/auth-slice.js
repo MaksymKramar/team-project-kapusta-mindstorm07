@@ -8,6 +8,8 @@ const initialState = {
   isLoggedIn: false,
   isFetchingCurrent: false,
   isLoading: false,
+  isErrorLogIn: false,
+  isErrorSignUp: false,
 };
 
 const authSlice = createSlice({
@@ -21,12 +23,17 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isLoading = false;
+      state.isErrorSignUp = false;
+      state.isErrorLogIn = false;
     },
     [signUp.pending](state, action) {
       state.isLoading = true;
+      state.isErrorSignUp = false;
+      state.isErrorLogIn = false;
     },
     [signUp.rejected](state, action) {
       state.isLoading = false;
+      state.isErrorSignUp = true;
     },
 
     [logIn.fulfilled](state, action) {
@@ -34,12 +41,17 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isLoading = false;
+      state.isErrorLogIn = false;
+      state.isErrorSignUp = false;
     },
     [logIn.pending](state, action) {
       state.isLoading = true;
+      state.isErrorLogIn = false;
+      state.isErrorSignUp = false;
     },
     [logIn.rejected](state, action) {
       state.isLoading = false;
+      state.isErrorLogIn = true;
     },
 
     [logOut.fulfilled](state, action) {

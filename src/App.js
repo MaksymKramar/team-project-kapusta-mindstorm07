@@ -11,8 +11,9 @@ import { Switch } from "react-router-dom";
 import PubliceRoute from "./routes/PublicRoute";
 // import PrivateRoute from './routes/PrivateRoute'
 import { Suspense, lazy } from "react";
+import { ToastContainer } from "react-toastify";
 
-const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 
 function App() {
@@ -22,21 +23,18 @@ function App() {
   }, [dispatch]);
 
   const [modalActive, setModalActive] = useState(false);
-  const handleModal = () => {
-    setModalActive(!modalActive);
-    console.log({ modalActive });
-  };
+  const [modalExitActive, setModalExitActive] = useState(false);
 
   return (
     <div className="App">
       <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
-            {<HomePage setActive={setModalActive} />}
+            {<LogInPage setActive={setModalExitActive} />}
           </PubliceRoute>
 
           <PubliceRoute path="/login" restricted redirectTo="/">
-            {<HomePage setActive={setModalActive} />}
+            {<LogInPage setActive={setModalExitActive} />}
           </PubliceRoute>
 
           <PubliceRoute path="/signup" restricted>
@@ -46,8 +44,10 @@ function App() {
       </Switch>
 
       {/* <Modal active={modalActive} setActive={setModalActive} /> */}
-      <ModalExit active={modalActive} setActive={setModalActive} />
+      <ModalExit active={modalExitActive} setActive={setModalExitActive} />
       {/* <Container /> */}
+
+      <ToastContainer style={{ width: "250px" }} />
     </div>
   );
 }
