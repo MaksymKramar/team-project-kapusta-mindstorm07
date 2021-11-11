@@ -11,6 +11,7 @@ import { Switch } from "react-router-dom";
 import PubliceRoute from "./routes/PublicRoute";
 // import PrivateRoute from './routes/PrivateRoute'
 import { Suspense, lazy } from "react";
+import Summary from "./components/Summary/summary";
 import Balance from "./Components/Balance/Balance";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -41,11 +42,12 @@ const [modalActive, setModalActive] = useState(true);
         </PubliceRoute>        
       </Suspense>
     </Switch>
-
+<Summary/>
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit />
         <Balance />
       <Container />
+      
     </div>   
     );
 }
