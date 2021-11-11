@@ -1,22 +1,32 @@
 import s from "./ExpensesIncome.module.scss";
-import SwitchExpensesIncome from "../SwitchExpensesIncome/SwitchExpensesIncome";
+import SumCategoryInfo from "../SumCategoryInfo/SumCategoryInfo";
+import HistogramCategoryInfo from "../HistogramCategoryInfo/HistogramCategoryInfo";
 
 export default function ExpensesIncome() {
+  const totalExpences = 0;
+  const totalIncomes = 0;
+
   return (
     <section className={s.section}>
       <div className={s.amount}>
         <div className={s.amountExpenses}>
           <h3 className={s.amountTitle}>Расходы:</h3>
-          <span className={s.amountExpensesSum}>- 18 000.00 грн.</span>
+          <span
+            className={s.amountExpensesSum}
+          >{`- ${totalExpences}.00 грн.`}</span>
         </div>
 
         <div className={s.amountIncome}>
           <h3 className={s.amountTitle}>Доходы:</h3>
-          <span className={s.amountIncomeSum}>+ 45 000.00 грн.</span>
+          <span
+            className={s.amountIncomeSum}
+          >{`+ ${totalIncomes}.00 грн.`}</span>
         </div>
       </div>
 
-      <SwitchExpensesIncome />
+      <SumCategoryInfo />
+
+      <HistogramCategoryInfo />
     </section>
   );
 }

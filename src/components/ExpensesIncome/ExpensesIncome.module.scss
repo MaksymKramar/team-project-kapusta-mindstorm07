@@ -3,6 +3,8 @@
   max-width: 320px;
   padding-left: 19px;
   padding-right: 19px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .amount {
@@ -15,6 +17,10 @@
   height: 85px;
   margin-top: 30px;
   margin-bottom: 30px;
+  z-index: -1;
+
+  background: var(--white-color);
+  box-shadow: 5px 10px 20px rgba(var(--container-color-grey), 0.4);
 
   background: var(--white-color);
   box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
@@ -31,7 +37,7 @@
     left: 50%;
     width: 1px;
     height: 70.5px;
-    background: var(--light-gray-color);
+    background: var(--pseudoelement-color);
   }
 }
 
@@ -73,7 +79,6 @@
 
     &::before {
       height: 36px;
-      background: var(--light-gray-color);
     }
   }
 

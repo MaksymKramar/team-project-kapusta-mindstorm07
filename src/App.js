@@ -3,6 +3,7 @@ import Modal from "./modal/modal";
 import ModalExit from "./modal/modalExit";
 import Container from "./components/Container/Container";
 import "./App.css";
+import ExpensesIncome from "./components/ExpensesIncome/ExpensesIncome";
 import { useEffect } from "react";
 import { fetchCurrentUser } from "./redux/auth/auth-operation";
 import { useSelector, useDispatch } from "react-redux";
@@ -27,26 +28,25 @@ const [modalActive, setModalActive] = useState(true);
   
   return (
     <div className="App">
-        <Switch>
-      <Suspense fallback={null}>
-        <PubliceRoute path="/" exact>
-          {<HomePage />}
-        </PubliceRoute>
+       <Switch>
+        <Suspense fallback={null}>
+          <PubliceRoute path="/" exact>
+            {<HomePage />}
+          </PubliceRoute>
+            <PubliceRoute path="/login" restricted redirectTo="/">
+              {<HomePage />}
+          </PubliceRoute>
 
-        <PubliceRoute path="/login" restricted redirectTo="/">
-          {<HomePage />}
-        </PubliceRoute>
-
-        <PubliceRoute path="/signup" restricted>
-          {<SignUpPage />}
-        </PubliceRoute>        
-      </Suspense>
-    </Switch>
-<Summary/>
+          <PubliceRoute path="/signup" restricted>
+            {<SignUpPage />}
+          </PubliceRoute>        
+        </Suspense>
+      </Switch>
+      <Summary/>
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit />
         <Balance />
-      <Container />
+      <ExpensesIncome />
       
     </div>   
     );
