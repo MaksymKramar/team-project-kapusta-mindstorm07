@@ -1,0 +1,39 @@
+.wrapper {
+  background-color: #f5f6fb;
+  height: 230px;
+  border-bottom-left-radius: 20%;
+}
+
+.cabbagesBottom {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    height: 527px;
+    position: relative;
+  }
+
+  .logoTwoCabbages {
+    display: block;
+    position: absolute;
+    top: 977px;
+    left: 497px;
+    z-index: 1;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .logoTwoCabbages {
+    display: none;
+  }
+
+  body {
+    position: relative;
+  }
+  .cabbagesBottom {
+    display: block;
+    position: absolute;
+    top: 100%;
+  }
+}
