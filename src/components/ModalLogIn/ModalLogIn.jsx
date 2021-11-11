@@ -1,5 +1,5 @@
 import styles from "./ModalLogIn.module.css";
-import sprite from "../../images/sprite.svg";
+// import sprite from '../../images/sprite.svg'
 import { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,8 @@ import authSelector from "../../redux/auth/auth-selector";
 import { NavLink } from "react-router-dom";
 
 import Spinner from "../Spinner/Spiner";
+
+import GoogleAuth from "../GoogleAuth/GoogleAuth";
 
 export default function ModalLogIn() {
   const dispatch = useDispatch();
@@ -95,12 +97,14 @@ export default function ModalLogIn() {
           Google Account:
         </p>
 
-        <a className={styles.modalLink}>
+        <GoogleAuth />
+
+        {/* <a className={styles.modalLink}>
           <svg className={styles.logoGoogle} width="18px" height="18px">
-            <use href={sprite + "#icon-google-symbol-1"} />
+            <use href={sprite + '#icon-google-symbol-1'} />
           </svg>
           <span className={styles.textGoogle}>Google</span>
-        </a>
+        </a> */}
       </div>
 
       <p className={styles.text}>
@@ -112,7 +116,7 @@ export default function ModalLogIn() {
           Электронная почта:
           <input
             className={styles.input}
-            autoComplete="off"
+            autoComplete="new-password"
             required
             placeholder="your@email.com"
             type="email"
