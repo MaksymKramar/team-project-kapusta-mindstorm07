@@ -1,6 +1,7 @@
 import s from "./SumCategoryInfo.module.scss";
 import CategoryInfo from "../CategoryInfo/CategoryInfo";
 import sprite from "../../images/sprite.svg";
+import HistogramCategoryInfo from "../HistogramCategoryInfo/HistogramCategoryInfo";
 
 const typeTrans = "expenses";
 
@@ -25,40 +26,49 @@ const incomes = [
 
 export default function SumCategoryInfo() {
   return (
-    <div className={`${s.container} ${typeTrans}`}>
-      <div className={s.amountSection}>
-        <svg
-          className={s.iconPrevious}
-          // onClick={onHandleChangeType}
-        >
-          <use href={sprite + "#icon-previous"}></use>
-        </svg>
+    <div>
+      <div className={`${s.container} ${typeTrans}`}>
+        <div className={s.amountSection}>
+          <svg
+            className={s.iconPrevious}
+            // onClick={onHandleChangeType}
+          >
+            <use href={sprite + "#icon-previous"}></use>
+          </svg>
+
+          {typeTrans === "expenses" ? (
+            <p className={s.title}> Расходы </p>
+          ) : (
+            <p className={s.title}> Доходы </p>
+          )}
+
+          <svg
+            className={s.iconNext}
+            // onClick={onHandleChangeType}
+          >
+            <use href={sprite + "#icon-next"}></use>
+          </svg>
+        </div>
 
         {typeTrans === "expenses" ? (
-          <p className={s.title}> Расходы </p>
+          <CategoryInfo
+            trans={expenses}
+            //   onClick={handleClickExpenses}
+          />
         ) : (
-          <p className={s.title}> Доходы </p>
+          <CategoryInfo
+            trans={incomes}
+            //   onClick={handleClickIncomes}
+          />
         )}
-
-        <svg
-          className={s.iconNext}
-          // onClick={onHandleChangeType}
-        >
-          <use href={sprite + "#icon-next"}></use>
-        </svg>
       </div>
 
-      {typeTrans === "expenses" ? (
-        <CategoryInfo
+      <div className={`${s.container} ${typeTrans}`}>
+        <HistogramCategoryInfo
           trans={expenses}
           //   onClick={handleClickExpenses}
         />
-      ) : (
-        <CategoryInfo
-          trans={incomes}
-          //   onClick={handleClickIncomes}
-        />
-      )}
+      </div>
     </div>
   );
 }

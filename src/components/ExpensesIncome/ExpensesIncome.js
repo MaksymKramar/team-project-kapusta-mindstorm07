@@ -1,6 +1,5 @@
 import s from "./ExpensesIncome.module.scss";
 import SumCategoryInfo from "../SumCategoryInfo/SumCategoryInfo";
-import HistogramCategoryInfo from "../HistogramCategoryInfo/HistogramCategoryInfo";
 
 export default function ExpensesIncome() {
   const totalExpences = 0;
@@ -25,8 +24,6 @@ export default function ExpensesIncome() {
       </div>
 
       <SumCategoryInfo />
-
-      <HistogramCategoryInfo />
     </section>
   );
 }
