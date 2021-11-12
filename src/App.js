@@ -2,6 +2,7 @@ import { useState } from "react";
 import Modal from "./modal/modal";
 import ModalExit from "./modal/modalExit";
 import Container from "./components/Container/Container";
+
 import "./App.css";
 import ExpensesIncome from "./components/ExpensesIncome/ExpensesIncome";
 import { useEffect } from "react";
