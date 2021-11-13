@@ -1,0 +1,62 @@
+.tableContainer {
+  width: 282px;
+}
+
+.tableRow {
+  display: flex;
+  margin: 10px 0 12px;
+  border-bottom: 1px solid var(--light-gray-color);
+}
+
+.tableCollapseColumn {
+  display: flex;
+  flex-direction: column-reverse;
+
+  min-width: 55px;
+  margin-right: 14px;
+}
+
+.tableDate {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 1.13;
+  letter-spacing: var(--letter-spacing-second);
+  text-transform: uppercase;
+
+  color: var(--main-color);
+}
+
+.tableDescription {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing-second);
+
+  color: var(--main-color);
+}
+
+.tableCategory {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 1.13;
+  letter-spacing: var(--letter-spacing-second);
+
+  align-self: end;
+
+  width: 118px;
+  margin-right: 14px;
+
+  color: var(--main-color);
+}
+
+.tableAmount {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing-second);
+
+  align-self: center;
+  width: 84px;
+  margin-right: 20px;
+  color: var(--balance-minus);
+}
