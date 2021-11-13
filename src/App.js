@@ -2,7 +2,7 @@ import { useState } from "react";
 import Modal from "./modal/modal";
 import ModalExit from "./modal/modalExit";
 import "./App.css";
-import ExpensesIncome from "./components/ExpensesIncome/ExpensesIncome";
+import Reports from "./pages/Reports/Reports";
 import { useEffect } from "react";
 import { fetchCurrentUser } from "./redux/auth/auth-operation";
 import { useSelector, useDispatch } from "react-redux";
@@ -45,7 +45,7 @@ function App() {
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit />
       <Balance />
-      <ExpensesIncome />
+      <Reports />
     </div>
   );
 }

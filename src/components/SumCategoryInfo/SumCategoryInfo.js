@@ -1,7 +1,7 @@
 import s from "./SumCategoryInfo.module.scss";
 import CategoryInfo from "../CategoryInfo/CategoryInfo";
 import sprite from "../../images/sprite.svg";
-import HistogramCategoryInfo from "../HistogramCategoryInfo/HistogramCategoryInfo";
+import Graph from "../Graph/Graph";
 
 const typeTrans = "expenses";
 
@@ -64,7 +64,7 @@ export default function SumCategoryInfo() {
       </div>
 
       <div className={`${s.container} ${typeTrans}`}>
-        <HistogramCategoryInfo
+        <Graph
           trans={expenses}
           //   onClick={handleClickExpenses}
         />
