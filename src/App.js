@@ -1,50 +1,52 @@
-// import { useState } from "react";
-// import Modal from "./modal/modal";
-// import ModalExit from "./modal/modalExit";
-// import Container from "./components/Container/Container";
+import { useState } from "react";
+import Modal from "./modal/modal";
+import ModalExit from "./modal/modalExit";
 import "./App.css";
-// import { useEffect } from "react";
-// import { fetchCurrentUser } from "./redux/auth/auth-operation";
-// import { useSelector, useDispatch } from "react-redux";
-// import authSelector from "./redux/auth/auth-selector";
-// import { Switch } from "react-router-dom";
-// import PubliceRoute from "./routes/PublicRoute";
-// // import PrivateRoute from './routes/PrivateRoute'
-// import { Suspense, lazy } from "react";
+import ExpensesIncome from "./components/ExpensesIncome/ExpensesIncome";
+import { useEffect } from "react";
+import { fetchCurrentUser } from "./redux/auth/auth-operation";
+import { useSelector, useDispatch } from "react-redux";
+import authSelector from "./redux/auth/auth-selector";
+import { Switch } from "react-router-dom";
+import PubliceRoute from "./routes/PublicRoute";
+// import PrivateRoute from './routes/PrivateRoute'
+import { Suspense, lazy } from "react";
+import Summary from "./components/Summary/summary";
+import Balance from "./components/Balance/Balance";
 
-// const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
-// const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 
 function App() {
-//   const dispatch = useDispatch();
-//   useEffect(() => {
-//     dispatch(fetchCurrentUser());
-//   }, [dispatch]);
-  
-// const [modalActive, setModalActive] = useState(true);
-  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
+  const [modalActive, setModalActive] = useState(true);
+
   return (
     <div className="App">
-        {/* <Switch>
-      <Suspense fallback={null}>
-        <PubliceRoute path="/" exact>
-          {<HomePage />}
-        </PubliceRoute>
+      <Switch>
+        <Suspense fallback={null}>
+          <PubliceRoute path="/" exact>
+            {<HomePage />}
+          </PubliceRoute>
+          <PubliceRoute path="/login" restricted redirectTo="/">
+            {<HomePage />}
+          </PubliceRoute>
 
-        <PubliceRoute path="/login" restricted redirectTo="/">
-          {<HomePage />}
-        </PubliceRoute>
-
-        <PubliceRoute path="/signup" restricted>
-          {<SignUpPage />}
-        </PubliceRoute>        
-      </Suspense>
-    </Switch> */}
-
-      {/* <Modal active={modalActive} setActive={setModalActive} />
+          <PubliceRoute path="/signup" restricted>
+            {<SignUpPage />}
+          </PubliceRoute>
+        </Suspense>
+      </Switch>
+      <Summary />
+      <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit />
-      <Container /> */}
-    </div>   
-    );
+      <Balance />
+      <ExpensesIncome />
+    </div>
+  );
 }
 export default App;
