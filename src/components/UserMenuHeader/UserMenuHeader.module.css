@@ -63,6 +63,7 @@
   .userName {
     display: block;
     padding-right: 35px;
+    margin-top: 2px;
 
     font-size: 12px;
     line-height: 1.2;

@@ -6,6 +6,7 @@ import authSelector from "../../redux/auth/auth-selector";
 
 export default function Header({ setActive }) {
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
+  const token = useSelector(authSelector.getToken);
 
   return (
     <>
@@ -13,7 +14,7 @@ export default function Header({ setActive }) {
         <div class="container">
           <div className={styles.headerContaiener}>
             <LogoHeader />
-            {isLoggedIn && <UserMenuHeader setActive={setActive} />}
+            {isLoggedIn && token && <UserMenuHeader setActive={setActive} />}
           </div>
         </div>
       </header>

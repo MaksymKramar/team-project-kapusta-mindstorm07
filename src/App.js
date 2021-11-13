@@ -11,7 +11,6 @@ import { Switch } from "react-router-dom";
 import PubliceRoute from "./routes/PublicRoute";
 // import PrivateRoute from './routes/PrivateRoute'
 import { Suspense, lazy } from "react";
-import { ToastContainer } from "react-toastify";
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
@@ -37,7 +36,7 @@ function App() {
             {<LogInPage setActive={setModalExitActive} />}
           </PubliceRoute>
 
-          <PubliceRoute path="/signup" restricted>
+          <PubliceRoute path="/signup" restricted redirectTo="/login">
             {<SignUpPage />}
           </PubliceRoute>
         </Suspense>
@@ -46,8 +45,6 @@ function App() {
       {/* <Modal active={modalActive} setActive={setModalActive} /> */}
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
       {/* <Container /> */}
-
-      <ToastContainer style={{ width: "250px" }} />
     </div>
   );
 }

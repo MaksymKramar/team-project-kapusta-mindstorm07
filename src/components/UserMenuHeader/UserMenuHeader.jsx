@@ -10,8 +10,13 @@ export default function UserMenuHeader({ setActive }) {
 
   return (
     <div className={styles.wrapper}>
-      <span className={styles.firstLetterUser}>{firstLetterName}</span>
-      <span className={styles.userName}>{name}</span>
+      {name && (
+        <>
+          <span className={styles.firstLetterUser}>{firstLetterName}</span>
+          <span className={styles.userName}>{name}</span>
+        </>
+      )}
+
       <button type="button" className={styles.buttonLogOut} onClick={setActive}>
         <span className={styles.logOutText}>Выйти </span>
         <svg
