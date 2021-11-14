@@ -1,0 +1,20 @@
+.dateWrapper {
+    display: flex;
+}
+
+.calendarSvg {
+    margin-right: 10px;
+}
+
+.dateFormat {
+    display: block;
+    width: 74px;
+    border: none;
+    font-weight: 900;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing-second);
+    text-transform: uppercase;
+
+    color: var(--main-color);
+}
