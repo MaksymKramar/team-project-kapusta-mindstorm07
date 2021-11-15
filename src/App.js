@@ -3,7 +3,6 @@ import Modal from "./modal/modal";
 import ModalExit from "./modal/modalExit";
 
 import "./App.css";
-import DateCalendar from "./Components/Date/Date";
 import Reports from "./pages/Reports/Reports";
 import { useEffect } from "react";
 import { fetchCurrentUser } from "./redux/auth/auth-operation";
@@ -48,7 +47,6 @@ function App() {
       <ModalExit />
       <Balance />
       <Reports />
-      <DateCalendar />
     </div>
   );
 }
