@@ -1,6 +1,6 @@
 import ExpensesIncome from "../../components/ExpensesIncome/ExpensesIncome";
 
-export default function Reports() {
+export default function ReportPage() {
   return (
     <>
       <ExpensesIncome />
