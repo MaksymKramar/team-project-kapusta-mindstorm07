@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Switch>
+      <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
             {<LogInPage setActive={setModalExitActive} />}
@@ -43,16 +43,12 @@ function App() {
             {<SignUpPage />}
           </PubliceRoute>
         </Suspense>
-      </Switch> */}
-      {/* <Summary /> */}
-      {/* <Modal active={modalActive} setActive={setModalActive} />
-      <ModalExit /> */}
-     
       </Switch>
       <Summary />
       <Modal active={modalActive} setActive={setModalActive} />
        <ModalExit active={modalExitActive} setActive={setModalExitActive} />
           <ReportPage />
+     
     </div>
   );
 }
