@@ -1,8 +1,7 @@
 @media screen and (min-width: 320px) {
   .backBtn {
     border: none;
-    background: var(--white-color);
-    color: #ffffff;
+    background: none;
     font-size: 0;
   }
 }

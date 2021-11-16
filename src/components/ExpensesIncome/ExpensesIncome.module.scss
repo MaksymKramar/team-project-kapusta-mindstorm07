@@ -1,3 +1,11 @@
+.container {
+  background-color: #f5f6fb;
+  height: 230px;
+  border-bottom-left-radius: 20%;
+  position: relative;
+  z-index: -1;
+}
+
 .section {
   width: 100%;
   max-width: 320px;
@@ -5,6 +13,12 @@
   padding-right: 19px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.reportNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .amount {
@@ -61,12 +75,22 @@
 }
 
 @media screen and (min-width: 768px) {
+  .container {
+    height: 526px;
+  }
+
   .section {
     width: 100%;
     margin: 0 auto;
     max-width: 768px;
     padding-left: 26px;
     padding-right: 26px;
+  }
+
+  .reportNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
   }
 
   .amount {

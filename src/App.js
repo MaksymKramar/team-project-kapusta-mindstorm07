@@ -3,7 +3,6 @@ import Modal from "./modal/modal";
 import ModalExit from "./modal/modalExit";
 
 import "./App.css";
-import Reports from "./pages/Reports/Reports";
 import { useEffect } from "react";
 import { fetchCurrentUser } from "./redux/auth/auth-operation";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +12,7 @@ import PubliceRoute from "./routes/PublicRoute";
 // import PrivateRoute from './routes/PrivateRoute'
 import { Suspense, lazy } from "react";
 import Summary from "./components/Summary/summary";
-import Balance from "./components/Balance/Balance";
+import ReportPage from "./pages/ReportPage/ReportPage";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
@@ -28,7 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      <Switch>
+      {/* <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
             {<HomePage />}
@@ -41,12 +40,11 @@ function App() {
             {<SignUpPage />}
           </PubliceRoute>
         </Suspense>
-      </Switch>
-      <Summary />
-      <Modal active={modalActive} setActive={setModalActive} />
-      <ModalExit />
-      <Balance />
-      <Reports />
+      </Switch> */}
+      {/* <Summary /> */}
+      {/* <Modal active={modalActive} setActive={setModalActive} />
+      <ModalExit /> */}
+      <ReportPage />
     </div>
   );
 }
