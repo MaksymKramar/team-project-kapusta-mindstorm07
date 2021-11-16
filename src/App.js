@@ -15,7 +15,7 @@ import { Suspense, lazy } from "react";
 import Summary from "./components/Summary/summary";
 import Balance from "./components/Balance/Balance";
 
-const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 
 function App() {
@@ -24,29 +24,33 @@ function App() {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-  const [modalActive, setModalActive] = useState(true);
+
+   const [modalActive, setModalActive] = useState(false);
+  const [modalExitActive, setModalExitActive] = useState(false);
 
   return (
     <div className="App">
       <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
-            {<HomePage />}
-          </PubliceRoute>
-          <PubliceRoute path="/login" restricted redirectTo="/">
-            {<HomePage />}
+            {<LogInPage setActive={setModalExitActive} />}
           </PubliceRoute>
 
-          <PubliceRoute path="/signup" restricted>
+          <PubliceRoute path="/login" restricted redirectTo="/">
+            {<LogInPage setActive={setModalExitActive} />}
+          </PubliceRoute>
+
+          <PubliceRoute path="/signup" restricted redirectTo="/login">
             {<SignUpPage />}
           </PubliceRoute>
         </Suspense>
       </Switch>
       <Summary />
       <Modal active={modalActive} setActive={setModalActive} />
-      <ModalExit />
+       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
       <Balance />
       <Reports />
+
     </div>
   );
 }

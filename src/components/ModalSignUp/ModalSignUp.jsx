@@ -1,7 +1,7 @@
 import styles from "./ModalSignUp.module.css";
 import sprite from "../../images/sprite.svg";
 import { useState, useEffect } from "react";
-import { signUp } from "../../redux/auth/auth-operation";
+import { signUp, authGoogle } from "../../redux/auth/auth-operation";
 import { useDispatch, useSelector } from "react-redux";
 import authSelector from "../../redux/auth/auth-selector";
 import Spinner from "../Spinner/Spiner";
@@ -22,6 +22,8 @@ export default function ModalSignUp() {
   const [emailError, setEmailError] = useState("Это обязательное поле");
   const [passwordError, setPasswordError] = useState("Это обязательное поле");
   const [formValid, setFormValid] = useState(true);
+
+  const isErrorSignUp = useSelector(authSelector.getIsErrorSignUp);
 
   const handleChange = ({ target: { name, value } }) => {
     console.log(name);
@@ -100,6 +102,14 @@ export default function ModalSignUp() {
     dispatch(signUp({ name, email, password }));
     setEmail("");
     setPassword("");
+    setName("");
+  };
+
+  const handleGoogle = (e) => {
+    e.preventDefault();
+    dispatch(authGoogle());
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -109,7 +119,13 @@ export default function ModalSignUp() {
           Вы можете зарегистрироваться с помощью Google Account:
         </p>
 
-        <a className={styles.modalLink}>
+        <a
+          href="https://kapusta-backend-project.herokuapp.com/api/auth/google"
+          onClick={() => {
+            dispatch(handleGoogle);
+          }}
+          className={styles.modalLink}
+        >
           <svg className={styles.logoGoogle} width="18px" height="18px">
             <use href={sprite + "#icon-google-symbol-1"} />
           </svg>
@@ -176,6 +192,11 @@ export default function ModalSignUp() {
             <span className={styles.error}>{passwordError}</span>
           )}
         </label>
+        {isErrorSignUp && (
+          <span className={styles.isError}>
+            Что-то пошло не так. Попробуйте еще раз!
+          </span>
+        )}
 
         <div className={styles.buttonsWrapper}>
           <button disabled={!formValid} type="submit" className={styles.button}>

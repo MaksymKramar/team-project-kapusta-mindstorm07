@@ -21,7 +21,7 @@ const persistConfig = {
   key: "auth",
   storage,
   whiteList: ["token", "user.name"],
-  // blacklist: ['isFetchingCurrent', 'isLoggedIn', 'isLoading'],
+  blacklist: ["isErrorLogIn", "isErrorSignUp"],
 };
 
 const rootReducer = combineReducers({

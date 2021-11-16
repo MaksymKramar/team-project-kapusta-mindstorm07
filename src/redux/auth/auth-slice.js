@@ -1,13 +1,21 @@
-import { createReducer, combineReducers } from "@reduxjs/toolkit";
+// import { createReducer, combineReducers } from '@reduxjs/toolkit'
 import { createSlice } from "@reduxjs/toolkit";
-import { signUp, logIn, logOut, fetchCurrentUser } from "./auth-operation";
+import {
+  signUp,
+  logIn,
+  logOut,
+  fetchCurrentUser,
+  authGoogle,
+} from "./auth-operation";
 
 const initialState = {
-  user: { name: null, email: null, password: null },
+  user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
   isFetchingCurrent: false,
   isLoading: false,
+  isErrorLogIn: false,
+  isErrorSignUp: false,
 };
 
 const authSlice = createSlice({
@@ -15,31 +23,63 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [signUp.fulfilled](state, action) {
-      console.log(action.payload);
+      state.user = { ...action.payload.newUser };
 
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      // state.token = action.payload.responce.data.token
       state.isLoggedIn = true;
+
       state.isLoading = false;
+      state.isErrorSignUp = false;
+      state.isErrorLogIn = false;
     },
     [signUp.pending](state, action) {
       state.isLoading = true;
+      state.isErrorSignUp = false;
+      state.isErrorLogIn = false;
     },
     [signUp.rejected](state, action) {
       state.isLoading = false;
+      state.isErrorSignUp = true;
+      // state.isLoggedIn = false
     },
 
     [logIn.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.user = { ...action.payload.data };
+      state.token = action.payload.data.token;
       state.isLoggedIn = true;
       state.isLoading = false;
+      state.isErrorLogIn = false;
+      state.isErrorSignUp = false;
     },
     [logIn.pending](state, action) {
       state.isLoading = true;
+      state.isErrorLogIn = false;
+      state.isErrorSignUp = false;
     },
     [logIn.rejected](state, action) {
       state.isLoading = false;
+      state.isErrorLogIn = true;
+    },
+
+    [authGoogle.fulfilled](state, action) {
+      state.user = { ...action.payload.data };
+
+      state.token = action.payload.data.token;
+      state.isLoggedIn = true;
+
+      state.isLoading = false;
+      state.isErrorSignUp = false;
+      state.isErrorLogIn = false;
+    },
+    [authGoogle.pending](state, action) {
+      state.isLoading = true;
+      state.isErrorSignUp = false;
+      state.isErrorLogIn = false;
+    },
+    [authGoogle.rejected](state, action) {
+      state.isLoading = false;
+      state.isErrorSignUp = true;
+      // state.isLoggedIn = false
     },
 
     [logOut.fulfilled](state, action) {
@@ -68,6 +108,8 @@ const authSlice = createSlice({
     [fetchCurrentUser.rejected](state) {
       state.isFetchingCurrentUser = false;
       state.isLoading = false;
+
+      state.isLoggedIn = false;
     },
   },
 });

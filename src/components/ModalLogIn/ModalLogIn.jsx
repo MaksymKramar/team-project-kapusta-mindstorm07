@@ -1,17 +1,23 @@
 import styles from "./ModalLogIn.module.css";
 import sprite from "../../images/sprite.svg";
+
 import { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../../redux/auth/auth-operation";
+import { logIn, authGoogle } from "../../redux/auth/auth-operation";
 import authSelector from "../../redux/auth/auth-selector";
 import { NavLink } from "react-router-dom";
 
 import Spinner from "../Spinner/Spiner";
 
+import GoogleAuth from "../GoogleAuth/GoogleAuth";
+
 export default function ModalLogIn() {
   const dispatch = useDispatch();
   const isLoading = useSelector(authSelector.getIsLoading);
+  const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
+
+  const isErrorLogIn = useSelector(authSelector.getIsErrorLogIn);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,19 +27,6 @@ export default function ModalLogIn() {
   const [emailError, setEmailError] = useState("Это обязательное поле");
   const [passwordError, setPasswordError] = useState("Это обязательное поле");
   const [formValid, setFormValid] = useState(true);
-
-  // const handleChange = ({ target: { name, value } }) => {
-  //   console.log(name)
-  //   console.log(value)
-  //   switch (name) {
-  //     case 'email':
-  //       return setEmail(value)
-  //     case 'password':
-  //       return setPassword(value)
-  //     default:
-  //       return
-  //   }
-  // }
 
   useEffect(() => {
     if (emailError || passwordError) {
@@ -85,6 +78,13 @@ export default function ModalLogIn() {
     }
   };
 
+  const handleGoogle = (e) => {
+    e.preventDefault();
+    dispatch(authGoogle());
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <div className={styles.modal}>
       <div className={styles.wrapper}>
@@ -93,7 +93,13 @@ export default function ModalLogIn() {
           Google Account:
         </p>
 
-        <a className={styles.modalLink}>
+        <a
+          href="https://kapusta-backend-project.herokuapp.com/api/auth/google"
+          onClick={() => {
+            dispatch(handleGoogle);
+          }}
+          className={styles.modalLink}
+        >
           <svg className={styles.logoGoogle} width="18px" height="18px">
             <use href={sprite + "#icon-google-symbol-1"} />
           </svg>
@@ -110,7 +116,7 @@ export default function ModalLogIn() {
           Электронная почта:
           <input
             className={styles.input}
-            autoComplete="off"
+            autoComplete="new-password"
             required
             placeholder="your@email.com"
             type="email"
@@ -146,13 +152,25 @@ export default function ModalLogIn() {
             <span className={styles.error}>{passwordError}</span>
           )}
         </label>
+
+        {isErrorLogIn && (
+          <span className={styles.isError}>
+            Неправильный E-mail или пароль. Попробуйте еще раз!
+          </span>
+        )}
+
         <div className={styles.buttonsWrapper}>
           <button disabled={!formValid} className={styles.button} type="submit">
             {isLoading && <Spinner width="20px" height="20px" />}
             Войти
           </button>
 
-          <NavLink to="/signup" exact className={styles.button}>
+          <NavLink
+            to="/signup"
+            exact
+            className={isLoggedIn ? styles.disabled : styles.button}
+            //  className={styles.button}
+          >
             Регистрация
           </NavLink>
         </div>
