@@ -23,7 +23,7 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [signUp.fulfilled](state, action) {
-      state.user = { ...action.payload.newUser };
+      state.user = { ...action.payload.data };
 
       // state.token = action.payload.responce.data.token
       state.isLoggedIn = true;
