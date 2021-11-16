@@ -1,10 +1,11 @@
 import { Chart } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import s from "./Graph.module.scss";
 
 Chart.register(ChartDataLabels);
 
-export default function Graph({ type }) {
+export default function GraphMobile({ type }) {
   const expensesOpt = [
     { id: "Свинина", nested: { value: 5000 } },
     { id: "Говядина", nested: { value: 4500 } },
@@ -24,7 +25,7 @@ export default function Graph({ type }) {
   ];
 
   const optArr = type === "expenses" ? incomesOpt : expensesOpt;
-  const aspect = type === "expenses" ? 3 : 3;
+  const aspect = type === "expenses" ? 0.5 : 2;
 
   const data = {
     datasets: [
@@ -32,10 +33,9 @@ export default function Graph({ type }) {
         data: optArr.sort((a, b) => {
           return b.nested.value - a.nested.value;
         }),
-
-        maxBarThickness: 38,
+        maxBarThickness: 15,
         borderRadius: 10,
-        minBarLength: 2,
+        minBarLength: 80,
         backgroundColor: ["#ff751d", "#ffdac0", "#ffdac0"],
         datalabels: {
           formatter: function (value, context) {
@@ -52,33 +52,42 @@ export default function Graph({ type }) {
       },
     ],
   };
+
   const options = {
-    parsing: {
-      xAxisKey: "id",
-      yAxisKey: "nested.value",
-      // key: 'data.nested.value',
-    },
-    responsive: true,
+    indexAxis: "y",
     layout: {
       padding: {
-        left: 5,
-        right: 5,
-        top: 40,
+        left: 0,
+        right: 30,
+        top: 0,
       },
     },
-    aspectRatio: aspect,
+    parsing: {
+      xAxisKey: "nested.value",
+      yAxisKey: "id",
+      // key: 'data.nested.value',
+    },
+    maintainAspectRatio: false,
+    responsive: true,
     scales: {
       x: {
         grid: {
+          display: false,
+          borderColor: ["rgba(0, 0, 0, 0)"],
+        },
+        ticks: {
           display: false,
         },
       },
       y: {
         grid: {
+          display: false,
           borderColor: ["rgba(0, 0, 0, 0)"],
         },
         ticks: {
-          display: false,
+          align: "start",
+          mirror: true,
+          labelOffset: -21,
         },
       },
     },
@@ -90,7 +99,7 @@ export default function Graph({ type }) {
   };
 
   return (
-    <div>
+    <div className={s.container}>
       <Bar data={data} options={options} />
     </div>
   );
