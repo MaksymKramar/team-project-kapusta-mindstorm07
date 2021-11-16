@@ -62,7 +62,8 @@
 @media screen and (min-width: 768px) {
   .userName {
     display: block;
-    padding-right: 40px;
+    padding-right: 35px;
+    margin-top: 2px;
 
     font-size: 12px;
     line-height: 1.2;
@@ -117,7 +118,7 @@
     position: absolute;
 
     top: -8px;
-    left: 114px;
+    right: 66px;
   }
 
   /* .logOutText::before {
