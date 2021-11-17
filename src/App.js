@@ -23,8 +23,7 @@ function App() {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-
-   const [modalActive, setModalActive] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
   const [modalExitActive, setModalExitActive] = useState(false);
 
   return (
@@ -39,16 +38,15 @@ function App() {
             {<LogInPage setActive={setModalExitActive} />}
           </PubliceRoute>
 
-          <PubliceRoute path="/signup" restricted redirectTo="/login">
+          <PubliceRoute path="/signup" restricted redirectTo="/">
             {<SignUpPage />}
           </PubliceRoute>
         </Suspense>
       </Switch>
       <Summary />
       <Modal active={modalActive} setActive={setModalActive} />
-       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
-          <ReportPage />
-     
+      <ModalExit active={modalExitActive} setActive={setModalExitActive} />
+      <ReportPage />
     </div>
   );
 }
