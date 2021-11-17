@@ -23,9 +23,11 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [signUp.fulfilled](state, action) {
-      state.user = { ...action.payload.data };
+      // state.user = { ...action.payload.data };
+      state.user.name = action.payload.data.name;
+      state.user.email = action.payload.data.email;
 
-      // state.token = action.payload.responce.data.token
+      state.token = action.payload.data.token;
       state.isLoggedIn = true;
 
       state.isLoading = false;
@@ -44,7 +46,9 @@ const authSlice = createSlice({
     },
 
     [logIn.fulfilled](state, action) {
-      state.user = { ...action.payload.data };
+      // state.user = { ...action.payload.data }
+      state.user.name = action.payload.data.name;
+      state.user.email = action.payload.data.email;
       state.token = action.payload.data.token;
       state.isLoggedIn = true;
       state.isLoading = false;
@@ -62,7 +66,7 @@ const authSlice = createSlice({
     },
 
     [authGoogle.fulfilled](state, action) {
-      state.user = { ...action.payload.data };
+      // state.user = { ...action.payload.data }
 
       state.token = action.payload.data.token;
       state.isLoggedIn = true;

@@ -103,7 +103,7 @@ export const fetchCurrentUser = createAsyncThunk(
         return thunkAPI.rejectWithValue();
       }
       token.set(persistedToken);
-      const { data } = await axios.get("/api/auth/current");
+      const { data } = await axios.get("/api/auth/user/current");
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -115,11 +115,16 @@ export const authGoogle = createAsyncThunk(
   "auth/authGoogle",
   async (credentials) => {
     try {
-      const { data } = await axios.get("/api/auth/google", credentials);
+      const { data } = await axios.get("/api/auth/google");
+      const params = document.location.search;
+      const seachparams = new URLSearchParams(params);
+      const get = seachparams.get("token");
+      // window.location.href = data.request.responseURL
+      console.log(get);
 
-      token.set(data.token);
+      // token.set(data.token);
 
-      return data;
+      // return data;
     } catch (error) {
       return Promise.reject(error);
     }

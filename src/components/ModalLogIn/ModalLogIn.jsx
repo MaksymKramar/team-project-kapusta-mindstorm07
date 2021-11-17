@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 
 import Spinner from "../Spinner/Spiner";
 
-import GoogleAuth from "../GoogleAuth/GoogleAuth";
+// import GoogleAuth from "../GoogleAuth/GoogleAuth";
 
 export default function ModalLogIn() {
   const dispatch = useDispatch();
