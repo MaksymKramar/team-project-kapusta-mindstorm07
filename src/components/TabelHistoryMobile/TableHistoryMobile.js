@@ -86,7 +86,7 @@ const rows = [
     amount: "-15",
   },
 ];
-export default function TableMobile() {
+export default function TableHistoryMobile() {
   return (
     <div className={styles.tableContainer}>
       <ul className={styles.table}>
