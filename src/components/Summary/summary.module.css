@@ -40,13 +40,13 @@
 }
 
 @media screen and (min-width: 1200px) {
-  table {
+  .table {
     position: absolute;
     right: 0;
   }
 }
 @media screen and (max-width: 480px) {
-  table {
+  .table {
     visibility: hidden;
     display: none;
   }
