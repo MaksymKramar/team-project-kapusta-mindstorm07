@@ -38,11 +38,22 @@ export const logIn = createAsyncThunk("auth/login", async (credentials) => {
 
 export const signUp = createAsyncThunk("auth/signup", async (credentials) => {
   try {
+    const { email, password } = credentials;
+    console.log({ email, password });
     const { data } = await axios.post("/api/auth/signup", credentials);
+    console.log(data.status);
+
+    if (data.status === "success") {
+      const { data } = await axios.post("/api/auth/login", { email, password });
+      token.set(data.token);
+      console.log(token);
+
+      return data;
+    }
 
     // token.set(data.token)
 
-    return data;
+    // return data
   } catch (error) {
     return Promise.reject(error);
   }
