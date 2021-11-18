@@ -66,6 +66,7 @@
   .balance-btn:focus {
     color: white;
     background-color: var(--accent-color);
+    cursor: pointer;
   }
 }
 

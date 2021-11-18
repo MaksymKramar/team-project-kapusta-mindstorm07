@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <Switch>
+       <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
             {<HomePage />}
@@ -47,6 +47,7 @@ function App() {
       <ModalExit />
       <Balance />
       <Reports />
+      <Balance />
     </div>
   );
 }
