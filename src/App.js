@@ -47,7 +47,6 @@ function App() {
       <ModalExit />
       <Balance />
       <Reports />
-      <Balance />
     </div>
   );
 }
