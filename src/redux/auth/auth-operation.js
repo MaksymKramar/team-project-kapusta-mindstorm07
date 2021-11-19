@@ -112,21 +112,19 @@ export const fetchCurrentUser = createAsyncThunk(
 );
 
 export const authGoogle = createAsyncThunk(
-  "auth/authGoogle",
-  async (credentials) => {
+  "/google-redirect",
+  async (useremail, { rejectWithValue }) => {
+    // const { useremail } = credentials
     try {
-      const { data } = await axios.get("/api/auth/google");
-      const params = document.location.search;
-      const seachparams = new URLSearchParams(params);
-      const get = seachparams.get("token");
-      // window.location.href = data.request.responseURL
-      console.log(get);
+      const { data } = await axios.get(`/api/auth/user/${useremail}`);
+      console.log(data);
 
       // token.set(data.token);
 
-      // return data;
+      return data;
     } catch (error) {
-      return Promise.reject(error);
+      // return Promise.reject(error)
+      return rejectWithValue(error.message);
     }
   }
 );

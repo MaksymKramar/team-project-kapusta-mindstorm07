@@ -66,9 +66,10 @@ const authSlice = createSlice({
     },
 
     [authGoogle.fulfilled](state, action) {
-      // state.user = { ...action.payload.data }
+      state.user.name = action.payload.name;
+      state.user.email = action.payload.email;
 
-      state.token = action.payload.data.token;
+      state.token = action.payload.token;
       state.isLoggedIn = true;
 
       state.isLoading = false;

@@ -16,6 +16,7 @@ import ReportPage from "./pages/ReportPage/ReportPage";
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
+const LoadingPage = lazy(() => import("./pages/LoadingPage/LoadingPage"));
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
             {<LogInPage setActive={setModalExitActive} />}
+            {/* {<LoadingPage />} */}
           </PubliceRoute>
 
           <PubliceRoute path="/login" restricted redirectTo="/">
@@ -41,12 +43,16 @@ function App() {
           <PubliceRoute path="/signup" restricted redirectTo="/">
             {<SignUpPage />}
           </PubliceRoute>
+
+          <PubliceRoute exact path="/google-redirect" redirectTo="/" restricted>
+            {<LoadingPage />}
+          </PubliceRoute>
         </Suspense>
       </Switch>
-      <Summary />
+      {/* <Summary /> */}
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
-      <ReportPage />
+      {/* <ReportPage /> */}
     </div>
   );
 }
