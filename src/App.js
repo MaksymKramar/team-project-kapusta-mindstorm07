@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import authSelector from "./redux/auth/auth-selector";
 import { Switch } from "react-router-dom";
 import PubliceRoute from "./routes/PublicRoute";
-// import PrivateRoute from './routes/PrivateRoute'
+import PrivateRoute from "./routes/PrivateRoute";
 import { Suspense, lazy } from "react";
 import Summary from "./components/Summary/summary";
 import ReportPage from "./pages/ReportPage/ReportPage";
@@ -43,16 +43,15 @@ function App() {
           <PubliceRoute path="/signup" restricted redirectTo="/">
             {<SignUpPage />}
           </PubliceRoute>
-
           <PubliceRoute exact path="/google-redirect" redirectTo="/" restricted>
             {<LoadingPage />}
           </PubliceRoute>
+          <PrivateRoute path="/report">{<ReportPage />}</PrivateRoute>
         </Suspense>
       </Switch>
       {/* <Summary /> */}
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
-      {/* <ReportPage /> */}
     </div>
   );
 }
