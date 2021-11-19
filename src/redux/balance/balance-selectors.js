@@ -1,0 +1,1 @@
+export const balanceSum = state => state.balance.balance;
