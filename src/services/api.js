@@ -32,7 +32,7 @@ export async function getTransByMonth(date) {
   return data;
 }
 
-export async function getFullTransInfo() {
-  const { data } = await axios.get("api/transactions/");
+export async function getFullTransInfo({ type, date }) {
+  const { data } = await axios.get(`api/transactions/?${type}=${date}`);
   return data;
 }

@@ -16,6 +16,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth";
+//
+import reportReducer from "./report/reportSlices";
 
 const persistConfig = {
   key: "auth",
