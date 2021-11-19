@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import authSelector from "./redux/auth/auth-selector";
 import { Switch } from "react-router-dom";
 import PubliceRoute from "./routes/PublicRoute";
-// import PrivateRoute from './routes/PrivateRoute'
+import PrivateRoute from "./routes/PrivateRoute";
 import { Suspense, lazy } from "react";
 import Summary from "./components/Summary/summary";
 import ReportPage from "./pages/ReportPage/ReportPage";
@@ -17,6 +17,7 @@ import Balance from "./components/Balance/Balance";
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
+const LoadingPage = lazy(() => import("./pages/LoadingPage/LoadingPage"));
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
             {<LogInPage setActive={setModalExitActive} />}
+            {/* {<LoadingPage />} */}
           </PubliceRoute>
 
           <PubliceRoute path="/login" restricted redirectTo="/">
@@ -42,13 +44,19 @@ function App() {
           <PubliceRoute path="/signup" restricted redirectTo="/">
             {<SignUpPage />}
           </PubliceRoute>
+          <PubliceRoute exact path="/google-redirect" redirectTo="/" restricted>
+            {<LoadingPage />}
+          </PubliceRoute>
+          <PrivateRoute path="/report">{<ReportPage />}</PrivateRoute>
         </Suspense>
       </Switch>
-      <Summary />
+      {/* <Summary /> */}
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
+
       <ReportPage />
       <Balance />
+
     </div>
   );
 }

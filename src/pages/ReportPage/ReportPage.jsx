@@ -4,7 +4,13 @@ import ExpensesIncome from "../../components/ExpensesIncome/ExpensesIncome";
 export default function ReportPage() {
   return (
     <>
-      <Header />
+      <Header
+        typePage="report"
+        // month={month}
+        // year={year}
+        // handleChangeMonthLeft={handleChangeMonthLeft}
+        // handleChangeMonthRight={handleChangeMonthRight}
+      />
       <ExpensesIncome />
     </>
   );

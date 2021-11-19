@@ -11,6 +11,7 @@ import { NavLink } from "react-router-dom";
 import Spinner from "../Spinner/Spiner";
 
 // import GoogleAuth from "../GoogleAuth/GoogleAuth";
+// import { useLocation } from 'react-router-dom'
 
 export default function ModalLogIn() {
   const dispatch = useDispatch();
@@ -27,6 +28,8 @@ export default function ModalLogIn() {
   const [emailError, setEmailError] = useState("Это обязательное поле");
   const [passwordError, setPasswordError] = useState("Это обязательное поле");
   const [formValid, setFormValid] = useState(true);
+
+  // const search = useLocation().search
 
   useEffect(() => {
     if (emailError || passwordError) {
@@ -78,12 +81,15 @@ export default function ModalLogIn() {
     }
   };
 
-  const handleGoogle = (e) => {
-    e.preventDefault();
-    dispatch(authGoogle());
-    setEmail("");
-    setPassword("");
-  };
+  // const handleGoogle = (e) => {
+  //   e.preventDefault()
+
+  //   console.log(search)
+  //   const useremail = new URLSearchParams(search).get('useremail')
+  //   dispatch(authGoogle(useremail))
+  //   setEmail('')
+  //   setPassword('')
+  // }
 
   return (
     <div className={styles.modal}>
@@ -95,9 +101,9 @@ export default function ModalLogIn() {
 
         <a
           href="https://kapusta-backend-project.herokuapp.com/api/auth/google"
-          onClick={() => {
-            dispatch(handleGoogle);
-          }}
+          // onClick={() => {
+          //   dispatch(handleGoogle)
+          // }}
           className={styles.modalLink}
         >
           <svg className={styles.logoGoogle} width="18px" height="18px">
