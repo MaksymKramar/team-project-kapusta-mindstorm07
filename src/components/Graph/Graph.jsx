@@ -1,37 +1,18 @@
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Chart } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
 Chart.register(ChartDataLabels);
 
-export default function Graph({ type }) {
-  const expensesOpt = [
-    { id: "Свинина", nested: { value: 5000 } },
-    { id: "Говядина", nested: { value: 4500 } },
-    { id: "Курица", nested: { value: 3200 } },
-    { id: "Рыба", nested: { value: 2100 } },
-    { id: "Панини", nested: { value: 1800 } },
-    { id: "Кофе", nested: { value: 1700 } },
-    { id: "Спагетти", nested: { value: 1500 } },
-    { id: "Шоколад", nested: { value: 800 } },
-    { id: "Маслины", nested: { value: 500 } },
-    { id: "Зелень", nested: { value: 300 } },
-  ];
+export default function Graph({ transactions, categories, chartsCategoryId }) {
+  const data = chartsCategoryId ? transactions : categories;
 
-  const incomesOpt = [
-    { id: "ЗП", nested: { value: 25000 } },
-    { id: "Доп.доход", nested: { value: 20000 } },
-  ];
-
-  const optArr = type === "expenses" ? incomesOpt : expensesOpt;
-  const aspect = type === "expenses" ? 3 : 3;
-
-  const data = {
+  const graphInfo = {
     datasets: [
       {
-        data: optArr.sort((a, b) => {
-          return b.nested.value - a.nested.value;
-        }),
+        data: data,
 
         maxBarThickness: 38,
         borderRadius: 10,
@@ -52,11 +33,12 @@ export default function Graph({ type }) {
       },
     ],
   };
+
   const options = {
     parsing: {
       xAxisKey: "id",
       yAxisKey: "nested.value",
-      // key: 'data.nested.value',
+      key: "data.nested.value",
     },
     responsive: true,
     layout: {
@@ -66,7 +48,7 @@ export default function Graph({ type }) {
         top: 40,
       },
     },
-    aspectRatio: aspect,
+    aspectRatio: false,
     scales: {
       x: {
         grid: {
@@ -91,7 +73,7 @@ export default function Graph({ type }) {
 
   return (
     <div>
-      <Bar data={data} options={options} />
+      <Bar data={graphInfo} options={options} />
     </div>
   );
 }
