@@ -33,11 +33,11 @@ function App() {
       <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
-            {<LogInPage setActive={setModalExitActive} />}
+            {/* {<LogInPage setActive={setModalExitActive} />} */}
           </PubliceRoute>
 
           <PubliceRoute path="/login" restricted redirectTo="/">
-            {<LogInPage setActive={setModalExitActive} />}
+            {/* {<LogInPage setActive={setModalExitActive} />} */}
           </PubliceRoute>
 
           <PubliceRoute path="/signup" restricted redirectTo="/login">

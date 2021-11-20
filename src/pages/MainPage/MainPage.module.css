@@ -1,22 +1,7 @@
-@media screen and (min-width: 1200px) {
-  .allTables {
-    display: flex;
-    text-align: center;
-    justify-content: space-between;
-  }
-}
-.balanceString {
-  display: flex;
-  margin-bottom: 59px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
 .container {
   background-color: #f5f6fb;
-  /* height: 230px; */
   border-bottom-left-radius: 20%;
   position: relative;
-  /* z-index: -1; */
 }
 
 .section {
@@ -27,27 +12,70 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.balanceString {
+  display: flex;
+  margin-bottom: 59px;
+}
+
 .tableWraper {
-  /* position: relative; */
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 1060px;
-  height: 579px;
   padding-top: 33px;
   margin-bottom: 30px;
   padding-left: 20px;
   padding-right: 20px;
-  /* z-index: -1; */
 
   background: var(--white-color);
   box-shadow: 5px 10px 20px rgba(var(--container-color-grey), 0.4);
 
   background: var(--white-color);
   box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
-  border-radius: 20px;
+  border-radius: 0px 30px 30px 30px;
 
   font-size: 14px;
   line-height: 16px;
+}
+
+@media screen and (min-width: 1200px) {
+  .allTables {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+  }
+  .tableWraper {
+    width: 1060px;
+    height: 579px;
+  }
+  .btn2 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tableWraper {
+    width: 665px;
+    height: 626px;
+  }
+  .section {
+    width: 90%;
+  }
+  /* .btn2 {
+    display: none;
+  } */
+}
+@media screen and (max-width: 480px) {
+  .tableWraper {
+    width: 380px;
+  }
+  .balanceString {
+    display: none;
+  }
+  .btn1 {
+    display: none;
+  }
+  /* .btn2 {
+    margin-top: 50px;
+  } */
 }

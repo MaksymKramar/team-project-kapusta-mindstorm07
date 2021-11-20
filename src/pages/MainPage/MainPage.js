@@ -1,12 +1,13 @@
 import  Header  from "../../components/Header/Header";
 import AddExpense from "../../components/AddExpense/AddExpense";
-import Balance from "../../components/Date/Date";
+import Balance from "../../components/Balance/Balance";
 import ExpIncomeBtns from "../../components/ExpIncomeBtns/ExpIncomeBtns";
 import TableHistory from "../../components/TableHistory/TableHistory";
 import Summary from "../../components/Summary/summary";
 import s from "./MainPage.module.css";
-import sprite from "../../images/sprite.svg"
-// import { ImageBackground } from "react-native";
+import DateCalendar from "../../components/Date/Date";
+
+
 
 export default function MainPage() {
   return (
@@ -15,22 +16,23 @@ export default function MainPage() {
               <Header />
           <div className={s.container}>
                   <section className={s.section}>
-                      {/* <Balance/> */}
-                      <ExpIncomeBtns />
+                      <Balance />
+                      <div className={s.btn1}><ExpIncomeBtns/></div>
                       <div className={s.tableWraper}>
+                          
           <div className={s.balanceString}>
-              <Balance />
+              <DateCalendar/>
                       <AddExpense />
                   </div>
           
           <div className={s.allTables}>
           <TableHistory/>
               <Summary />
-              </div>
-               </div>
+                          </div>
+                     {/* <div className={s.btn2}><ExpIncomeBtns /></div>   */}
+                      </div>
+                       
               </section>
-              {/* <ImageBackground sourse={require('../../images/GroupCabbages.png') }/> */}
-              
               </div>
           </div>
          
