@@ -16,6 +16,7 @@ export const logIn = createAsyncThunk("auth/login", async (credentials) => {
   try {
     const { data } = await axios.post("/api/auth/login", credentials);
     token.set(data.data.token);
+    console.log(axios.defaults.headers.common.Authorization);
 
     return data;
   } catch (error) {
@@ -32,15 +33,12 @@ export const signUp = createAsyncThunk("auth/signup", async (credentials) => {
 
     if (data.status === "success") {
       const { data } = await axios.post("/api/auth/login", { email, password });
-      token.set(data.token);
-      console.log(data.token);
+      token.set(data.data.token);
+      // console.log(data.data)
+      // console.log(axios.defaults.headers.common.Authorization)
 
       return data;
     }
-
-    // token.set(data.token)
-
-    // return data
   } catch (error) {
     return Promise.reject(error);
   }

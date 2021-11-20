@@ -12,7 +12,6 @@ import PubliceRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 import { Suspense, lazy } from "react";
 import Summary from "./components/Summary/summary";
-//import ReportPage from './pages/ReportPage/ReportPage'
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));

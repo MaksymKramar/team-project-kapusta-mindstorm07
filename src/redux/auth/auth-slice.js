@@ -9,7 +9,7 @@ import {
 } from "./auth-operation";
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: null, email: null, balance: 0 },
   token: null,
   isLoggedIn: false,
   isFetchingCurrent: false,
@@ -49,7 +49,7 @@ const authSlice = createSlice({
       // state.user = { ...action.payload.data }
       state.user.name = action.payload.data.name;
       state.user.email = action.payload.data.email;
-      state.token = action.payload.data.token;
+      state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isLoading = false;
       state.isErrorLogIn = false;
@@ -101,7 +101,11 @@ const authSlice = createSlice({
     },
 
     [fetchCurrentUser.fulfilled](state, action) {
-      state.user = { ...action.payload };
+      // state.user = { ...action.payload }
+      state.user.name = action.payload.name;
+      state.user.email = action.payload.email;
+      state.user.balance = action.payload.balance;
+
       state.isLoggedIn = true;
       state.isFetchingCurrentUser = false;
       state.isLoading = false;
