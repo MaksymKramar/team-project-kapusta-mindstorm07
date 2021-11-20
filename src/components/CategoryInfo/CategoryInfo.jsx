@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import s from "./CategoryInfo.module.scss";
 import sprite from "../../images/sprite.svg";
-import { getAllCategories } from "../../redux/operation/categories";
+// import { getAllCategories } from '../../redux/operation/categories'
+import { getAllCategories } from "../../redux/report";
 
 export default function CategoryInfo({ trans, handleClick }) {
   let categories = useSelector(getAllCategories);
@@ -30,8 +31,8 @@ export default function CategoryInfo({ trans, handleClick }) {
             key={item.category}
             className={s.item}
             onClick={() => {
-              handleClick(item.category._id);
-              setIsActiveId(item.category._id);
+              handleClick(item._id);
+              setIsActiveId(item._id);
             }}
           >
             <span className={s.price}>{item.value}</span>
@@ -39,18 +40,18 @@ export default function CategoryInfo({ trans, handleClick }) {
             <div className={s.iconContainer}>
               <div
                 className={
-                  item.isActive === item.category._id
+                  item.isActive === item._id
                     ? s.svgContainerActive
                     : s.svgContainer
                 }
               >
                 <svg className={item.isActive ? s.iconActive : s.icon}>
-                  <use xlinkHref={`${sprite}#${item.category}`} />
+                  <use xlinkHref={`${sprite}#${item.title}`} />
                 </svg>
               </div>
             </div>
 
-            <h3 className={s.titleItem}>{item.category}</h3>
+            <h3 className={s.titleItem}>{item.title}</h3>
           </li>
         ))
       )}

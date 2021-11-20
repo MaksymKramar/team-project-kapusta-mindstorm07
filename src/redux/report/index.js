@@ -1,2 +1,7 @@
-export { getFullTransInfo } from "./reportOperations";
-export { getReports, isLoadingValue } from "./reportSelectors";
+export { getFullTransInfo, getAllCategories } from "./reportOperations";
+export {
+  getReports,
+  isLoadingValue,
+  getCategoriesExpenses,
+  getCategoriesIncomes,
+} from "./reportSelectors";
