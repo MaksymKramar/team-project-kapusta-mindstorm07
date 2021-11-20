@@ -4,7 +4,7 @@ import sprite from "../../images/sprite.svg";
 export default function BackgroundHome() {
   return (
     <div className={styles.wrapper}>
-      <div class="container">
+      <div className="container">
         <svg className={styles.logoIcon} width="183px" height="46px">
           <use href={sprite + "#icon-kapusta-mobile"} />
         </svg>

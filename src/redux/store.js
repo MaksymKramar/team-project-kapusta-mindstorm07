@@ -16,6 +16,9 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth";
+import { balanceReducer } from "./balance";
+//
+import reportReducer from "./report/reportSlices";
 
 const persistConfig = {
   key: "auth",
@@ -26,6 +29,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(persistConfig, authReducer),
+  balance: balanceReducer,
+  report: reportReducer,
 });
 
 const middleware = [

@@ -15,8 +15,7 @@ const token = {
 export const logIn = createAsyncThunk("auth/login", async (credentials) => {
   try {
     const { data } = await axios.post("/api/auth/login", credentials);
-    token.set(data.token);
-    console.log(token);
+    token.set(data.data.token);
 
     return data;
   } catch (error) {
@@ -24,67 +23,26 @@ export const logIn = createAsyncThunk("auth/login", async (credentials) => {
   }
 });
 
-// export const signUp = createAsyncThunk('auth/signup', async (credentials) => {
-//   try {
-//     const { data } = await axios.post('/users/signup', credentials)
-
-//     token.set(data.token)
-
-//     return data
-//   } catch (error) {
-//     return Promise.reject(error)
-//   }
-// })
-
 export const signUp = createAsyncThunk("auth/signup", async (credentials) => {
   try {
     const { email, password } = credentials;
     console.log({ email, password });
     const { data } = await axios.post("/api/auth/signup", credentials);
-    console.log(data.status);
 
     if (data.status === "success") {
       const { data } = await axios.post("/api/auth/login", { email, password });
-      token.set(data.token);
-      console.log(token);
+      token.set(data.data.token);
 
       return data;
     }
-
-    // token.set(data.token)
-
-    // return data
   } catch (error) {
     return Promise.reject(error);
   }
 });
 
-// export const signUp = createAsyncThunk('auth/signup', async (credentials) => {
-//   try {
-//     const {data} = await axios.post('/api/auth/signup', credentials)
-
-//     if(data){
-
-//       try {
-//     const { data } = await axios.post('/api/auth/login', credentials)
-//     token.set(data.token)
-
-//     return data
-//   } catch (error) {
-//     return Promise.reject(error)
-//   }
-
-//      }
-
-//     return data
-//   } catch (error) {
-//     return Promise.reject(error)
-//   }
-// })
-
 export const logOut = createAsyncThunk("auth/logout", async () => {
   try {
-    const { data } = await axios.post("/api/auth/logout");
+    const { data } = await axios.get("/api/auth/logout");
     token.unset();
 
     return data;
@@ -97,13 +55,14 @@ export const fetchCurrentUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
 
-    console.log(persistedToken);
+    // console.log(persistedToken);
     try {
       if (persistedToken === null) {
         return thunkAPI.rejectWithValue();
       }
       token.set(persistedToken);
-      const { data } = await axios.get("/api/auth/current");
+
+      const { data } = await axios.get("/api/auth/user/current");
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -112,16 +71,19 @@ export const fetchCurrentUser = createAsyncThunk(
 );
 
 export const authGoogle = createAsyncThunk(
-  "auth/authGoogle",
-  async (credentials) => {
+  "/google-redirect",
+  async (useremail, { rejectWithValue }) => {
+    // const { useremail } = credentials
     try {
-      const { data } = await axios.get("/api/auth/google", credentials);
+      const { data } = await axios.get(`/api/auth/user/${useremail}`);
+      // console.log(data);
 
       token.set(data.token);
 
       return data;
     } catch (error) {
-      return Promise.reject(error);
+      // return Promise.reject(error)
+      return rejectWithValue(error.message);
     }
   }
 );
