@@ -12,6 +12,8 @@ import PubliceRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 import { Suspense, lazy } from "react";
 import Summary from "./components/Summary/summary";
+import Balance from "./components/Balance/Balance";
+
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
@@ -60,6 +62,10 @@ function App() {
       {/* <Summary /> */}
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
+
+      <ReportPage />
+      <Balance />
+
     </div>
   );
 }
