@@ -12,7 +12,11 @@ import PubliceRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 import { Suspense, lazy } from "react";
 import Summary from "./components/Summary/summary";
+
+import MainPage from "./pages/MainPage/MainPage";
+
 import Balance from "./components/Balance/Balance";
+
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
@@ -32,6 +36,13 @@ function App() {
     <div className="App">
       <Switch>
         <Suspense fallback={null}>
+          <PubliceRoute path="/" exact>
+           {<LogInPage setActive={setModalExitActive} />} 
+          </PubliceRoute>
+
+          <PubliceRoute path="/login" restricted redirectTo="/">
+           {<LogInPage setActive={setModalExitActive} />}
+
           <PubliceRoute path="/" exact restricted redirectTo="/report">
             {<LogInPage setActive={setModalExitActive} />}
             {<LoadingPage />}
@@ -39,6 +50,7 @@ function App() {
 
           <PubliceRoute path="/login" restricted redirectTo="/report">
             {<LogInPage setActive={setModalExitActive} />}
+
           </PubliceRoute>
 
           <PubliceRoute path="/signup" restricted redirectTo="/report">
@@ -59,7 +71,7 @@ function App() {
           </PrivateRoute>
         </Suspense>
       </Switch>
-      <Summary />
+      <MainPage/>
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
 
