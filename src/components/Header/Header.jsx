@@ -11,7 +11,7 @@ export default function Header({ setActive }) {
   return (
     <>
       <header className={styles.header}>
-        <div class="container">
+        <div className="container">
           <div className={styles.headerContaiener}>
             <LogoHeader />
             {isLoggedIn && <UserMenuHeader setActive={setActive} />}

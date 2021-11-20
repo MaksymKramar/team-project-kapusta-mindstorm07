@@ -15,26 +15,13 @@ const token = {
 export const logIn = createAsyncThunk("auth/login", async (credentials) => {
   try {
     const { data } = await axios.post("/api/auth/login", credentials);
-    token.set(data.token);
-    console.log(token);
+    token.set(data.data.token);
 
     return data;
   } catch (error) {
     return Promise.reject(error);
   }
 });
-
-// export const signUp = createAsyncThunk('auth/signup', async (credentials) => {
-//   try {
-//     const { data } = await axios.post('/users/signup', credentials)
-
-//     token.set(data.token)
-
-//     return data
-//   } catch (error) {
-//     return Promise.reject(error)
-//   }
-// })
 
 export const signUp = createAsyncThunk("auth/signup", async (credentials) => {
   try {
@@ -46,7 +33,7 @@ export const signUp = createAsyncThunk("auth/signup", async (credentials) => {
     if (data.status === "success") {
       const { data } = await axios.post("/api/auth/login", { email, password });
       token.set(data.token);
-      console.log(token);
+      console.log(data.token);
 
       return data;
     }
@@ -59,32 +46,9 @@ export const signUp = createAsyncThunk("auth/signup", async (credentials) => {
   }
 });
 
-// export const signUp = createAsyncThunk('auth/signup', async (credentials) => {
-//   try {
-//     const {data} = await axios.post('/api/auth/signup', credentials)
-
-//     if(data){
-
-//       try {
-//     const { data } = await axios.post('/api/auth/login', credentials)
-//     token.set(data.token)
-
-//     return data
-//   } catch (error) {
-//     return Promise.reject(error)
-//   }
-
-//      }
-
-//     return data
-//   } catch (error) {
-//     return Promise.reject(error)
-//   }
-// })
-
 export const logOut = createAsyncThunk("auth/logout", async () => {
   try {
-    const { data } = await axios.post("/api/auth/logout");
+    const { data } = await axios.get("/api/auth/logout");
     token.unset();
 
     return data;
@@ -103,6 +67,7 @@ export const fetchCurrentUser = createAsyncThunk(
         return thunkAPI.rejectWithValue();
       }
       token.set(persistedToken);
+
       const { data } = await axios.get("/api/auth/user/current");
       return data;
     } catch (error) {
@@ -119,7 +84,7 @@ export const authGoogle = createAsyncThunk(
       const { data } = await axios.get(`/api/auth/user/${useremail}`);
       console.log(data);
 
-      // token.set(data.token);
+      token.set(data.token);
 
       return data;
     } catch (error) {

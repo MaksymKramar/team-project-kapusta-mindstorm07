@@ -3,8 +3,8 @@ import axios from "axios";
 axios.defaults.baseURL = "https://kapusta-backend-project.herokuapp.com/";
 
 export async function getAllCategories() {
-  const { categories } = await axios.get("api/categories");
-  return categories;
+  const { data } = await axios.get("api/categories");
+  return data;
 }
 
 export async function createCategory(category) {
