@@ -9,4 +9,17 @@ export const getFullTransInfo = createAsyncThunk(
   }
 );
 
+export const getAllCategories = createAsyncThunk(
+  "categories/getAllCategories",
+  async (_, { rejectWithValue }) => {
+    try {
+      const categories = await api.getAllCategories();
+      console.log(categories);
+      return categories;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 console.log(getFullTransInfo());
