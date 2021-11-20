@@ -63,7 +63,6 @@ function App() {
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
 
-      <ReportPage />
       <Balance />
 
     </div>
