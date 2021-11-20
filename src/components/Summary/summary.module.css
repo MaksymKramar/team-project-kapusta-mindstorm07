@@ -39,15 +39,19 @@
   margin-left: 20px;
 }
 
-@media screen and (min-width: 1200px) {
+.table {
+  margin-left: 30px;
+}
+/* @media screen and (min-width: 1200px) {
   .table {
     position: absolute;
     right: 0;
   }
-}
+} */
 @media screen and (max-width: 480px) {
   .table {
     visibility: hidden;
     display: none;
+    margin-left: 30px;
   }
 }
