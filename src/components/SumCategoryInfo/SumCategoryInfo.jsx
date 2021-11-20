@@ -5,6 +5,12 @@ import Graph from "../Graph/Graph";
 import GraphMobile from "../Graph/GraphMobile";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
+import { getAllCategories } from "../../redux/operation/categories";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+
 const typeTrans = "expenses";
 
 const expenses = [
@@ -28,6 +34,16 @@ const incomes = [
 
 export default function SumCategoryInfo({ type }) {
   const viewPort = useWindowDimensions();
+
+  const [expenses, setExpenses] = useState([]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, []);
+
+  // const expenses = useSelector(getAllCategories)
+  // console.log(expenses)
 
   return (
     <div>

@@ -12,12 +12,13 @@ import PubliceRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 import { Suspense, lazy } from "react";
 import Summary from "./components/Summary/summary";
-import ReportPage from "./pages/ReportPage/ReportPage";
 import Balance from "./components/Balance/Balance";
+
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
 const LoadingPage = lazy(() => import("./pages/LoadingPage/LoadingPage"));
+const ReportPage = lazy(() => import("./pages/ReportPage/ReportPage"));
 
 function App() {
   const dispatch = useDispatch();
@@ -32,22 +33,30 @@ function App() {
     <div className="App">
       <Switch>
         <Suspense fallback={null}>
-          <PubliceRoute path="/" exact>
-            {<LogInPage setActive={setModalExitActive} />}
-            {/* {<LoadingPage />} */}
-          </PubliceRoute>
-
-          <PubliceRoute path="/login" restricted redirectTo="/">
+          <PubliceRoute path="/" exact restricted redirectTo="/report">
             {<LogInPage setActive={setModalExitActive} />}
           </PubliceRoute>
 
-          <PubliceRoute path="/signup" restricted redirectTo="/">
+          <PubliceRoute path="/login" restricted redirectTo="/report">
+            {<LogInPage setActive={setModalExitActive} />}
+          </PubliceRoute>
+
+          <PubliceRoute path="/signup" restricted redirectTo="/report">
             {<SignUpPage />}
           </PubliceRoute>
-          <PubliceRoute exact path="/google-redirect" redirectTo="/" restricted>
+
+          <PubliceRoute
+            exact
+            path="/google-redirect"
+            redirectTo="/report"
+            restricted
+          >
             {<LoadingPage />}
           </PubliceRoute>
-          <PrivateRoute path="/report">{<ReportPage />}</PrivateRoute>
+
+          <PrivateRoute path="/report">
+            {<ReportPage setActive={setModalExitActive} />}
+          </PrivateRoute>
         </Suspense>
       </Switch>
       {/* <Summary /> */}

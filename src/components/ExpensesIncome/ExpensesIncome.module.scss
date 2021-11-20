@@ -1,10 +1,10 @@
-.container {
-  background-color: #f5f6fb;
-  height: 230px;
-  border-bottom-left-radius: 20%;
-  position: relative;
-  z-index: -1;
-}
+// .container {
+//   background-color: #f5f6fb;
+//   height: 230px;
+//   border-bottom-left-radius: 20%;
+//   position: relative;
+//   z-index: -1;
+// }
 
 .section {
   width: 100%;
@@ -13,6 +13,11 @@
   padding-right: 19px;
   margin-left: auto;
   margin-right: auto;
+
+  position: absolute;
+  top: 244px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .reportNav {
@@ -75,9 +80,9 @@
 }
 
 @media screen and (min-width: 768px) {
-  .container {
-    height: 526px;
-  }
+  // .container {
+  //   height: 526px;
+  // }
 
   .section {
     width: 100%;
@@ -85,6 +90,8 @@
     max-width: 768px;
     padding-left: 26px;
     padding-right: 26px;
+
+    top: 141px;
   }
 
   .reportNav {
