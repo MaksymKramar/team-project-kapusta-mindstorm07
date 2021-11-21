@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getFullTransInfo, getAllCategories } from "./index";
+import { getAllCategories } from "./index";
 
 const initialState = {
   categories: {
@@ -36,20 +36,20 @@ const reportSlice = createSlice({
       state.isLoading = true;
     },
 
-    [getFullTransInfo.pending]: (state, _) => {
-      state.error = null;
-      state.isLoading = true;
-    },
+    // [getFullTransInfo.pending]: (state, _) => {
+    //   state.error = null;
+    //   state.isLoading = true;
+    // },
 
-    [getFullTransInfo.fulfilled]: (state, { payload }) => {
-      state.items = payload;
-      state.isLoading = false;
-    },
+    // [getFullTransInfo.fulfilled]: (state, { payload }) => {
+    //   state.items = payload;
+    //   state.isLoading = false;
+    // },
 
-    [getFullTransInfo.rejected]: (state, action) => {
-      state.error = action.error.message;
-      state.isLoading = false;
-    },
+    // [getFullTransInfo.rejected]: (state, action) => {
+    //   state.error = action.error.message;
+    //   state.isLoading = false;
+    // },
   },
 });
 

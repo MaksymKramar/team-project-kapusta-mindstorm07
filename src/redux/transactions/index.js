@@ -1,6 +1,8 @@
 export {
-  getFullTransInfo,
-  getTransByMonth,
+  getFullTransInfoMinus,
+  getFullTransInfoPlus,
+  getTransByMonthMinus,
+  getTransByMonthPlus,
   addTransaction,
   deleteTransactionById,
 } from "./transactionsOperations";

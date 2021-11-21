@@ -4,7 +4,7 @@ import * as api from "../../services/api";
 const getFullTransInfoMinus = createAsyncThunk(
   "transactions/getFullTransInfoMinus", //HOW WRITE???
   async (date) => {
-    const transactions = await api.getFullTransInfo(date);
+    const transactions = await api.getFullTransInfoMinus(date);
     console.log(transactions);
     return transactions.data;
   }
@@ -13,7 +13,7 @@ const getFullTransInfoMinus = createAsyncThunk(
 const getFullTransInfoPlus = createAsyncThunk(
   "transactions/getFullTransInfoPlus", //HOW WRITE???
   async (date) => {
-    const transactions = await api.getFullTransInfo(date);
+    const transactions = await api.getFullTransInfoPlus(date);
     console.log(transactions);
     return transactions.data;
   }
@@ -22,7 +22,7 @@ const getFullTransInfoPlus = createAsyncThunk(
 const getTransByMonthMinus = createAsyncThunk(
   "transactions/getTransByMonthMinus", //HOW WRITE???
   async (date) => {
-    const transactions = await api.getTransByMonth(date);
+    const transactions = await api.getTransByMonthMinus(date);
     console.log(transactions);
     return transactions.data;
   }
@@ -30,7 +30,7 @@ const getTransByMonthMinus = createAsyncThunk(
 const getTransByMonthPlus = createAsyncThunk(
   "transactions/getTransByMonthPlus", //HOW WRITE???
   async (date) => {
-    const transactions = await api.getTransByMonth(date);
+    const transactions = await api.getTransByMonthPlus(date);
     console.log(transactions);
     return transactions.data;
   }
