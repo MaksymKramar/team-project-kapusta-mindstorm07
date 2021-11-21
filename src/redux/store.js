@@ -19,8 +19,8 @@ import { authReducer } from "./auth";
 import { balanceReducer } from "./balance";
 import { transactionAddReducer } from "./transactionAdd";
 import { transactionsReducer } from "./transactions";
-//
-// import reportReducer from "./report/reportSlices";
+
+import reportReducer from "./report/reportSlices";
 
 const persistConfig = {
   key: "auth",
