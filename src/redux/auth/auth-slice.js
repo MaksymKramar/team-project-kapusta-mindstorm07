@@ -6,10 +6,12 @@ import {
   logOut,
   fetchCurrentUser,
   authGoogle,
+  createBalance,
 } from "./auth-operation";
 
 const initialState = {
-  user: { name: null, email: null, balance: 0 },
+  user: { name: null, email: null },
+  balance: 0,
   token: null,
   isLoggedIn: false,
   isFetchingCurrent: false,
@@ -49,6 +51,7 @@ const authSlice = createSlice({
       // state.user = { ...action.payload.data }
       state.user.name = action.payload.data.name;
       state.user.email = action.payload.data.email;
+      state.balance = action.payload.data.balance;
       state.token = action.payload.data.token;
       state.isLoggedIn = true;
       state.isLoading = false;
@@ -68,6 +71,7 @@ const authSlice = createSlice({
     [authGoogle.fulfilled](state, action) {
       state.user.name = action.payload.name;
       state.user.email = action.payload.email;
+      state.balance = action.payload.balance;
 
       state.token = action.payload.token;
       state.isLoggedIn = true;
@@ -89,6 +93,7 @@ const authSlice = createSlice({
 
     [logOut.fulfilled](state, action) {
       state.user = { name: null, email: null };
+      state.balance = 0;
       state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;
@@ -104,7 +109,7 @@ const authSlice = createSlice({
       // state.user = { ...action.payload }
       state.user.name = action.payload.name;
       state.user.email = action.payload.email;
-      state.user.balance = action.payload.balance;
+      state.balance = action.payload.balance;
 
       state.isLoggedIn = true;
       state.isFetchingCurrentUser = false;
@@ -120,6 +125,19 @@ const authSlice = createSlice({
 
       state.isLoggedIn = false;
     },
+
+    [createBalance.fulfilled](state, action) {
+      state.balance = action.payload.balance;
+    },
+    // [createBalance.pending](state, action) {
+    //   state.isLoading = true
+    //   state.isErrorLogIn = false
+    //   state.isErrorSignUp = false
+    // },
+    // [createBalance.rejected](state, action) {
+    //   state.isLoading = false
+    //   state.isErrorLogIn = true
+    // },
   },
 });
 
