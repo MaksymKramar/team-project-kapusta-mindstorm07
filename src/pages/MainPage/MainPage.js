@@ -7,6 +7,7 @@ import Summary from "../../components/Summary/summary";
 import s from "./MainPage.module.css";
 import DateCalendar from "../../components/Date/Date";
 
+
 export default function MainPage({ setActive }) {
   return (
     <>
@@ -14,6 +15,7 @@ export default function MainPage({ setActive }) {
         <Header setActive={setActive} />
         <div className={s.container}>
           <section className={s.section}>
+           
             <Balance />
             <div className={s.btn1}>
               <ExpIncomeBtns />
