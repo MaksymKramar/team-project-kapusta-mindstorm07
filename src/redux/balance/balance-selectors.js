@@ -1,1 +1,0 @@
-export const balanceSum = state => state.auth.user.balance;
