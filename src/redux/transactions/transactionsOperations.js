@@ -3,8 +3,8 @@ import * as api from "../../services/api";
 
 const getFullTransInfo = createAsyncThunk(
   "transactions/getFullTransInfo", //HOW WRITE???
-  async (type, date) => {
-    const transactions = await api.getFullTransInfo(type, date);
+  async (date) => {
+    const transactions = await api.getFullTransInfo(date);
     console.log(transactions);
     return transactions.data;
   }
@@ -23,6 +23,7 @@ const addTransaction = createAsyncThunk(
   "transactions/addTransaction",
   async (newTransaction) => {
     const transaction = await api.addTransaction(newTransaction);
+    console.log("addTrans:", transaction);
     return transaction.data.result;
   }
 );

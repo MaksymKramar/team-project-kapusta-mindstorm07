@@ -4,19 +4,19 @@ import {
   getFullTransInfo,
   getTransByMonth,
   addTransaction,
-  removeTransaction,
+  deleteTransactionById,
 } from "./index";
-
-const initialState = {
-  items: [],
-  sums: null,
-  error: null,
-  isLoading: false,
-};
 
 const transactionsSlice = createSlice({
   name: "transactions",
-  initialState,
+  initialState: {
+    itemsTrue: [],
+    itemsFalse: [],
+    totalAmount: null,
+    sum: null,
+    error: null,
+    isLoading: false,
+  },
   extraReducers: {
     [getFullTransInfo.pending]: (state, _) => {
       state.error = null;
@@ -24,8 +24,9 @@ const transactionsSlice = createSlice({
     },
 
     [getFullTransInfo.fulfilled]: (state, { payload }) => {
-      state.items = payload.sums;
-      state.sums = payload.categorySums.totalSums;
+      console.log("state:", state); // не делал, не получается
+      state.items = payload.sum;
+      state.sum = payload.categorySum.totalSum;
       state.isLoading = false;
     },
 
@@ -40,8 +41,10 @@ const transactionsSlice = createSlice({
     },
 
     [getTransByMonth.fulfilled]: (state, action) => {
-      state.items = action.payload;
-      state.sums = action.payload.sums;
+      state.itemsTrue = [...action.payload];
+      state.itemsFalse = [...action.payload.transactionsByUser]; // вроде бы нормально сделал запрос
+
+      state.totalAmount = action.totalAmount;
       state.isLoading = false;
     },
 
@@ -56,7 +59,7 @@ const transactionsSlice = createSlice({
     },
 
     [addTransaction.fulfilled]: (state, { payload }) => {
-      state.items = [payload, ...state.items];
+      state.items = [payload, ...state.items]; //не знаю правильно ли
       state.isLoading = false;
     },
 
@@ -65,17 +68,17 @@ const transactionsSlice = createSlice({
       state.isLoading = false;
     },
 
-    [removeTransaction.pending]: (state, _) => {
+    [deleteTransactionById.pending]: (state, _) => {
       state.error = null;
       state.isLoading = true;
     },
 
-    [removeTransaction.fulfilled]: (state, { payload }) => {
-      state.items = state.items.filter((el) => el._id !== payload);
+    [deleteTransactionById.fulfilled]: (state, { payload }) => {
+      state.items = state.items.filter((el) => el._id !== payload); // не делал
       state.isLoading = false;
     },
 
-    [removeTransaction.rejected]: (state, action) => {
+    [deleteTransactionById.rejected]: (state, action) => {
       state.error = action.error.message;
       state.isLoading = false;
     },
