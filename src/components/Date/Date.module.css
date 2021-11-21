@@ -1,5 +1,6 @@
 .dateWrapper {
   display: flex;
+  padding-top: 10px;
 }
 
 .calendarSvg {

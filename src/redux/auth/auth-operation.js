@@ -16,7 +16,6 @@ export const logIn = createAsyncThunk("auth/login", async (credentials) => {
   try {
     const { data } = await axios.post("/api/auth/login", credentials);
     token.set(data.data.token);
-    console.log(axios.defaults.headers.common.Authorization);
 
     return data;
   } catch (error) {
@@ -29,13 +28,10 @@ export const signUp = createAsyncThunk("auth/signup", async (credentials) => {
     const { email, password } = credentials;
     console.log({ email, password });
     const { data } = await axios.post("/api/auth/signup", credentials);
-    console.log(data.status);
 
     if (data.status === "success") {
       const { data } = await axios.post("/api/auth/login", { email, password });
       token.set(data.data.token);
-      // console.log(data.data)
-      // console.log(axios.defaults.headers.common.Authorization)
 
       return data;
     }
@@ -59,7 +55,7 @@ export const fetchCurrentUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
 
-    console.log(persistedToken);
+    // console.log(persistedToken);
     try {
       if (persistedToken === null) {
         return thunkAPI.rejectWithValue();
@@ -80,7 +76,7 @@ export const authGoogle = createAsyncThunk(
     // const { useremail } = credentials
     try {
       const { data } = await axios.get(`/api/auth/user/${useremail}`);
-      console.log(data);
+      // console.log(data);
 
       token.set(data.token);
 
@@ -88,6 +84,20 @@ export const authGoogle = createAsyncThunk(
     } catch (error) {
       // return Promise.reject(error)
       return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const createBalance = createAsyncThunk(
+  "api/auth/balance",
+  async (credentials) => {
+    try {
+      const { data } = await axios.patch("api/auth/user", credentials);
+      // token.set(data.token);
+
+      return data;
+    } catch (error) {
+      return Promise.reject(error);
     }
   }
 );
