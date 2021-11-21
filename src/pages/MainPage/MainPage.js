@@ -6,6 +6,7 @@ import TableHistory from "../../components/TableHistory/TableHistory";
 import Summary from "../../components/Summary/summary";
 import s from "./MainPage.module.css";
 import DateCalendar from "../../components/Date/Date";
+import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
 
 
 export default function MainPage({ setActive }) {
@@ -30,10 +31,11 @@ export default function MainPage({ setActive }) {
                 <TableHistory />
                 <Summary />
               </div>
-              {/* <div className={s.btn2}><ExpIncomeBtns /></div>   */}
+              <div className={s.btn2}><ExpIncomeBtns /></div>  
             </div>
           </section>
         </div>
+        <BackgrounUser />
       </div>
     </>
   );
