@@ -1,16 +1,23 @@
-.container {
+/* .container {
   background-color: #f5f6fb;
   border-bottom-left-radius: 20%;
   position: relative;
-}
+} */
 
 .section {
-  width: 55%;
-  padding-left: 19px;
-  padding-right: 19px;
+  /* width: 55%; */
+  /* padding-left: 19px;
+  padding-right: 19px; */
   padding-top: 40px;
   margin-left: auto;
   margin-right: auto;
+  z-index: 900;
+
+  position: absolute;
+  top: 86px;
+
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .balanceString {
@@ -19,6 +26,8 @@
 }
 
 .tableWraper {
+  width: 282px;
+
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -54,12 +63,15 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .section {
+    top: 97px;
+  }
   .tableWraper {
     width: 665px;
     height: 626px;
   }
   .section {
-    width: 90%;
+    /* width: 90%; */
   }
   .btn2 {
     display: none;
@@ -67,7 +79,7 @@
 }
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .tableWraper {
-    width: 380px;
+    /* width: 380px; */
   }
   .balanceString {
     display: none;

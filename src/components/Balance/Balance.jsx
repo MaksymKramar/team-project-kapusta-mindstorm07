@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createBalance } from "../../redux/balance/balance-operations";
-// import { balanceSum } from '../../redux/balance/balance-selectors';
 
 import styles from "./Balance.module.css";
 import sprite from "../../images/sprite.svg";
 import { NavLink } from "react-router-dom";
+import { createBalance } from "../../redux/auth/auth-operation";
 
 import authSelector from "../../redux/auth/auth-selector";
 
@@ -14,7 +13,9 @@ function Balance() {
 
   const balance = useSelector(authSelector.getBalance);
 
-  //const [balance, setBalance] = useState(0);
+  useEffect(() => {
+    setbalanceAmount(balance);
+  }, []);
 
   const dispatch = useDispatch();
 

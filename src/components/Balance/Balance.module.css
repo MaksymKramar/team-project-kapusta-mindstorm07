@@ -3,6 +3,13 @@
     width: 248px;
     margin: 0 auto;
     margin-bottom: 40px;
+
+    /* position: absolute;
+    top: 86px; */
+  }
+
+  body {
+    position: relative;
   }
 
   .report-link-container {
@@ -78,6 +85,8 @@
     width: 634px;
     padding-left: 40px;
     margin-bottom: 58px;
+
+    /* top: 97px; */
   }
 
   .balance-container {
