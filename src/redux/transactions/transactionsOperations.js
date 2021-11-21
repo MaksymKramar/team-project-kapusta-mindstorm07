@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../../services/api";
 
-const getFullTransInfo = createAsyncThunk(
-  "transactions/getFullTransInfo", //HOW WRITE???
+const getFullTransInfoMinus = createAsyncThunk(
+  "transactions/getFullTransInfoMinus", //HOW WRITE???
   async (date) => {
     const transactions = await api.getFullTransInfo(date);
     console.log(transactions);
@@ -10,10 +10,27 @@ const getFullTransInfo = createAsyncThunk(
   }
 );
 
-const getTransByMonth = createAsyncThunk(
-  "transactions/getTransByMonth", //HOW WRITE???
-  async (date, type) => {
-    const transactions = await api.getTransByMonth(date, type);
+const getFullTransInfoPlus = createAsyncThunk(
+  "transactions/getFullTransInfoPlus", //HOW WRITE???
+  async (date) => {
+    const transactions = await api.getFullTransInfo(date);
+    console.log(transactions);
+    return transactions.data;
+  }
+);
+
+const getTransByMonthMinus = createAsyncThunk(
+  "transactions/getTransByMonthMinus", //HOW WRITE???
+  async (date) => {
+    const transactions = await api.getTransByMonth(date);
+    console.log(transactions);
+    return transactions.data;
+  }
+);
+const getTransByMonthPlus = createAsyncThunk(
+  "transactions/getTransByMonthPlus", //HOW WRITE???
+  async (date) => {
+    const transactions = await api.getTransByMonth(date);
     console.log(transactions);
     return transactions.data;
   }
@@ -37,8 +54,10 @@ const deleteTransactionById = createAsyncThunk(
 );
 
 export {
-  getFullTransInfo,
-  getTransByMonth,
+  getFullTransInfoMinus,
+  getFullTransInfoPlus,
+  getTransByMonthMinus,
+  getTransByMonthPlus,
   addTransaction,
   deleteTransactionById,
 };
