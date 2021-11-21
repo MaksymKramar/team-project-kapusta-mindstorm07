@@ -32,6 +32,7 @@
   .dropdown {
     position: relative;
     display: inline-block;
+    z-index: 1000;
   }
 
   .dropdown-content {
@@ -63,6 +64,7 @@
   .dropdown-content-a:hover {
     background-color: var(--light-gray-color);
     color: var(--black-color);
+    cursor: pointer;
   }
 
   .dropdown:hover .dropdown-content {

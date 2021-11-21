@@ -1,10 +1,20 @@
 // import Button from '@mui/material/Button';
+import { useState } from "react";
 import sprite from "../../images/sprite.svg";
 import styles from "./ItemsCategories.module.css";
 
 function ItemsCategories() {
+  // const [category, setCategories] = useState('');
+  // const handleChange = e => {
+  //   const {value} = e.target;
+  //   console.log(value)
+  // }
   return (
     <div className={styles["dropdown"]}>
+      {/* <select onClick={handleChange}>
+        <option>Продукты</option>
+         <option>Транспорт</option>
+      </select> */}
       <button className={styles["dropbtn"]}>
         Категория товара{" "}
         <svg width="12" height="20" className={styles["category-svg-down"]}>

@@ -7,6 +7,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function DateCalendar() {
   const [startDate, setStartDate] = useState(new Date());
+  
+  const date = `${startDate.getDate()}.${startDate.getMonth()+1}.${startDate.getFullYear()}`
+  console.log(date)
   return (
     <div className={styles.dateWrapper}>
       <svg width="20" height="20" className={styles.calendarSvg}>

@@ -1,38 +1,38 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBalance } from '../../redux/balance/balance-operations';
-// import { balanceSum } from '../../redux/balance/balance-selector';
+// import { balanceSum } from '../../redux/balance/balance-selectors';
 
 import styles from "./Balance.module.css";
 import sprite from "../../images/sprite.svg";
 
 function Balance() {
 
-const [balanceAmount, setbalanceAmount] = useState(0);
+const [balance, setBalance] = useState(0);
 
   // const balance = useSelector(balanceSum);
   const dispatch = useDispatch();
 
   const handleChange = e => {
-    const value = e.currentTarget.value;
-    setbalanceAmount(value);
-    console.log(value)
+    const {value} = e.target;
+    console.log(e.currentTarget.value)
+    setBalance(value);
   };
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(balanceAmount)
-    dispatch(createBalance({ balanceAmount }));
-    // reset();
+    console.log(balance)
+    dispatch(createBalance({ balance }));
+
+
   };
   // const reset = () => {
-  //   setName('');
-  //   setNumber('');
+  //   setBalance('');
   // };
 
   return (
     <div className={styles["container"]}>
       <div className={styles["report-link-container"]}>
-        <a href="123" className={styles["report-link"]}>
+        <a href="/report" className={styles["report-link"]}>
           Перейти к отчетам
         </a>
         <svg width="14" height="14" className={styles["report-svg"]}>
@@ -44,10 +44,10 @@ const [balanceAmount, setbalanceAmount] = useState(0);
         <p className={styles["balance-name"]}>Баланс:</p>
         <div className={styles["balance-container2"]}>
           <input 
-          type="number"
           className={styles["balance-amount"]} 
-          placeholder={balanceAmount + ' UAH'}
-          onClick={handleChange} />
+          placeholder={balance + 'UAH'}
+          onBlur={handleChange}
+          disabled={balance} />
           <button className={styles["balance-btn"]}>Подтвердить</button>
         </div>
       </form>

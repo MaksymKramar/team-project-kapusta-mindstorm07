@@ -12,7 +12,9 @@ import PubliceRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 import { Suspense, lazy } from "react";
 import Summary from "./components/Summary/summary";
-import Balance from "./components/Balance/Balance";
+// import DateCalendar from "./components/Date/Date";
+import AddExpense from "./components/AddExpense/AddExpense";
+// import Balance from "./components/Balance/Balance"
 
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
@@ -31,6 +33,8 @@ function App() {
 
   return (
     <div className="App">
+      {/* <Balance /> */}
+      <AddExpense />
       <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact restricted redirectTo="/report">
@@ -63,7 +67,7 @@ function App() {
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
 
-      <Balance />
+      
 
     </div>
   );
