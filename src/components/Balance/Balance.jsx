@@ -1,27 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { createBalance } from "../../redux/balance/balance-operations";
+//import { createBalance } from '../../redux/balance/balance-operations'
+import { createBalance } from "../../redux/auth/auth-operation";
 // import { balanceSum } from '../../redux/balance/balance-selector';
+import { useSelector } from "react-redux";
 
 import styles from "./Balance.module.css";
 import sprite from "../../images/sprite.svg";
 import { NavLink } from "react-router-dom";
 
+import authSelector from "../../redux/auth/auth-selector";
+
 function Balance() {
   const [balanceAmount, setbalanceAmount] = useState(0);
 
-  // const balance = useSelector(balanceSum);
+  const balance = useSelector(authSelector.getBalance);
+
+  useEffect(() => {
+    setbalanceAmount(balance);
+  }, []);
+
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    const value = e.currentTarget.value;
-    setbalanceAmount(value);
-    console.log(value);
+    const value = e.target.value;
+    const valueNum = Number(value);
+    setbalanceAmount(valueNum);
+    // console.log(typeof valueNum)
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(balanceAmount);
-    dispatch(createBalance({ balanceAmount }));
+    dispatch(createBalance({ balance: balanceAmount }));
     // reset();
   };
   // const reset = () => {
@@ -46,7 +56,7 @@ function Balance() {
             type="number"
             className={styles["balance-amount"]}
             placeholder={balanceAmount + " UAH"}
-            onClick={handleChange}
+            onChange={handleChange}
           />
           <button className={styles["balance-btn"]}>Подтвердить</button>
         </div>

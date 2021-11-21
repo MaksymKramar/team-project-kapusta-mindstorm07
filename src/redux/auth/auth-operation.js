@@ -87,3 +87,17 @@ export const authGoogle = createAsyncThunk(
     }
   }
 );
+
+export const createBalance = createAsyncThunk(
+  "api/auth/balance",
+  async (credentials) => {
+    try {
+      const { data } = await axios.patch("api/auth/user", credentials);
+      // token.set(data.token);
+
+      return data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);
