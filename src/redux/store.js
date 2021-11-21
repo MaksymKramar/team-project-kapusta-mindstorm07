@@ -3,7 +3,7 @@ import {
   getDefaultMiddleware,
   combineReducers,
 } from "@reduxjs/toolkit";
-// import logger from "redux-logger";
+import logger from "redux-logger";
 import {
   persistStore,
   persistReducer,
@@ -18,9 +18,9 @@ import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth";
 import { balanceReducer } from "./balance";
 import { transactionAddReducer } from "./transactionAdd";
+import { transactionsReducer } from "./transactions";
 //
 // import reportReducer from "./report/reportSlices";
-
 
 const persistConfig = {
   key: "auth",
@@ -33,6 +33,8 @@ const rootReducer = combineReducers({
   auth: persistReducer(persistConfig, authReducer),
   balance: balanceReducer,
   transactionAdd: transactionAddReducer,
+  transactions: transactionsReducer,
+  report: reportReducer,
 });
 
 const middleware = [
@@ -41,7 +43,7 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  // logger,
+  logger,
 ];
 
 const store = configureStore({

@@ -1,7 +1,9 @@
 import { useDispatch } from "react-redux";
 import { authGoogle } from "../../redux/auth/auth-operation";
 import { useLocation } from "react-router-dom";
+import Spinner from "../../components/Spinner/Spiner";
 import queryString from "query-string";
+import s from "./LoadingPage.module.css";
 
 export default function LoadingPage() {
   const search = useLocation().search;
@@ -15,5 +17,9 @@ export default function LoadingPage() {
   const dispatch = useDispatch();
   dispatch(authGoogle(useremail));
 
-  return <p>Подождите, пожалуйста</p>;
+  return (
+    <div className={s.wrapper}>
+      <Spinner />
+    </div>
+  );
 }

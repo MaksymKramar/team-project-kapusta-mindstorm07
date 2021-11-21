@@ -28,11 +28,11 @@ export async function deleteTransactionById(id) {
 }
 
 export async function getTransByMonth(date, type = true) {
-  const { data } = await axios.get(`api/transactions/${date}?type=${type}`);
+  const { data } = await axios.get(`api/transactions/${date}?type=false`);
   return data;
 }
 
-export async function getFullTransInfo({ type, date }) {
+export async function getFullTransInfo({ date }) {
   const { data } = await axios.get(`api/transactions/?type=false&date=${date}`);
   return data;
 }

@@ -5,7 +5,7 @@
 
   .itemInput {
     display: block;
-    width: 282px;
+    width: 268px;
     height: 44px;
     text-align: left;
     font-weight: normal;
@@ -84,7 +84,7 @@
 
   .btnsDiv {
     display: flex;
-    padding-left: 8px;
+    /* padding-left: 8px; */
     padding-right: 8px;
   }
 

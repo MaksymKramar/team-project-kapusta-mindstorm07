@@ -9,41 +9,44 @@ import { getAllCategories } from "../../redux/operation/categories";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import {
+  getCategoriesIncomes,
+  getCategoriesExpenses,
+} from "../../redux/report";
 
 const typeTrans = "expenses";
 
-const expenses = [
-  { _id: 1, category: "Продукты", value: 0.0, isActive: false },
-  { _id: 2, category: "Алкоголь", value: 0.0, isActive: false },
-  { _id: 3, category: "Развлечения", value: 0.0, isActive: false },
-  { _id: 4, category: "Здоровье", value: 0.0, isActive: false },
-  { _id: 5, category: "Транспорт", value: 0.0, isActive: false },
-  { _id: 6, category: "Всё для дома", value: 0.0, isActive: false },
-  { _id: 8, category: "Коммуналка, связь", value: 0.0, isActive: false },
-  { _id: 7, category: "Техника", value: 0.0, isActive: false },
-  { _id: 9, category: "Спорт, хобби", value: 0.0, isActive: false },
-  { _id: 10, category: "Образование", value: 0.0, isActive: false },
-  { _id: 11, category: "Прочее", value: 0.0, isActive: false },
-];
+// const expenses = [
+//   { _id: 1, category: 'Продукты', value: 0.0, isActive: false },
+//   { _id: 2, category: 'Алкоголь', value: 0.0, isActive: false },
+//   { _id: 3, category: 'Развлечения', value: 0.0, isActive: false },
+//   { _id: 4, category: 'Здоровье', value: 0.0, isActive: false },
+//   { _id: 5, category: 'Транспорт', value: 0.0, isActive: false },
+//   { _id: 6, category: 'Всё для дома', value: 0.0, isActive: false },
+//   { _id: 8, category: 'Коммуналка, связь', value: 0.0, isActive: false },
+//   { _id: 7, category: 'Техника', value: 0.0, isActive: false },
+//   { _id: 9, category: 'Спорт, хобби', value: 0.0, isActive: false },
+//   { _id: 10, category: 'Образование', value: 0.0, isActive: false },
+//   { _id: 11, category: 'Прочее', value: 0.0, isActive: false },
+// ]
 
-const incomes = [
-  { _id: 12, category: "ЗП", value: 0.0, isActive: false },
-  { _id: 14, category: "Доп. доход", value: 0.0, isActive: false },
-];
+// const incomes = [
+//   { _id: 12, category: 'ЗП', value: 0.0, isActive: false },
+//   { _id: 14, category: 'Доп. доход', value: 0.0, isActive: false },
+// ]
 
 export default function SumCategoryInfo({ type }) {
   const viewPort = useWindowDimensions();
 
-  const [expenses, setExpenses] = useState([]);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCategories());
-  }, []);
+  }, [dispatch]);
 
-  // const expenses = useSelector(getAllCategories)
-  // console.log(expenses)
+  const expenses = useSelector(getCategoriesExpenses);
+  const incomes = useSelector(getCategoriesIncomes);
+  console.log(incomes);
+  console.log(expenses);
 
   return (
     <div>
