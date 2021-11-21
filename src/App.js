@@ -33,6 +33,8 @@ function App() {
 
   return (
     <div className="App">
+      {/* <Balance /> */}
+      <AddExpense />
       <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
@@ -68,7 +70,6 @@ function App() {
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
 
-      {/* <Balance /> */}
     </div>
   );
 }

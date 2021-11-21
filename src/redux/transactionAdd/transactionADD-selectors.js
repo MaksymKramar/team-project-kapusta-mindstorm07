@@ -1,0 +1,1 @@
+export const getCategoriesAll = state => state.transactionAdd.categories;

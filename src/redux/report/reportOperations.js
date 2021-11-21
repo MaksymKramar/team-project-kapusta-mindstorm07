@@ -5,7 +5,7 @@ export const getFullTransInfo = createAsyncThunk(
   "report/getFullTransInfo",
   async ({ type, date }) => {
     const reportList = await api.getFullTransInfo({ type, date });
-    return reportList.data;
+    return reportList;
   }
 );
 

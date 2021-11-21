@@ -2,9 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createBalance } from "./balance-operations";
 
 const initialState = {
-  user: { name: null, email: null, password: null },
-  token: null,
-  balance: null,
+  balance: 0,
   isLoading: false,
 };
 

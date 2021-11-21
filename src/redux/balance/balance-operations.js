@@ -1,24 +1,14 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import * as api from "../../services/api";
 
-// axios.defaults.baseURL = "https://kapusta-backend-project.herokuapp.com";
+// axios.defaults.baseURL = "https://kapusta-backend-project.herokuapp.com/";
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = "";
-  },
-};
-
-export const createBalance = createAsyncThunk("api/auth/user", async (credentials) => {
+export const createBalance = createAsyncThunk("api/auth/user", 
+  async (balanceSum, { rejectWithValue }) => {
   try {
-    const { data } = await axios.patch("api/auth/user", credentials);
-    token.set(data.token);
-
-    return data;
+    const data = await api.addBalance(balanceSum);
+    return data.balance;
   } catch (error) {
-    return Promise.reject(error);
+    return rejectWithValue(error.message);
   }
 });

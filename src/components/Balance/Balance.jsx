@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-//import { createBalance } from '../../redux/balance/balance-operations'
-import { createBalance } from "../../redux/auth/auth-operation";
-// import { balanceSum } from '../../redux/balance/balance-selector';
-import { useSelector } from "react-redux";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createBalance } from '../../redux/balance/balance-operations';
+// import { balanceSum } from '../../redux/balance/balance-selectors';
 
 import styles from "./Balance.module.css";
 import sprite from "../../images/sprite.svg";
@@ -16,33 +14,34 @@ function Balance() {
 
   const balance = useSelector(authSelector.getBalance);
 
-  useEffect(() => {
-    setbalanceAmount(balance);
-  }, []);
+
+const [balance, setBalance] = useState(0);
+
 
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    const valueNum = Number(value);
-    setbalanceAmount(valueNum);
-    // console.log(typeof valueNum)
+
+  const handleChange = e => {
+    const {value} = e.target;
+    console.log(e.currentTarget.value)
+    setBalance(value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(balanceAmount);
-    dispatch(createBalance({ balance: balanceAmount }));
-    // reset();
+
+    console.log(balance)
+    dispatch(createBalance({ balance }));
   };
   // const reset = () => {
-  //   setName('');
-  //   setNumber('');
+  //   setBalance('');
   // };
 
   return (
     <div className={styles["container"]}>
       <div className={styles["report-link-container"]}>
+
         <NavLink to="/report" exact className={styles["report-link"]}>
+
           Перейти к отчетам
         </NavLink>
         <svg width="14" height="14" className={styles["report-svg"]}>
@@ -52,12 +51,12 @@ function Balance() {
       <form className={styles["balance-container"]} onSubmit={handleSubmit}>
         <p className={styles["balance-name"]}>Баланс:</p>
         <div className={styles["balance-container2"]}>
-          <input
-            type="number"
-            className={styles["balance-amount"]}
-            placeholder={balanceAmount + " UAH"}
-            onChange={handleChange}
-          />
+          <input 
+          className={styles["balance-amount"]} 
+          placeholder={balance + 'UAH'}
+          onBlur={handleChange}
+          disabled={balance} />
+
           <button className={styles["balance-btn"]}>Подтвердить</button>
         </div>
       </form>

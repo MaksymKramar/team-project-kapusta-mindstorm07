@@ -36,3 +36,10 @@ export async function getFullTransInfo({ date }) {
   const { data } = await axios.get(`api/transactions/?type=false&date=${date}`);
   return data;
 }
+
+export async function addBalance(balanceSum) {
+  const { data } = await axios.patch("api/auth/user", balanceSum);
+  return data;
+}
+
+
