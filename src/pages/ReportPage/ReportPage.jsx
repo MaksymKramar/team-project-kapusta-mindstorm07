@@ -1,4 +1,5 @@
 import Header from "../../components/Header/Header";
+import BackBtn from "../../components/BackBtn/BackBtn"
 import ExpensesIncome from "../../components/ExpensesIncome/ExpensesIncome";
 import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
 import Balance from "../../components/Balance/Balance";
@@ -17,7 +18,10 @@ export default function ReportPage({ setActive }) {
       />
       <BackgrounUser />
       <div className={s.wrapper}>
-        <Balance />
+        <div className={s.secondWrapper}>
+          <BackBtn />
+          <Balance />
+        </div>
         <ExpensesIncome />
       </div>
     </>

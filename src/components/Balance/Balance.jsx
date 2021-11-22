@@ -8,6 +8,8 @@ import { createBalance } from "../../redux/auth/auth-operation";
 
 import authSelector from "../../redux/auth/auth-selector";
 
+import Notification  from "../Notification/Notification";
+
 function Balance() {
   const [balanceAmount, setbalanceAmount] = useState(0);
 
@@ -54,8 +56,10 @@ function Balance() {
             onChange={handleChange}
             disabled={balance}
           />
-
-          <button className={styles["balance-btn"]}>Подтвердить</button>
+          {balanceAmount === 0 && (
+            <Notification />
+          )}
+          <button type="submit"className={styles["balance-btn"]}>Подтвердить</button>
         </div>
       </form>
     </div>

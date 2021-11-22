@@ -101,3 +101,16 @@ export const createBalance = createAsyncThunk(
     }
   }
 );
+
+export const getBalance = createAsyncThunk(
+  "auth/getBalance",
+  async (credentials) => {
+    try {
+      const { data } = await axios.get("/api/auth/user/balance", credentials);
+
+      return data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+);

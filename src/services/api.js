@@ -39,7 +39,7 @@ export async function getTransByMonthPlus(date) {
 
 export async function getFullTransInfo({ date, type }) {
   const { data } = await axios.get(
-    `api/transactions/?type=${type}&date=11.2021`
+    `api/transactions/?type=${type}&date=${date}`
   );
   return data;
 }

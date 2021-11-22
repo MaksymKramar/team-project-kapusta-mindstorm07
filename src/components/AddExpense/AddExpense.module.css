@@ -224,6 +224,12 @@
 }
 
 @media screen and (min-width: 768px) {
+  .mainWrapper{
+    display: flex;
+  }
+  .dates {
+    margin-right: 33px;
+  }
   .itemInput {
     width: 192px;
     background: var(--white-color);
@@ -269,7 +275,7 @@
   }
 
   .btnsDiv {
-    justify-content: center;
+    justify-content: left;
   }
   .enterBtn,
   .clearBtn {
@@ -286,6 +292,19 @@
     color: var(--white-color);
     filter: none;
     border: none;
+  }
+
+
+  .dropbtn {
+    width: 171px;
+    background: var(--white-color);
+    padding-left: 20px;
+    border: 2px solid var(--light-gray-color);
+    border-radius: 0px;
+  }
+
+  .dropdown-content {
+    width: 171px;
   }
 }
 
@@ -308,5 +327,13 @@
   }
   .calculatorBtn {
     width: 46px;
+  }
+
+
+   .dropbtn {
+    width: 188px;
+  }
+  .dropdown-content {
+    width: 188px;
   }
 }
