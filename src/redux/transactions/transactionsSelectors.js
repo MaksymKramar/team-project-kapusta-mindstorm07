@@ -1,3 +1,9 @@
+import { createSelector } from '@reduxjs/toolkit';
+import {
+  getCategoriesIncomes,
+  getCategoriesExpenses,
+} from "../../redux/report";
+
 export const getTransactionsTrue = (state) => state.transactions.itemsTrue;
 export const getTransactionsFalse = (state) => state.transactions.itemsFalse;
 
@@ -19,3 +25,13 @@ const getFilteredCategInc = createSelector(
 );
 
 
+// export const getTransactionsList = createSelector(
+//   [getTransactions],
+//   (transactions) => {
+//     console.log("transactions:", transactions);
+//     const transactionsSort = [...transactions];
+//     return transactionsSort.sort((a, b) => new Date(b.date) - new Date(a.date));
+//   }
+// );
+
+// console.log(getTransactions);
