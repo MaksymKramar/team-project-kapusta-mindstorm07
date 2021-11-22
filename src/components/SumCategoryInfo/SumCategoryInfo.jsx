@@ -75,10 +75,11 @@ export default function SumCategoryInfo() {
     <div>
       <div className={`${s.container} ${type}`}>
         <div className={s.amountSection}>
-          {/* <svg className={s.iconPrevious}>
-            <use href={sprite + '#icon-previous'}></use>
-          </svg> */}
-          <button type="button" onClick={() => handleClick()}>
+          <button
+            className={s.button}
+            type="button"
+            onClick={() => handleClick()}
+          >
             <svg className={s.iconPrevious}>
               <use href={sprite + "#icon-previous"}></use>
             </svg>
@@ -88,15 +89,15 @@ export default function SumCategoryInfo() {
           ) : (
             <p className={s.title}> Доходы </p>
           )}
-          <button type="button" onClick={() => handleClick()}>
+          <button
+            className={s.button}
+            type="button"
+            onClick={() => handleClick()}
+          >
             <svg className={s.iconNext}>
               <use href={sprite + "#icon-next"}></use>
             </svg>
           </button>
-
-          {/* <svg className={s.iconNext}>
-            <use href={sprite + '#icon-next'}></use>
-          </svg> */}
         </div>
 
         {type === true ? (

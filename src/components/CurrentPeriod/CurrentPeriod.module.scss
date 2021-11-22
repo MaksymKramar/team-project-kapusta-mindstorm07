@@ -1,4 +1,9 @@
 .currentPeriodWrapper {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
   width: 140px;
 }
 
@@ -32,6 +37,12 @@
   color: var(--black-color);
 }
 
-.iconPrevious {
+.icon {
   margin-right: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .currentPeriodWrapper {
+    margin: 0;
+  }
 }
