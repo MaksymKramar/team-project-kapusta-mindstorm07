@@ -23,9 +23,9 @@ export default function AddExpense() {
 
   const dispatch = useDispatch();
 
-  const date = `${startDate.getDate()}.${
-    startDate.getMonth() + 1
-  }.${startDate.getFullYear()}`;
+  // const date = `${startDate.getDate()}.${
+  //   startDate.getMonth() + 1
+  // }.${startDate.getFullYear()}`;
   // console.log(date)
   // setDate(transDate)
 
@@ -53,7 +53,6 @@ export default function AddExpense() {
     // console.log(catItem)
     setValue(e.target.textContent);
   };
-  console.log(category);
   const handleChange = (e) => {
     switch (e.target.name) {
       case "description":
@@ -70,12 +69,13 @@ export default function AddExpense() {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
     dispatch(operations.transactionAdd(newTransaction));
+    clearBtn()
   };
 
   const clearBtn = () => {
     setSum("");
     setDescription("");
-    setCategory("");
+    setValue("Категория товара");
   };
 
   return (
@@ -96,6 +96,7 @@ export default function AddExpense() {
               className={styles.itemInput}
               placeholder="Описание товара"
               name="description"
+              value={description}
               onChange={handleChange}
             />
             {/* <ItemCategories /> */}
@@ -131,7 +132,7 @@ export default function AddExpense() {
                   <li
                     className={styles["dropdown-content-a"]}
                     key={category._id}
-                    value={category._id}
+                    value={category}
                     onClick={change}
                   >
                     {category.title}
@@ -145,6 +146,7 @@ export default function AddExpense() {
               className={styles.amountInput}
               placeholder="00.00 UAH"
               name="sum"
+              value={sum}
               onChange={handleChange}
             />
             <button className={styles.calculatorBtn}>
