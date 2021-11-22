@@ -1,3 +1,3 @@
 export const getCategoriesAll = (state) => state.transactionAdd.categories;
 
-export const getData = (state) => state.transactionAdd.data;
+export const getData = (state) => state.transactionAdd.date;

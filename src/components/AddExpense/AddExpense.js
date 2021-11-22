@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
-import {getCategoriesAll} from "../../redux/transactionAdd/transactionADD-selectors";
+import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
 // import {transactionAdd, getGategories} from '../../redux/transactionAdd/transactionAdd-operations'
 // import DatePicker from "react-datepicker";
 // import ItemCategories from "../ItemsCategories/ItemsCategories";
@@ -33,8 +33,9 @@ export default function AddExpense() {
     dispatch(operations.getGategories());
   }
 
-  const categories = useSelector(getCategoriesAll)
-  console.log(categories)
+  const categories = useSelector(selectors.getCategoriesAll)
+  const getDatas = useSelector(selectors.getData)
+  console.log(getDatas)
   // const catItem = categories.map(i=>i.title).reduce()
   const change = (e) => {
     categories.map(i => {
@@ -63,7 +64,7 @@ console.log(category)
 
   const handleSubmit = e => {
     e.preventDefault()
-    const newTransaction = {date, description, sum, type, category};
+    const newTransaction = {date: getDatas, description, sum, type, category};
     dispatch(operations.transactionAdd(newTransaction))
   }
 

@@ -14,10 +14,8 @@ export default function DateCalendar() {
   const dispatch = useDispatch();
 
   const updateDate = (date) => {
-    const year = String(date.getFullYear());
-    const month = String(date.getMonth() + 1);
-    const day = String(date.getDate());
-    dispatch(addDate({ month, day, year }));
+    const allDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
+    dispatch(addDate(allDate));
   };
 
   const handleDateChange = (date) => {
