@@ -34,7 +34,7 @@ const rootReducer = combineReducers({
   // balance: balanceReducer,
   transactionAdd: transactionAddReducer,
   transactions: transactionsReducer,
-  // report: reportReducer,
+  report: reportReducer,
 });
 
 const middleware = [
