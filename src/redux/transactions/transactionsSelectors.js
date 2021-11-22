@@ -18,13 +18,4 @@ const getFilteredCategInc = createSelector(
   (arr, category) => arr?.find((ar) => ar.category === category)?.details
 );
 
-export const getTransactionsList = createSelector(
-  [getTransactions],
-  (transactions) => {
-    console.log("transactions:", transactions);
-    const transactionsSort = [...transactions];
-    return transactionsSort.sort((a, b) => new Date(b.date) - new Date(a.date));
-  }
-);
-
 
