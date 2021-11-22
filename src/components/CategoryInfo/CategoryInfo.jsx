@@ -1,11 +1,17 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+
 import s from "./CategoryInfo.module.scss";
 import sprite from "../../images/sprite.svg";
 import { getAllCategories } from "../../redux/report";
+import { useSelector, useDispatch } from "react-redux";
 
-export default function CategoryInfo({ trans, handleClick }) {
+import { getFullTransInfo } from "../../redux/report";
+import { getDescription } from "../../redux/report";
+import { getData } from "../../redux/transactionAdd/transactionADD-selectors";
+
+export default function CategoryInfo({ trans, handleClick, type }) {
   let categories = useSelector(getAllCategories);
+  const data = useSelector(getData);
   // const summs = Object.values(
   //   trans.reduce((acc, { group, total_amounts }) => {
   //     const category = categories.find((i) => i._id === group.category);
@@ -16,8 +22,20 @@ export default function CategoryInfo({ trans, handleClick }) {
   //     return acc;
   //   }, {})
   // );
+  // const type = {type}
 
   const [isActiveId, setIsActiveId] = useState("");
+  const dispatch = useDispatch();
+
+  const onClick = (e) => {
+    //console.log(e.target.value);
+
+    dispatch(getFullTransInfo({ data, type }));
+  };
+
+  // useEffect(() =>{
+  //   dispatch(getFullTransInfo())
+  // }, [])
 
   return (
     <ul className={s.list}>
@@ -29,6 +47,8 @@ export default function CategoryInfo({ trans, handleClick }) {
             key={item.category}
             className={s.item}
             onClick={() => {
+              onClick();
+
               handleClick(item._id);
               setIsActiveId(item._id);
             }}

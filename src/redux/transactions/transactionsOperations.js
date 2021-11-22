@@ -1,23 +1,23 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../../services/api";
 
-const getFullTransInfoMinus = createAsyncThunk(
-  "transactions/getFullTransInfoMinus", //HOW WRITE???
-  async (date) => {
-    const transactions = await api.getFullTransInfoMinus(date);
-    console.log(transactions);
-    return transactions.data;
-  }
-);
+// const getFullTransInfoMinus = createAsyncThunk(
+//   "transactions/getFullTransInfoMinus", //HOW WRITE???
+//   async (date) => {
+//     const transactions = await api.getFullTransInfoMinus(date);
+//     console.log(transactions);
+//     return transactions.data;
+//   }
+// );
 
-const getFullTransInfoPlus = createAsyncThunk(
-  "transactions/getFullTransInfoPlus", //HOW WRITE???
-  async (date) => {
-    const transactions = await api.getFullTransInfoPlus(date);
-    console.log(transactions);
-    return transactions.data;
-  }
-);
+// const getFullTransInfoPlus = createAsyncThunk(
+//   "transactions/getFullTransInfoPlus", //HOW WRITE???
+//   async (date) => {
+//     const transactions = await api.getFullTransInfoPlus(date);
+//     console.log(transactions);
+//     return transactions.data;
+//   }
+// );
 
 const getTransByMonthMinus = createAsyncThunk(
   "transactions/getTransByMonthMinus", //HOW WRITE???
@@ -54,8 +54,8 @@ const deleteTransactionById = createAsyncThunk(
 );
 
 export {
-  getFullTransInfoMinus,
-  getFullTransInfoPlus,
+  // getFullTransInfoMinus,
+  // getFullTransInfoPlus,
   getTransByMonthMinus,
   getTransByMonthPlus,
   addTransaction,
