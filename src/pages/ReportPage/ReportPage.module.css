@@ -10,4 +10,7 @@
   .wrapper {
     top: 97px;
   }
+  .secondWrapper {
+    display: flex;
+}
 }

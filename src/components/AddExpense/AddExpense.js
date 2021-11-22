@@ -40,11 +40,7 @@ export default function AddExpense() {
   const categories = useSelector(selectors.getCategoriesAll);
   const getDatas = useSelector(selectors.getData);
   const getDescription = useSelector(selectors.getDescription);
-  console.log(getDatas);
-
-  // useEffect(() => {
-  //   dispatch(getBalance())
-  // }, [getDescription])
+ 
   // const catItem = categories.map(i=>i.title).reduce()
   const change = (e) => {
     categories.map((i) => {
@@ -63,16 +59,16 @@ export default function AddExpense() {
       case "description":
         return setDescription(e.target.value);
       case "sum":
-        return setSum(e.target.value);
+        return setSum(Number(e.target.value));
       default:
         return;
     }
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
-
     dispatch(operations.transactionAdd(newTransaction));
   };
 
@@ -83,8 +79,16 @@ export default function AddExpense() {
   };
 
   return (
-    <div className="container">
-      <DateCalendar />
+
+//     <div className="container">
+//       <DateCalendar />
+
+    <div>
+      <div className={styles.mainWrapper}>
+        <div className={styles.dates}>
+          <DateCalendar />
+          </div>
+
       <form className={styles.wrapper} onSubmit={handleSubmit}>
         <div className={styles.itemsWrapper}>
           <div className={styles.itemDiv}>
@@ -159,6 +163,7 @@ export default function AddExpense() {
           </button>
         </div>
       </form>
+      </div>
     </div>
   );
 }
