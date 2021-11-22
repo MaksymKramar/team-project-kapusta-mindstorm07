@@ -10,13 +10,12 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function DateCalendar() {
   const [startDate, setStartDate] = useState(new Date());
+
   const dispatch = useDispatch();
 
   const updateDate = (date) => {
-    const year = String(date.getFullYear());
-    const month = String(date.getMonth() + 1);
-    const day = String(date.getDate());
-    dispatch(addDate({ month, day, year }));
+    const allDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
+    dispatch(addDate(allDate));
   };
 
   const handleDateChange = (date) => {
@@ -27,7 +26,7 @@ export default function DateCalendar() {
   const date = `${startDate.getDate()}.${
     startDate.getMonth() + 1
   }.${startDate.getFullYear()}`;
-  console.log(date);
+
   return (
     <div className={styles.dateWrapper}>
       <svg width="20" height="20" className={styles.calendarSvg}>

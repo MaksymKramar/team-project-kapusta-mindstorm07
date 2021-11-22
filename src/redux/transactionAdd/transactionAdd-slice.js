@@ -31,11 +31,14 @@ const transactionAddSlice = createSlice({
     [getGategories.rejected](state) {
       state.isLoading = false;
     },
-    [transactionAdd.fulfilled](state, { payload }) {
-      state.date = payload;
-      state.description = payload;
-      state.sum = payload;
-      state.category = "";
+
+    [transactionAdd.fulfilled](state, {payload}) {
+      state.date = payload.date;
+      state.description= payload.description;
+      state.sum = payload.sum;
+      state.category=payload.category;
+
+
       state.isLoading = false;
     },
     [transactionAdd.pending](state) {

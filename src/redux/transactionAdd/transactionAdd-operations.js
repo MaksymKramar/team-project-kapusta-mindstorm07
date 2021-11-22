@@ -18,7 +18,7 @@ export const transactionAdd = createAsyncThunk("api/transactions/add",
   try {
     const data = await api.addTransaction(transaction);
     console.log(data)
-    return data;
+    return data.data.result;
   } catch (error) {
     return rejectWithValue(error.message);
   }
