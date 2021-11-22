@@ -33,8 +33,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Balance /> */}
-      <AddExpense />
       <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>

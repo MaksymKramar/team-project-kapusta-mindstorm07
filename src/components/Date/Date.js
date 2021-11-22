@@ -7,8 +7,12 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function DateCalendar() {
   const [startDate, setStartDate] = useState(new Date());
-  
+  // const [dates, setDates] = useState('');
   const date = `${startDate.getDate()}.${startDate.getMonth()+1}.${startDate.getFullYear()}`
+// setDates(date)
+// setStartDate(date)
+
+
   console.log(date)
   return (
     <div className={styles.dateWrapper}>

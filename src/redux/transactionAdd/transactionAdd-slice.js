@@ -26,10 +26,10 @@ const transactionAddSlice = createSlice({
       state.isLoading = false;
     },
     [transactionAdd.fulfilled](state, {payload}) {
-      state.date = payload;
-      state.description= payload;
-      state.sum = payload;
-      state.category="";
+      state.date = payload.date;
+      state.description= payload.description;
+      state.sum = payload.sum;
+      state.category=payload.category;
       state.isLoading = false;
     },
     [transactionAdd.pending](state) {

@@ -12,7 +12,7 @@ import authSelector from "../../redux/auth/auth-selector";
 function Balance() {
   const [balanceAmount, setbalanceAmount] = useState(0);
 
-  const balance = useSelector(authSelector.getBalance);
+  // const balance = useSelector(authSelector.getBalance);
 
 
 const [balance, setBalance] = useState(0);
