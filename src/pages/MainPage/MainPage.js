@@ -5,7 +5,7 @@ import ExpIncomeBtns from "../../components/ExpIncomeBtns/ExpIncomeBtns";
 import TableHistory from "../../components/TableHistory/TableHistory";
 import Summary from "../../components/Summary/summary";
 import s from "./MainPage.module.css";
-import DateCalendar from "../../components/Date/Date";
+// import DateCalendar from "../../components/Date/Date";
 import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
 
 export default function MainPage({ setActive }) {
@@ -22,7 +22,7 @@ export default function MainPage({ setActive }) {
             </div>
             <div className={s.tableWraper}>
               <div className={s.balanceString}>
-                <DateCalendar />
+                {/* <DateCalendar /> */}
                 <AddExpense />
               </div>
 

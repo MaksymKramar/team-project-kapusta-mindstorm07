@@ -75,8 +75,11 @@ export default function AddExpense() {
   };
 
   return (
-    <div className="container">
-      <DateCalendar />
+    <div>
+      <div className={styles.mainWrapper}>
+        <div className={styles.dates}>
+          <DateCalendar />
+          </div>
       <form className={styles.wrapper} onSubmit={handleSubmit}>
         <div className={styles.itemsWrapper}>
           <div className={styles.itemDiv}>
@@ -151,6 +154,7 @@ export default function AddExpense() {
           </button>
         </div>
       </form>
+      </div>
     </div>
   );
 }
