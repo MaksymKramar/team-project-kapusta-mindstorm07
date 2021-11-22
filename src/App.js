@@ -33,9 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Balance /> */}
-      {/* <AddExpense /> */}
-      <Switch>
+     <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
             <Redirect to="/login" />
