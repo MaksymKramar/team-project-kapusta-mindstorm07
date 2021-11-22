@@ -3,7 +3,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import styles from "./TableHistory.module.scss";
 import sprite from "../../images/sprite.svg";
 import TableHistoryMobile from "../TabelHistoryMobile/TableHistoryMobile";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
