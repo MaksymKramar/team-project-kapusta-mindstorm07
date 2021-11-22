@@ -22,4 +22,16 @@ export const getAllCategories = createAsyncThunk(
   }
 );
 
+export const getDetailInfo = createAsyncThunk(
+  "report/detailInfo",
+  async ({ type, date }) => {
+    try {
+      const transactions = await api.getFullTransInfo({ type, date });
+      return transactions;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
 // console.log(getFullTransInfo());

@@ -9,8 +9,9 @@ import { getFullTransInfo } from "../../redux/report";
 import { getDescription } from "../../redux/report";
 import { getData } from "../../redux/transactionAdd/transactionADD-selectors";
 
-export default function CategoryInfo({ trans, handleClick, type }) {
-  let categories = useSelector(getAllCategories);
+export default function CategoryInfo({ trans, handleClick }) {
+  const categories = useSelector(getAllCategories);
+  // console.log(categories)
   const data = useSelector(getData);
   // const summs = Object.values(
   //   trans.reduce((acc, { group, total_amounts }) => {
@@ -29,8 +30,7 @@ export default function CategoryInfo({ trans, handleClick, type }) {
 
   const onClick = (e) => {
     //console.log(e.target.value);
-
-    dispatch(getFullTransInfo({ data, type }));
+    // dispatch(getFullTransInfo({ data, type }));
   };
 
   // useEffect(() =>{
