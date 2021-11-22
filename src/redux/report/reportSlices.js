@@ -34,6 +34,11 @@ const reportSlice = createSlice({
       state.isLoading = false;
     },
 
+    [getAllCategories.pending]: (state, _) => {
+      state.error = null;
+      state.isLoading = true;
+    },
+
     [getAllCategories.fulfilled]: (state, { payload }) => {
       state.categories.expenses = payload.categories.filter(
         (categoria) => !categoria.type
@@ -42,11 +47,6 @@ const reportSlice = createSlice({
         (categoria) => categoria.type
       );
       state.isLoading = false;
-    },
-
-    [getAllCategories.pending]: (state, _) => {
-      state.error = null;
-      state.isLoading = true;
     },
 
     [getAllCategories.rejected]: (state, action) => {

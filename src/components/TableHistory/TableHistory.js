@@ -16,10 +16,10 @@ import {
   getTransactionsTrue,
 } from "../../redux/transactions/transactionsSelectors";
 import { getAllCategories } from "../../redux/operation/categories";
-// import {
-//   getCategoriesExpenses,
-//   getCategoriesIncomes,
-// } from "../../redux/report";
+import {
+  getCategoriesExpenses,
+  getCategoriesIncomes,
+} from "../../redux/report";
 
 // const categories = useSelector(selectors.getAllCategories)
 // const change = (e) => {
@@ -42,8 +42,8 @@ export default function TableHistory() {
     dispatch(getAllCategories());
   }, [dispatch]);
 
-//   const expenses = useSelector(getCategoriesExpenses);
-//   const incomes = useSelector(getCategoriesIncomes);
+  const expenses = useSelector(getCategoriesExpenses);
+  const incomes = useSelector(getCategoriesIncomes);
 
   const trueTransactions = useSelector(getTransactionsTrue);
   console.log(trueTransactions);
