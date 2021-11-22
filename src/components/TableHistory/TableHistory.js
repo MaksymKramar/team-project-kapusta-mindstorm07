@@ -20,6 +20,7 @@ import {
   getCategoriesExpenses,
   getCategoriesIncomes,
 } from "../../redux/report";
+import authSelector from "../../redux/auth/auth-selector";
 
 // const categories = useSelector(selectors.getAllCategories)
 // const change = (e) => {
@@ -34,10 +35,15 @@ import {
 //   }
 
 export default function TableHistory() {
+  const transactionsFalse = useSelector(getTransactionsFalse);
+  const transactionsTrue = useSelector(getTransactionsTrue);
+  const balance = useSelector(authSelector.getBalance);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTransByMonthMinus("11.2021"));
-  }, [dispatch]);
+  }, [balance]);
+
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
