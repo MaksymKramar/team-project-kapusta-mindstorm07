@@ -14,22 +14,18 @@ import DateCalendar from "../Date/Date";
 export default function AddExpense() {
   const [startDate, setStartDate] = useState(new Date());
   const [description, setDescription] = useState("");
-  const [sum, setSum] = useState(0);
+  const [sum, setSum] = useState("");
   const [category, setCategory] = useState("");
   const [type, setType] = useState();
   const [value, setValue] = useState("Категория товара");
 
   const dispatch = useDispatch();
 
-  // const date = `${startDate.getDate()}.${
-  //   startDate.getMonth() + 1
-  // }.${startDate.getFullYear()}`;
-  // console.log(date)
+  const date = `${startDate.getDate()}.${
+    startDate.getMonth() + 1
+  }.${startDate.getFullYear()}`;
+  console.log(date)
   // setDate(transDate)
-
-  // console.log(date)
-  // setTransactionDate(date)
-  // console.log(transactionDate)
 
   const getCategoriesItem = () => {
     dispatch(operations.getGategories());
@@ -65,7 +61,7 @@ export default function AddExpense() {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
     dispatch(operations.transactionAdd(newTransaction));
-    clearBtn()
+    // clearBtn()
   };
 
   const clearBtn = () => {
@@ -101,7 +97,7 @@ export default function AddExpense() {
              </ul>
              </div> */}
             <div className={styles["dropdown"]}>
-              <button className={styles["dropbtn"]} onClick={getCategoriesItem}>
+              <button type="button" className={styles["dropbtn"]} onClick={getCategoriesItem}>
                 {value}
                 <svg
                   width="12"
@@ -123,7 +119,7 @@ export default function AddExpense() {
                   <li
                     className={styles["dropdown-content-a"]}
                     key={category._id}
-                    value={category}
+                    value={category._id}
                     onClick={change}
                   >
                     {category.title}

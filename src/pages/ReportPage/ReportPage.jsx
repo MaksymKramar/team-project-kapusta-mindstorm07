@@ -2,8 +2,8 @@ import Header from "../../components/Header/Header";
 import BackBtn from "../../components/BackBtn/BackBtn"
 import ExpensesIncome from "../../components/ExpensesIncome/ExpensesIncome";
 import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
-import Balance from "../../components/Balance/Balance";
 import s from "./ReportPage.module.css";
+import BalanceForReports from "../../components/BalanceForReports/BalanceForReports";
 
 export default function ReportPage({ setActive }) {
   return (
@@ -20,7 +20,7 @@ export default function ReportPage({ setActive }) {
       <div className={s.wrapper}>
         <div className={s.secondWrapper}>
           <BackBtn />
-          <Balance />
+          <BalanceForReports />
         </div>
         <ExpensesIncome />
       </div>
