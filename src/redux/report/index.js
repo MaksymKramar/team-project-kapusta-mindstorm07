@@ -1,4 +1,8 @@
-export { getAllCategories, getFullTransInfo } from "./reportOperations";
+export {
+  getAllCategories,
+  getFullTransInfo,
+  getDetailInfo,
+} from "./reportOperations";
 export {
   getReports,
   isLoadingValue,

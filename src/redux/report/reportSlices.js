@@ -1,21 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getAllCategories, getFullTransInfo } from "./index";
+import { getAllCategories, getFullTransInfo, getDetailInfo } from "./index";
 
 const initialState = {
   categories: {
     expenses: [],
     incomes: [],
+    total: [
+      { type: "true", sum: 6 },
+      { type: "false", sum: 5 },
+    ],
   },
+  currentType: "expenses",
   items: [],
   error: null,
   isLoading: false,
   description: [],
+  totalAmount: 0,
 };
 
 const reportSlice = createSlice({
   name: "report",
   initialState,
+  reducers: {
+    addCurentType: (state, action) => {
+      state.currentType = action.payload;
+    },
+  },
   extraReducers: {
     [getFullTransInfo.pending]: (state, _) => {
       state.error = null;
@@ -24,10 +35,15 @@ const reportSlice = createSlice({
 
     [getFullTransInfo.fulfilled]: (state, { payload }) => {
       console.log("state:", state); // не делал, не получается
-      state.description = payload.sums;
+      state.description = payload.data.sums;
       // state.totalSum = payload.categorySum.totalSum;
       state.isLoading = false;
     },
+    [getDetailInfo.fulfilled](state, action) {
+      state.total = action.payload.totalAmount;
+    },
+    [getDetailInfo.pending](state, action) {},
+    [getDetailInfo.rejected](state, action) {},
 
     [getFullTransInfo.rejected]: (state, action) => {
       state.error = action.error.message;
