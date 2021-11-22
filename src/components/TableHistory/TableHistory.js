@@ -21,34 +21,26 @@ import {
   getCategoriesIncomes,
 } from "../../redux/report";
 
-// const categories = useSelector(selectors.getAllCategories)
-// const change = (e) => {
-//     categories.map(i => {
-//       if(i.title === e.target.textContent ) {
-//         setCategory(i._id)
-//         setType(i.type)
-//       }
-//      })
-//     // console.log(catItem)
-//     setValue(e.target.textContent)
-//   }
-
 export default function TableHistory() {
   const dispatch = useDispatch();
+  const date = new Date();
+
   useEffect(() => {
-    dispatch(getTransByMonthMinus("11.2021"));
-  }, [dispatch]);
+    dispatch(
+      getTransByMonthMinus(`${date.getMonth() + 1}.${date.getFullYear()}`)
+    );
+  }, []);
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
 
   const expenses = useSelector(getCategoriesExpenses);
   const incomes = useSelector(getCategoriesIncomes);
+  const allCategories = [...expenses, ...incomes];
 
   const trueTransactions = useSelector(getTransactionsTrue);
-  console.log(trueTransactions);
   const falseTransactions = useSelector(getTransactionsFalse);
-  console.log(falseTransactions);
+  const allTransactions = false ? falseTransactions : trueTransactions;
 
   const matches = useMediaQuery("(min-width:768px)");
 
@@ -65,25 +57,35 @@ export default function TableHistory() {
         <ul className={styles.TableHistoryBody}>
           {/* false ? falseTransactions : trueTransactions*/}
           {falseTransactions.map(
-            ({ _id, date, description, category, sum }) => (
-              <li key={_id} className={styles.TableHistoryRow}>
-                <div className={styles.TableHistoryDate}>{date}</div>
-                <div className={styles.TableHistoryDescription}>
-                  {description}
-                </div>
-                <div className={styles.TableHistoryCategory}>{category}</div>
-                <div className={styles.TableHistoryAmount}>{sum + "грн."} </div>
-                <button
-                  className={styles.TrashIcon}
-                  type="button"
-                  onClick={() => dispatch(deleteTransactionById(_id))}
-                >
-                  <svg width="18px" height="18px">
-                    <use href={sprite + "#icon-delete-1"} />
-                  </svg>
-                </button>
-              </li>
-            )
+            ({ _id, date, description, category, sum, type }) => {
+              // console.log(type)
+              const relativeCategObdj = allCategories.find((categoryObj) => {
+                return category === categoryObj._id;
+              });
+              return (
+                <li key={_id} className={styles.TableHistoryRow}>
+                  <div className={styles.TableHistoryDate}>{date}</div>
+                  <div className={styles.TableHistoryDescription}>
+                    {description}
+                  </div>
+                  <div className={styles.TableHistoryCategory}>
+                    {relativeCategObdj?.title ?? "Нет такой категории"}
+                  </div>
+                  <div className={styles.TableHistoryAmount}>
+                    {`${sum}  грн.`}{" "}
+                  </div>
+                  <button
+                    className={styles.TrashIcon}
+                    type="button"
+                    onClick={() => dispatch(deleteTransactionById(_id))}
+                  >
+                    <svg width="18px" height="18px">
+                      <use href={sprite + "#icon-delete-1"} />
+                    </svg>
+                  </button>
+                </li>
+              );
+            }
           )}
         </ul>
       </div>

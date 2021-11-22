@@ -23,7 +23,6 @@ const getTransByMonthMinus = createAsyncThunk(
   "transactions/getTransByMonthMinus", //HOW WRITE???
   async (date) => {
     const transactions = await api.getTransByMonthMinus(date);
-    console.log(transactions);
     return transactions.data;
   }
 );
@@ -31,7 +30,7 @@ const getTransByMonthPlus = createAsyncThunk(
   "transactions/getTransByMonthPlus", //HOW WRITE???
   async (date) => {
     const transactions = await api.getTransByMonthPlus(date);
-    console.log(transactions);
+    // console.log(transactions);
     return transactions.data;
   }
 );
@@ -40,7 +39,6 @@ const addTransaction = createAsyncThunk(
   "transactions/addTransaction",
   async (newTransaction) => {
     const transaction = await api.addTransaction(newTransaction);
-    console.log("addTrans:", transaction);
     return transaction.data.result;
   }
 );

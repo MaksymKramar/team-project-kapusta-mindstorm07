@@ -15,7 +15,8 @@ const transactionsSlice = createSlice({
     itemsFalse: [],
     incomes: [],
     expenses: [],
-    totalAmount: null,
+    totalAmountMinus: null,
+    totalAmountPlus: null,
     sum: null,
     error: null,
     isLoading: false,
@@ -62,7 +63,7 @@ const transactionsSlice = createSlice({
 
     [getTransByMonthMinus.fulfilled]: (state, action) => {
       state.itemsFalse = [...action.payload.transactionsByUser];
-      state.totalAmount = action.payload.totalAmount;
+      state.totalAmountMinus = action.payload.totalAmount;
       state.isLoading = false;
     },
 
@@ -78,7 +79,7 @@ const transactionsSlice = createSlice({
 
     [getTransByMonthPlus.fulfilled]: (state, action) => {
       state.itemsTrue = [...action.payload.transactionsByUser];
-      state.totalAmount = action.payload.totalAmount;
+      state.totalAmountPlus = action.payload.totalAmount;
       state.isLoading = false;
     },
 
