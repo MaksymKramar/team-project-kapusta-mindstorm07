@@ -6,17 +6,15 @@ import {
   getCategoriesIncomes,
   getCategoriesExpenses,
 } from "../../redux/report";
-import { getTransactionsSum } from "../../redux/transactions/transactionsSelectors";
-
-//
-import { getTransactions } from "../../redux/transactions/transactionsSelectors";
+// import { getTransactionsSum } from "../../redux/transactions/transactionsSelectors";
+// import { getTransactions } from "../../redux/transactions/transactionsSelectors";
 import CategoryInfo from "../CategoryInfo/CategoryInfo";
 import Graph from "../Graph/Graph";
 import GraphMobile from "../Graph/GraphMobile";
 import sprite from "../../images/sprite.svg";
 import s from "./SumCategoryInfo.module.scss";
 
-const typeTrans = "expenses";
+// const typeTrans = "expenses";
 
 export default function SumCategoryInfo({
   type,
@@ -65,8 +63,8 @@ export default function SumCategoryInfo({
 
   const expenses = useSelector(getCategoriesExpenses);
   const incomes = useSelector(getCategoriesIncomes);
-  console.log(incomes);
   console.log(expenses);
+  console.log(incomes);
 
   return (
     <div>
