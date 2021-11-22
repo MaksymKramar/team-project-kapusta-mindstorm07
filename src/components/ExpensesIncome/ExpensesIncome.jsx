@@ -1,6 +1,3 @@
-// import BackBtn from "../../components/BackBtn/BackBtn";
-// import Balance from "../../components/Balance/Balance";
-// import CurrentPeriod from "../../components/CurrentPeriod/CurrentPeriod";
 import SumCategoryInfo from "../SumCategoryInfo/SumCategoryInfo";
 import s from "./ExpensesIncome.module.scss";
 
@@ -11,12 +8,6 @@ export default function ExpensesIncome() {
   return (
     <div className={s.container}>
       <section className={s.section}>
-        <div className={s.reportNav}>
-          {/* <BackBtn />
-          <Balance />
-          <CurrentPeriod /> */}
-        </div>
-
         <div className={s.amount}>
           <div className={s.amountExpenses}>
             <h3 className={s.amountTitle}>Расходы:</h3>

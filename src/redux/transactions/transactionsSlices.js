@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import {
-  getFullTransInfoMinus,
-  getFullTransInfoPlus,
+  // getFullTransInfoMinus,
+  // getFullTransInfoPlus,
   getTransByMonthMinus,
   getTransByMonthPlus,
   deleteTransactionById,
@@ -21,38 +21,39 @@ const transactionsSlice = createSlice({
     isLoading: false,
   },
   extraReducers: {
-    [getFullTransInfoMinus.pending]: (state, _) => {
-      state.error = null;
-      state.isLoading = true;
-    },
+    // [getFullTransInfoMinus.pending]: (state, _) => {
+    //   state.error = null;
+    //   state.isLoading = true;
+    // },
 
-    [getFullTransInfoMinus.fulfilled]: (state, { payload }) => {
-      state.items = payload.sum;
-      state.totalAmount = payload.categorySum.totalAmount;
-      state.isLoading = false;
-    },
+    // [getFullTransInfoMinus.fulfilled]: (state, { payload }) => {
+    //   console.log("state:", state); // не делал, не получается
+    //   state.items = payload.sum;
+    //   state.totalSum = payload.categorySum.totalSum;
+    //   state.isLoading = false;
+    // },
 
-    [getFullTransInfoMinus.rejected]: (state, action) => {
-      state.error = action.error.message;
-      state.isLoading = false;
-    },
+    // [getFullTransInfoMinus.rejected]: (state, action) => {
+    //   state.error = action.error.message;
+    //   state.isLoading = false;
+    // },
 
-    [getFullTransInfoPlus.pending]: (state, _) => {
-      state.error = null;
-      state.isLoading = true;
-    },
+    // [getFullTransInfoPlus.pending]: (state, _) => {
+    //   state.error = null;
+    //   state.isLoading = true;
+    // },
 
-    [getFullTransInfoPlus.fulfilled]: (state, { payload }) => {
-      console.log("state:", state); // не делал, не получается
-      state.items = payload.sum;
-      state.totalSum = payload.categorySum.totalSum;
-      state.isLoading = false;
-    },
+    // [getFullTransInfoPlus.fulfilled]: (state, { payload }) => {
+    //   console.log("state:", state); // не делал, не получается
+    //   state.items = payload.sum;
+    //   state.totalSum = payload.categorySum.totalSum;
+    //   state.isLoading = false;
+    // },
 
-    [getFullTransInfoPlus.rejected]: (state, action) => {
-      state.error = action.error.message;
-      state.isLoading = false;
-    },
+    // [getFullTransInfoPlus.rejected]: (state, action) => {
+    //   state.error = action.error.message;
+    //   state.isLoading = false;
+    // },
 
     [getTransByMonthMinus.pending]: (state, _) => {
       state.error = null;

@@ -1,6 +1,6 @@
 export {
-  getFullTransInfoMinus,
-  getFullTransInfoPlus,
+  // getFullTransInfoMinus,
+  // getFullTransInfoPlus,
   getTransByMonthMinus,
   getTransByMonthPlus,
   addTransaction,

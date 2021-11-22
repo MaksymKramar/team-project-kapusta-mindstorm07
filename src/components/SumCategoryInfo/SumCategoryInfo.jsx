@@ -2,69 +2,65 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { getAllCategories } from "../../redux/operation/categories";
+import { getFullTransInfo } from "../../redux/report";
 import {
   getCategoriesIncomes,
   getCategoriesExpenses,
+  getDescription,
 } from "../../redux/report";
-// import { getTransactionsSum } from "../../redux/transactions/transactionsSelectors";
-// import { getTransactions } from "../../redux/transactions/transactionsSelectors";
+import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
 import CategoryInfo from "../CategoryInfo/CategoryInfo";
 import Graph from "../Graph/Graph";
 import GraphMobile from "../Graph/GraphMobile";
 import sprite from "../../images/sprite.svg";
 import s from "./SumCategoryInfo.module.scss";
 
-// const typeTrans = "expenses";
-
 export default function SumCategoryInfo({
-  type,
+  //  type,
   typeTrans,
   handleClickGetChart,
 }) {
+  const incomes = useSelector(getCategoriesIncomes);
+  const [type, setType] = useState(false);
+  const [id, seId] = useState(0);
+
+  const expenses = useSelector(getCategoriesExpenses);
+  const categories = [...expenses, ...incomes];
+  console.log(categories);
   const [chartsCategoryId, setChartsCategoryId] = useState("");
   function handleClickGetChart(id) {
     setChartsCategoryId(id);
+    categories.map((i) => {
+      if (i._id === id) {
+        console.log(i.type);
+        setType(i.type);
+      }
+    });
+    console.log(id);
   }
+
+  console.log(expenses);
+  console.log(incomes);
+
   const viewPort = useWindowDimensions();
-  // const transactions = useSelector(getTransactionsSum);
-  // const categories = useSelector(getTransactions);
-  // const categoriesWithSumms = Object.values(
-  //   transactions.reduce((acc, { group, total_amounts }) => {
-  //     const category = categories.find((i) => i._id === group.category);
-  //     if (!acc[category.name]) {
-  //       acc[category.name] = { category, total_amounts: 0 };
-  //     }
-  //     acc[category.name].total_amounts += total_amounts;
-  //     return acc;
-  //   }, {})
-  // );
-  // const filtredTransactions = (transType, categoryId) => {
-  //   return transactions
-  //     .filter(
-  //       (transaction) =>
-  //         transaction.group.type === transType &&
-  //         transaction.group.category === categoryId
-  //     )
-  //     .map((tr) => {
-  //       return { description: tr.group.description, amount: tr.total_amounts };
-  //     })
-  //     .sort((a, b) => b.amount - a.amount);
-  // };
-  // const filtredCategories = (transType) => {
-  //   return categoriesWithSumms
-  //     .filter((transaction) => transaction.category.type === transType)
-  //     .sort((a, b) => b.total_amounts - a.total_amounts);
-  // };
+  const description = useSelector(getDescription);
+  const filtredTransactions = (transType, categoryId) => {
+    return description
+      .filter(
+        (transaction) =>
+          transaction.group.type === transType &&
+          transaction.group.category === categoryId
+      )
+      .map((tr) => {
+        return { description: tr.group.description, amount: tr.total_amounts };
+      })
+      .sort((a, b) => b.amount - a.amount);
+  };
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
-
-  const expenses = useSelector(getCategoriesExpenses);
-  const incomes = useSelector(getCategoriesIncomes);
-  console.log(expenses);
-  console.log(incomes);
 
   return (
     <div>
@@ -86,25 +82,31 @@ export default function SumCategoryInfo({
         </div>
 
         {typeTrans === false ? (
-          <CategoryInfo trans={expenses} handleClick={handleClickGetChart} />
+          <CategoryInfo
+            trans={expenses}
+            type={type}
+            handleClick={handleClickGetChart}
+          />
         ) : (
-          <CategoryInfo trans={incomes} handleClick={handleClickGetChart} />
+          <CategoryInfo
+            trans={incomes}
+            type={type}
+            handleClick={handleClickGetChart}
+          />
         )}
       </div>
 
       <div className={`${s.container} ${typeTrans}`}>
         {viewPort.width < 768 && (
           <GraphMobile
-            // transactions={filtredTransactions(type, chartsCategoryId)}
-            // categories={filtredCategories(type)}
+            transactions={filtredTransactions(type, chartsCategoryId)}
             chartsCategoryId={chartsCategoryId}
           />
         )}
 
         {viewPort.width >= 768 && (
           <Graph
-            // transactions={filtredTransactions(type, chartsCategoryId)}
-            // categories={filtredCategories(type)}
+            transactions={filtredTransactions(type, chartsCategoryId)}
             chartsCategoryId={chartsCategoryId}
           />
         )}
