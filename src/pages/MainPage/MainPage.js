@@ -54,7 +54,7 @@ export default function MainPage({ setActive }) {
             </div>
           </section>
         </div>
-        {/* <BackgrounUser /> */}
+        
       </div>
     </>
   );

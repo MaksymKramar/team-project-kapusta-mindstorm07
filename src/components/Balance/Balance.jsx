@@ -50,6 +50,7 @@ function Balance() {
       <form className={styles["balance-container"]} onSubmit={handleSubmit}>
         <p className={styles["balance-name"]}>Баланс:</p>
         <div className={styles["balance-container2"]}>
+         
           <input
             className={styles["balance-amount"]}
             placeholder={balance + "UAH"}
@@ -59,9 +60,12 @@ function Balance() {
           {balanceAmount === 0 && (
             <Notification />
           )}
+           
           <button type="submit"className={styles["balance-btn"]}>Подтвердить</button>
         </div>
+        
       </form>
+      
     </div>
   );
 }
