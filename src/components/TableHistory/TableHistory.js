@@ -34,10 +34,10 @@ export default function TableHistory() {
     dispatch(
       getTransByMonthMinus(`${date.getMonth() + 1}.${date.getFullYear()}`)
     );
-  }, []);
+  }, [balance]);
   useEffect(() => {
     dispatch(getAllCategories());
-  }, [dispatch])
+  }, [dispatch]);
 
   const expenses = useSelector(getCategoriesExpenses);
   const incomes = useSelector(getCategoriesIncomes);

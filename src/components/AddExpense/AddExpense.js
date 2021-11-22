@@ -40,7 +40,7 @@ export default function AddExpense() {
   const categories = useSelector(selectors.getCategoriesAll);
   const getDatas = useSelector(selectors.getData);
   const getDescription = useSelector(selectors.getDescription);
- 
+
   // const catItem = categories.map(i=>i.title).reduce()
   const change = (e) => {
     categories.map((i) => {
@@ -64,12 +64,12 @@ export default function AddExpense() {
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
+    console.log(description);
     dispatch(operations.transactionAdd(newTransaction));
-    clearBtn()
+    // clearBtn()
   };
 
   const clearBtn = () => {
@@ -79,28 +79,27 @@ export default function AddExpense() {
   };
 
   return (
-
-//     <div className="container">
-//       <DateCalendar />
+    //     <div className="container">
+    //       <DateCalendar />
 
     <div>
       <div className={styles.mainWrapper}>
         <div className={styles.dates}>
           <DateCalendar />
-          </div>
+        </div>
 
-      <form className={styles.wrapper} onSubmit={handleSubmit}>
-        <div className={styles.itemsWrapper}>
-          <div className={styles.itemDiv}>
-            <input
-              className={styles.itemInput}
-              placeholder="Описание товара"
-              name="description"
-              value={description}
-              onChange={handleChange}
-            />
-            {/* <ItemCategories /> */}
-            {/* <div className={styles["dropdown"]}>
+        <form className={styles.wrapper} onSubmit={handleSubmit}>
+          <div className={styles.itemsWrapper}>
+            <div className={styles.itemDiv}>
+              <input
+                className={styles.itemInput}
+                placeholder="Описание товара"
+                name="description"
+                value={description}
+                onChange={handleChange}
+              />
+              {/* <ItemCategories /> */}
+              {/* <div className={styles["dropdown"]}>
             <ul className={styles["dropdown-content"]} name="category" onClick={getCategoriesItem}>
                 {categories.map(cat => (
                   <li className={styles["dropdown-content-a"]} key={cat._id} value={cat._id} onClick={()=>handleSelect}>{cat.title}</li>
@@ -109,62 +108,69 @@ export default function AddExpense() {
                 }
              </ul>
              </div> */}
-            <div className={styles["dropdown"]}>
-              <button className={styles["dropbtn"]} onClick={getCategoriesItem}>
-                {value}
-                <svg
-                  width="12"
-                  height="20"
-                  className={styles["category-svg-down"]}
+              <div className={styles["dropdown"]}>
+                <button
+                  className={styles["dropbtn"]}
+                  onClick={getCategoriesItem}
                 >
-                  <use href={sprite + "#down"}></use>
-                </svg>
-                <svg
-                  width="12"
-                  height="20"
-                  className={styles["category-svg-up"]}
-                >
-                  <use href={sprite + "#up"}></use>
+                  {value}
+                  <svg
+                    width="12"
+                    height="20"
+                    className={styles["category-svg-down"]}
+                  >
+                    <use href={sprite + "#down"}></use>
+                  </svg>
+                  <svg
+                    width="12"
+                    height="20"
+                    className={styles["category-svg-up"]}
+                  >
+                    <use href={sprite + "#up"}></use>
+                  </svg>
+                </button>
+                <ul className={styles["dropdown-content"]}>
+                  {categories.map((category) => (
+                    <li
+                      className={styles["dropdown-content-a"]}
+                      key={category._id}
+                      value={category}
+                      onClick={change}
+                    >
+                      {category.title}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className={styles.amountDiv}>
+              <input
+                className={styles.amountInput}
+                placeholder="00.00 UAH"
+                name="sum"
+                value={sum}
+                onChange={handleChange}
+              />
+              <button className={styles.calculatorBtn}>
+                <svg width="20" height="20" className={styles["report-svg"]}>
+                  <use href={sprite + "#icon-calculator"}></use>
                 </svg>
               </button>
-              <ul className={styles["dropdown-content"]}>
-                {categories.map((category) => (
-                  <li
-                    className={styles["dropdown-content-a"]}
-                    key={category._id}
-                    value={category}
-                    onClick={change}
-                  >
-                    {category.title}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
-          <div className={styles.amountDiv}>
-            <input
-              className={styles.amountInput}
-              placeholder="00.00 UAH"
-              name="sum"
-              value={sum}
-              onChange={handleChange}
-            />
-            <button className={styles.calculatorBtn}>
-              <svg width="20" height="20" className={styles["report-svg"]}>
-                <use href={sprite + "#icon-calculator"}></use>
-              </svg>
+          <div className={styles.btnsDiv}>
+            <button type="submit" className={styles.enterBtn}>
+              Ввод
+            </button>
+            <button
+              type="button"
+              className={styles.clearBtn}
+              onClick={clearBtn}
+            >
+              Очистить
             </button>
           </div>
-        </div>
-        <div className={styles.btnsDiv}>
-          <button type="submit" className={styles.enterBtn}>
-            Ввод
-          </button>
-          <button type="button" className={styles.clearBtn} onClick={clearBtn}>
-            Очистить
-          </button>
-        </div>
-      </form>
+        </form>
       </div>
     </div>
   );
