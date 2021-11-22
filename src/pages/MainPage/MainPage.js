@@ -8,15 +8,14 @@ import s from "./MainPage.module.css";
 import DateCalendar from "../../components/Date/Date";
 import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
 
-
 export default function MainPage({ setActive }) {
   return (
     <>
       <div className={s.mainPage}>
         <Header setActive={setActive} />
+        <BackgrounUser />
         <div className={s.container}>
           <section className={s.section}>
-           
             <Balance />
             <div className={s.btn1}>
               <ExpIncomeBtns />
@@ -31,11 +30,13 @@ export default function MainPage({ setActive }) {
                 <TableHistory />
                 <Summary />
               </div>
-              <div className={s.btn2}><ExpIncomeBtns /></div>  
+              <div className={s.btn2}>
+                <ExpIncomeBtns />
+              </div>
             </div>
           </section>
         </div>
-        <BackgrounUser />
+        {/* <BackgrounUser /> */}
       </div>
     </>
   );

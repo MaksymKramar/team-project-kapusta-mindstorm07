@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      <Switch>
+     <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
             <Redirect to="/login" />
@@ -67,7 +67,6 @@ function App() {
       </Switch>
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
-
     </div>
   );
 }

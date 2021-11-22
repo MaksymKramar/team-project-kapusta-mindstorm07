@@ -1,6 +1,8 @@
 import Header from "../../components/Header/Header";
 import ExpensesIncome from "../../components/ExpensesIncome/ExpensesIncome";
 import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
+import Balance from "../../components/Balance/Balance";
+import s from "./ReportPage.module.css";
 
 export default function ReportPage({ setActive }) {
   return (
@@ -14,7 +16,10 @@ export default function ReportPage({ setActive }) {
         // handleChangeMonthRight={handleChangeMonthRight}
       />
       <BackgrounUser />
-      <ExpensesIncome />
+      <div className={s.wrapper}>
+        <Balance />
+        <ExpensesIncome />
+      </div>
     </>
   );
 }
