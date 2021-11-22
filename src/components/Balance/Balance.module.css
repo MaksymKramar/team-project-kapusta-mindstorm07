@@ -4,8 +4,8 @@
     margin: 0 auto;
     margin-bottom: 40px;
 
-    /* position: absolute;
-    top: 86px; */
+    position: relative;
+    /* top: 86px;  */
   }
 
   body {

@@ -20,6 +20,11 @@
   color: var(--black-color);
 }
 
+.button {
+  border: none;
+  background-color: transparent;
+}
+
 .iconPrevious {
   width: 8px;
   height: 14px;
@@ -78,4 +83,10 @@
   .amountIncomeSum {
     margin-left: 20px;
   }
+}
+.TrashIcon {
+  outline: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }

@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { transactionAdd, getGategories } from "./transactionAdd-operations";
 
+const currentTime = new Date();
+const year = currentTime.getFullYear();
+const month = currentTime.getMonth() + 1;
+const day = currentTime.getDate();
+
 const initialState = {
-  date: "",
+  date: `${day}.${month}.${year}`,
   description: "",
   sum: 0,
   type: false,
@@ -32,12 +37,11 @@ const transactionAddSlice = createSlice({
       state.isLoading = false;
     },
 
-    [transactionAdd.fulfilled](state, {payload}) {
+    [transactionAdd.fulfilled](state, { payload }) {
       state.date = payload.date;
-      state.description= payload.description;
+      state.description = payload.description;
       state.sum = payload.sum;
-      state.category=payload.category;
-
+      state.category = payload.category;
 
       state.isLoading = false;
     },

@@ -4,68 +4,69 @@
     height: 278px;
     margin-top: 30px;
   }
+}
 
-  .summaryTitle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 38px;
-    background: #f5f6fb;
-    border: 1px solid #ffffff;
-    border-radius: 20px 20px 0 0;
+.summaryTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  background: #f5f6fb;
+  border: 1px solid #ffffff;
+  border-radius: 20px 20px 0 0;
+}
+
+.summaryList {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  list-style: none;
+  height: 136%;
+
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: overlay;
+  max-height: 240px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
   }
-
-  .summaryList {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    list-style: none;
-    height: 136%;
-
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: overlay;
-    max-height: 240px;
-
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-    &::-webkit-scrollbar-track {
-      background-color: #fff;
-    }
-    &::-webkit-scrollbar-thumb {
-      border-radius: 2px;
-      background-color: var(--accent-color);
-    }
+  &::-webkit-scrollbar-track {
+    background-color: #fff;
   }
-
-  .summaryItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 230px;
-    height: 38px;
-    background: #f5f6fb;
-    border: 1px solid #ffffff;
-  }
-
-  .summaryItem:last-child {
-    border-bottom-right-radius: 20px;
-  }
-
-  .summaryDescription {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 14px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: #52555f;
-    padding: 0 22px 0 22px;
-    border-radius: 0 0 20px 0;
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: var(--accent-color);
   }
 }
+
+.summaryItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 230px;
+  height: 38px;
+  background: #f5f6fb;
+  border: 1px solid #ffffff;
+}
+
+.summaryItem:last-child {
+  border-bottom-right-radius: 20px;
+}
+
+.summaryDescription {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #52555f;
+  padding: 0 22px 0 22px;
+  border-radius: 0 0 20px 0;
+}
+
 @media screen and (min-width: 1280px) {
   .summaryContainer {
     margin-top: 0px;

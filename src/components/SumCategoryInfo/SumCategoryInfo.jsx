@@ -15,73 +15,92 @@ import GraphMobile from "../Graph/GraphMobile";
 import sprite from "../../images/sprite.svg";
 import s from "./SumCategoryInfo.module.scss";
 
-export default function SumCategoryInfo({
+export default function SumCategoryInfo() {
+  // {
   //  type,
-  typeTrans,
-  handleClickGetChart,
-}) {
+  //   // typeTrans,
+  //   // handleClickGetChart,
+  // },
   const incomes = useSelector(getCategoriesIncomes);
   const [type, setType] = useState(false);
-  const [id, seId] = useState(0);
-
-  const expenses = useSelector(getCategoriesExpenses);
-  const categories = [...expenses, ...incomes];
-  console.log(categories);
-  const [chartsCategoryId, setChartsCategoryId] = useState("");
-  function handleClickGetChart(id) {
-    setChartsCategoryId(id);
-    categories.map((i) => {
-      if (i._id === id) {
-        console.log(i.type);
-        setType(i.type);
-      }
-    });
-    console.log(id);
-  }
-
-  console.log(expenses);
-  console.log(incomes);
-
-  const viewPort = useWindowDimensions();
-  const description = useSelector(getDescription);
-  const filtredTransactions = (transType, categoryId) => {
-    return description
-      .filter(
-        (transaction) =>
-          transaction.group.type === transType &&
-          transaction.group.category === categoryId
-      )
-      .map((tr) => {
-        return { description: tr.group.description, amount: tr.total_amounts };
-      })
-      .sort((a, b) => b.amount - a.amount);
-  };
+  const [btnType, setbtnType] = useState("expenses");
+  // const [id, setId] = useState(0)
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
 
+  const expenses = useSelector(getCategoriesExpenses);
+  const categories = [...expenses, ...incomes];
+  // console.log(categories)
+  const [chartsCategoryId, setChartsCategoryId] = useState("");
+  function handleClickGetChart(id) {
+    setChartsCategoryId(id);
+    // setType(type)
+    console.log(categories);
+    const result = categories.find(({ _id }) => _id === id);
+
+    console.log(result.type);
+    const cattype = result.type;
+    // setType(result.type.toString())
+    const date = "11.2021";
+    // const string = true
+    dispatch(getFullTransInfo({ type: cattype, date }));
+    console.log(id);
+    // console.log(type)
+  }
+  function handleClick() {
+    if (btnType === "incomes") {
+      setbtnType("expenses");
+      setType(false);
+    } else {
+      setbtnType("incomes");
+      setType(true);
+    }
+  }
+  // function handleClick() {
+  //   if (btnType === 'expenses') {
+  //     setbtnType('incomes')
+  //     setType(true)
+  //   }
+  // }
+  // console.log(expenses)
+  // console.log(incomes)
+  // setType(true)
+  const viewPort = useWindowDimensions();
+  const description = useSelector(getDescription);
+
   return (
     <div>
-      <div className={`${s.container} ${typeTrans}`}>
+      <div className={`${s.container} ${type}`}>
         <div className={s.amountSection}>
-          <svg className={s.iconPrevious}>
-            <use href={sprite + "#icon-previous"}></use>
-          </svg>
-
-          {typeTrans === "expenses" ? (
+          <button
+            className={s.button}
+            type="button"
+            onClick={() => handleClick()}
+          >
+            <svg className={s.iconPrevious}>
+              <use href={sprite + "#icon-previous"}></use>
+            </svg>
+          </button>
+          {type === false ? (
             <p className={s.title}> Расходы </p>
           ) : (
             <p className={s.title}> Доходы </p>
           )}
-
-          <svg className={s.iconNext}>
-            <use href={sprite + "#icon-next"}></use>
-          </svg>
+          <button
+            className={s.button}
+            type="button"
+            onClick={() => handleClick()}
+          >
+            <svg className={s.iconNext}>
+              <use href={sprite + "#icon-next"}></use>
+            </svg>
+          </button>
         </div>
 
-        {typeTrans === false ? (
+        {type === true ? (
           <CategoryInfo
             trans={expenses}
             type={type}
@@ -96,17 +115,17 @@ export default function SumCategoryInfo({
         )}
       </div>
 
-      <div className={`${s.container} ${typeTrans}`}>
+      <div className={`${s.container} ${type}`}>
         {viewPort.width < 768 && (
           <GraphMobile
-            transactions={filtredTransactions(type, chartsCategoryId)}
+            // transactions={filtredTransactions(type, chartsCategoryId)}
             chartsCategoryId={chartsCategoryId}
           />
         )}
 
         {viewPort.width >= 768 && (
           <Graph
-            transactions={filtredTransactions(type, chartsCategoryId)}
+            // transactions={filtredTransactions(type, chartsCategoryId)}
             chartsCategoryId={chartsCategoryId}
           />
         )}

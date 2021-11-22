@@ -1,9 +1,12 @@
 import Header from "../../components/Header/Header";
-import BackBtn from "../../components/BackBtn/BackBtn"
+import BackBtn from "../../components/BackBtn/BackBtn";
 import ExpensesIncome from "../../components/ExpensesIncome/ExpensesIncome";
 import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
-import s from "./ReportPage.module.css";
 import BalanceForReports from "../../components/BalanceForReports/BalanceForReports";
+import Balance from "../../components/Balance/Balance";
+import CurrentPeriod from "../../components/CurrentPeriod/CurrentPeriod";
+import s from "./ReportPage.module.scss";
+
 
 export default function ReportPage({ setActive }) {
   return (
@@ -21,6 +24,9 @@ export default function ReportPage({ setActive }) {
         <div className={s.secondWrapper}>
           <BackBtn />
           <BalanceForReports />
+          {/* <Balance /> */}
+          <CurrentPeriod />
+
         </div>
         <ExpensesIncome />
       </div>
