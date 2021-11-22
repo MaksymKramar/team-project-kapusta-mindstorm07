@@ -2,20 +2,26 @@ import { createSlice } from "@reduxjs/toolkit";
 import { transactionAdd, getGategories } from "./transactionAdd-operations";
 
 const initialState = {
-  date: '',
-  description: '',
+  date: "",
+  description: "",
   sum: 0,
   type: false,
   categories: [],
-  category: '',
+  category: "",
   isLoading: false,
 };
 
 const transactionAddSlice = createSlice({
-    name: "transactionAdd",
+  name: "transactionAdd",
   initialState,
+  reducers: {
+    addDate: (state, action) => {
+      state.date = action.payload;
+    },
+  },
+
   extraReducers: {
-    [getGategories.fulfilled](state, {payload}) {
+    [getGategories.fulfilled](state, { payload }) {
       state.categories = payload;
       state.isLoading = false;
     },
@@ -25,11 +31,11 @@ const transactionAddSlice = createSlice({
     [getGategories.rejected](state) {
       state.isLoading = false;
     },
-    [transactionAdd.fulfilled](state, {payload}) {
+    [transactionAdd.fulfilled](state, { payload }) {
       state.date = payload;
-      state.description= payload;
+      state.description = payload;
       state.sum = payload;
-      state.category="";
+      state.category = "";
       state.isLoading = false;
     },
     [transactionAdd.pending](state) {
@@ -38,8 +44,9 @@ const transactionAddSlice = createSlice({
     [transactionAdd.rejected](state) {
       state.isLoading = false;
     },
-  }
-})
+  },
+});
 
+export const { addDate } = transactionAddSlice.actions;
 
-export default transactionAddSlice.reducer
+export default transactionAddSlice.reducer;
