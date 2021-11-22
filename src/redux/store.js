@@ -34,7 +34,7 @@ const rootReducer = combineReducers({
   // balance: balanceReducer,
   transactionAdd: transactionAddReducer,
   transactions: transactionsReducer,
-  report: reportReducer,
+  // report: reportReducer,
 });
 
 const middleware = [
@@ -43,7 +43,7 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  logger,
+  // logger,
 ];
 
 const store = configureStore({
