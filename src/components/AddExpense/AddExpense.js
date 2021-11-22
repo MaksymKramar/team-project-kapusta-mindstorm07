@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
 import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
@@ -10,6 +10,8 @@ import styles from "./AddExpense.module.css";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DateCalendar from "../Date/Date";
+
+import { getBalance } from "../../redux/auth/auth-operation";
 
 export default function AddExpense() {
   const [startDate, setStartDate] = useState(new Date());
@@ -37,7 +39,8 @@ export default function AddExpense() {
 
   const categories = useSelector(selectors.getCategoriesAll);
   const getDatas = useSelector(selectors.getData);
-  console.log(getDatas);
+  const getDescription = useSelector(selectors.getDescription);
+ 
   // const catItem = categories.map(i=>i.title).reduce()
   const change = (e) => {
     categories.map((i) => {
@@ -62,6 +65,7 @@ export default function AddExpense() {
     }
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
@@ -75,11 +79,16 @@ export default function AddExpense() {
   };
 
   return (
+
+//     <div className="container">
+//       <DateCalendar />
+
     <div>
       <div className={styles.mainWrapper}>
         <div className={styles.dates}>
           <DateCalendar />
           </div>
+
       <form className={styles.wrapper} onSubmit={handleSubmit}>
         <div className={styles.itemsWrapper}>
           <div className={styles.itemDiv}>

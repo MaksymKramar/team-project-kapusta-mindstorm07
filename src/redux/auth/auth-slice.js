@@ -7,6 +7,7 @@ import {
   fetchCurrentUser,
   authGoogle,
   createBalance,
+  getBalance,
 } from "./auth-operation";
 
 const initialState = {
@@ -138,6 +139,10 @@ const authSlice = createSlice({
     //   state.isLoading = false
     //   state.isErrorLogIn = true
     // },
+
+    [getBalance.fulfilled](state, action) {
+      state.balance = action.payload.balance;
+    },
   },
 });
 

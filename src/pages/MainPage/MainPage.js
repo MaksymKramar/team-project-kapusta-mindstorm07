@@ -8,7 +8,25 @@ import s from "./MainPage.module.css";
 // import DateCalendar from "../../components/Date/Date";
 import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getBalance } from "../../redux/auth/auth-operation";
+import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
+import {
+  getTransactionsFalse,
+  getTransactionsTrue,
+} from "../../redux/transactions/transactionsSelectors";
+import { useEffect } from "react";
+
 export default function MainPage({ setActive }) {
+  const getDescription = useSelector(selectors.getDescription);
+  const transactionsFalse = useSelector(getTransactionsFalse);
+  const transactionsTrue = useSelector(getTransactionsTrue);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBalance());
+  }, [getDescription, transactionsFalse, transactionsTrue]);
+
   return (
     <>
       <div className={s.mainPage}>
