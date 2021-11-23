@@ -7,7 +7,6 @@ import Balance from "../../components/Balance/Balance";
 import CurrentPeriod from "../../components/CurrentPeriod/CurrentPeriod";
 import s from "./ReportPage.module.scss";
 
-
 export default function ReportPage({ setActive }) {
   return (
     <>
@@ -23,10 +22,10 @@ export default function ReportPage({ setActive }) {
       <div className={s.wrapper}>
         <div className={s.secondWrapper}>
           <BackBtn />
+          <div className={s.currentPeriod}>
+            <CurrentPeriod />
+          </div>
           <BalanceForReports />
-          {/* <Balance /> */}
-          <CurrentPeriod />
-
         </div>
         <ExpensesIncome />
       </div>
