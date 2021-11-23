@@ -8,7 +8,6 @@ import {
   getCategoriesExpenses,
   getDescription,
 } from "../../redux/report";
-import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
 import CategoryInfo from "../CategoryInfo/CategoryInfo";
 import Graph from "../Graph/Graph";
 import GraphMobile from "../Graph/GraphMobile";
@@ -16,11 +15,6 @@ import sprite from "../../images/sprite.svg";
 import s from "./SumCategoryInfo.module.scss";
 
 export default function SumCategoryInfo() {
-  // {
-  //  type,
-  //   // typeTrans,
-  //   // handleClickGetChart,
-  // },
   const incomes = useSelector(getCategoriesIncomes);
   const [type, setType] = useState(false);
   const [btnType, setbtnType] = useState("expenses");
@@ -59,15 +53,6 @@ export default function SumCategoryInfo() {
       setType(true);
     }
   }
-  // function handleClick() {
-  //   if (btnType === 'expenses') {
-  //     setbtnType('incomes')
-  //     setType(true)
-  //   }
-  // }
-  // console.log(expenses)
-  // console.log(incomes)
-  // setType(true)
   const viewPort = useWindowDimensions();
   const description = useSelector(getDescription);
 
