@@ -122,4 +122,17 @@
   border: 0;
   background: transparent;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    fill: var(--balance-minus);
+  }
+}
+
+.iconDelete {
+  fill: var(--main-color);
+
+  &:hover {
+    fill: var(--balance-minus);
+  }
 }
