@@ -15,7 +15,7 @@ import {
   getTransactionsFalse,
   getTransactionsTrue,
 } from "../../redux/transactions/transactionsSelectors";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function MainPage({ setActive }) {
   const getDescription = useSelector(selectors.getDescription);
@@ -27,6 +27,11 @@ export default function MainPage({ setActive }) {
     dispatch(getBalance());
   }, [getDescription, transactionsFalse, transactionsTrue]);
 
+  const [clickedTabId, setСlickedTabID] = useState("expense");
+
+  const eventBtn = (e) => {
+    setСlickedTabID(e.target.value);
+  };
   return (
     <>
       <div className={s.mainPage}>
@@ -36,7 +41,7 @@ export default function MainPage({ setActive }) {
           <section className={s.section}>
             <Balance />
             <div className={s.btn1}>
-              <ExpIncomeBtns />
+              <ExpIncomeBtns onClick={eventBtn} />
             </div>
             <div className={s.tableWraper}>
               <div className={s.balanceString}>
@@ -45,11 +50,11 @@ export default function MainPage({ setActive }) {
               </div>
 
               <div className={s.allTables}>
-                <TableHistory />
-                <Summary />
+                <TableHistory clickedTabId={clickedTabId} />
+                <Summary clickedTabId={clickedTabId} />
               </div>
               <div className={s.btn2}>
-                <ExpIncomeBtns />
+                <ExpIncomeBtns onClick={eventBtn} />
               </div>
             </div>
           </section>

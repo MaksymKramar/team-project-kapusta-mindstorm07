@@ -1,37 +1,41 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {
-  getTransByMonthMinus,
-  getTransByMonthPlus,
-} from "../../redux/transactions/";
-
 import s from "./summary.module.scss";
 import dataMonth from "./month.json";
-import { getTransactionsTotalAmountFalse } from "../../redux/transactions/transactionsSelectors";
+import {
+  getTransactionsTotalAmountFalse,
+  getTransactionsTotalAmountTrue,
+} from "../../redux/transactions/transactionsSelectors";
 
-const Summary = () => {
-  const totalAmount = useSelector(getTransactionsTotalAmountFalse);
+const Summary = ({ clickedTabId }) => {
+  const dispatch = useDispatch();
+  const date = new Date();
+
+  const monthDate = date.getMonth() + 1;
+
+  const totalAmountTrue = useSelector(getTransactionsTotalAmountTrue);
+  const totalAmountFalse = useSelector(getTransactionsTotalAmountFalse);
+  const allTotalAmount =
+    clickedTabId === "expense" ? totalAmountFalse : totalAmountTrue;
+
   const [monthSummary, setMonthSummary] = useState(dataMonth);
-  console.log(monthSummary);
+  console.log(allTotalAmount);
 
-  // if (dataMonth.id ) {
-  //   setMonthSummary(dataMonth.map(...monthSummary,{suma:`${totalAmount}`}))
+  // =================================================
+  // {"1":70000,
+  // "2":8000,
+  // "3":10000,
   // }
-  // // const arr = dataMonth.map((month) => month.push('a'))
-
-  // console.log(monthSummary)
+  //  =================================================
   return (
     <div className={s.summaryContainer}>
       <h4 className={s.summaryTitle}>Сводка</h4>
       <ul className={s.summaryList}>
-        {dataMonth.map(({ _id, name, date, description, category, sum }) => (
+        {dataMonth.map(({ _id, name, sum }) => (
           <li key={_id} className={s.summaryItem}>
-            <p className={s.summaryDescription}>
-              {name}
-              {/* {data.find(monthData => monthData.id === month).name} */}
-            </p>
-            <p className={s.summaryDescription}>{sum}</p>
+            <p className={s.summaryDescription}>{name}</p>
+            {/* <p className={s.summaryDescription}>{amounts[_id]}</p> */}
           </li>
         ))}
       </ul>
