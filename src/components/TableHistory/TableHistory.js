@@ -11,8 +11,8 @@ import {
   deleteTransactionById,
 } from "../../redux/transactions/";
 import {
-  getTransactionsFalse,
-  getTransactionsTrue,
+  getTransactionsListTrue,
+  getTransactionsListFalse,
 } from "../../redux/transactions/transactionsSelectors";
 import { getAllCategories } from "../../redux/operation/categories";
 import {
@@ -21,14 +21,17 @@ import {
 } from "../../redux/report";
 import authSelector from "../../redux/auth/auth-selector";
 
-export default function TableHistory() {
-  const transactionsFalse = useSelector(getTransactionsFalse);
-  const transactionsTrue = useSelector(getTransactionsTrue);
+export default function TableHistory({ clickedTabId }) {
   const balance = useSelector(authSelector.getBalance);
 
   const dispatch = useDispatch();
   const date = new Date();
 
+  useEffect(() => {
+    dispatch(
+      getTransByMonthPlus(`${date.getMonth() + 1}.${date.getFullYear()}`)
+    );
+  }, [balance]);
   useEffect(() => {
     dispatch(
       getTransByMonthMinus(`${date.getMonth() + 1}.${date.getFullYear()}`)
@@ -42,12 +45,12 @@ export default function TableHistory() {
   const incomes = useSelector(getCategoriesIncomes);
   const allCategories = [...expenses, ...incomes];
 
-  const trueTransactions = useSelector(getTransactionsTrue);
-  const falseTransactions = useSelector(getTransactionsFalse);
-  const allTransactions = false ? falseTransactions : trueTransactions;
+  const trueTransactions = useSelector(getTransactionsListTrue);
+  const falseTransactions = useSelector(getTransactionsListFalse);
+  const allTransactions =
+    clickedTabId === "expense" ? falseTransactions : trueTransactions;
 
   const matches = useMediaQuery("(min-width:768px)");
-
   if (matches) {
     return (
       <div className={styles.TableHistoryContainer}>
@@ -59,10 +62,8 @@ export default function TableHistory() {
           <li className={styles.TableHistoryHeaderRow}></li>
         </ul>
         <ul className={styles.TableHistoryBody}>
-          {/* false ? falseTransactions : trueTransactions*/}
-          {falseTransactions.map(
+          {allTransactions.map(
             ({ _id, date, description, category, sum, type }) => {
-              // console.log(type)
               const relativeCategObdj = allCategories.find((categoryObj) => {
                 return category === categoryObj._id;
               });
@@ -95,6 +96,6 @@ export default function TableHistory() {
       </div>
     );
   } else {
-    return <TableHistoryMobile />;
+    return <TableHistoryMobile allTransactions={allTransactions} />;
   }
 }

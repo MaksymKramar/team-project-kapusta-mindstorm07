@@ -25,13 +25,17 @@ const getFilteredCategInc = createSelector(
   (arr, category) => arr?.find((ar) => ar.category === category)?.details
 );
 
-// export const getTransactionsList = createSelector(
-//   [getTransactions],
-//   (transactions) => {
-//     console.log("transactions:", transactions);
-//     const transactionsSort = [...transactions];
-//     return transactionsSort.sort((a, b) => new Date(b.date) - new Date(a.date));
-//   }
-// );
-
-// console.log(getTransactions);
+export const getTransactionsListTrue = createSelector(
+  [getTransactionsTrue],
+  (transactions) => {
+    const transactionsSort = [...transactions];
+    return transactionsSort.sort((a, b) => (a.date > b.date ? -1 : 1));
+  }
+);
+export const getTransactionsListFalse = createSelector(
+  [getTransactionsFalse],
+  (transactions) => {
+    const transactionsSort = [...transactions];
+    return transactionsSort.sort((a, b) => (a.date > b.date ? -1 : 1));
+  }
+);

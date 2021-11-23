@@ -8,30 +8,29 @@ import {
   getTransByMonthPlus,
   deleteTransactionById,
 } from "../../redux/transactions/";
-import {
-  getTransactionsFalse,
-  getTransactionsTrue,
-} from "../../redux/transactions/transactionsSelectors";
 import { getAllCategories } from "../../redux/operation/categories";
 import {
   getCategoriesExpenses,
   getCategoriesIncomes,
 } from "../../redux/report";
+import authSelector from "../../redux/auth/auth-selector";
 
-export default function TableHistoryMobile() {
+export default function TableHistoryMobile({ allTransactions }) {
+  const balance = useSelector(authSelector.getBalance);
+
   const dispatch = useDispatch();
   const date = new Date();
 
   useEffect(() => {
     dispatch(
-      getTransByMonthMinus(`${date.getMonth() + 1}.${date.getFullYear()}`)
-    );
-  }, []);
-  useEffect(() => {
-    dispatch(
       getTransByMonthPlus(`${date.getMonth() + 1}.${date.getFullYear()}`)
     );
-  }, [date, dispatch]);
+  }, [balance]);
+  useEffect(() => {
+    dispatch(
+      getTransByMonthMinus(`${date.getMonth() + 1}.${date.getFullYear()}`)
+    );
+  }, [balance]);
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
@@ -40,15 +39,11 @@ export default function TableHistoryMobile() {
   const incomes = useSelector(getCategoriesIncomes);
   const allCategories = [...expenses, ...incomes];
 
-  const trueTransactions = useSelector(getTransactionsTrue);
-  const falseTransactions = useSelector(getTransactionsFalse);
-  const allTransactions = false ? falseTransactions : trueTransactions;
   return (
     <div className={styles.tableContainer}>
       <ul className={styles.table}>
-        {falseTransactions.map(
+        {allTransactions.map(
           ({ _id, date, description, category, sum, type }) => {
-            //  console.log(type)
             const relativeCategObdj = allCategories.find((categoryObj) => {
               return category === categoryObj._id;
             });
