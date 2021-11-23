@@ -17,6 +17,25 @@ const initialState = {
   isLoading: false,
   description: [],
   totalAmount: 0,
+  reducers: {
+    goBackOneMonth: (state, action) => {
+      if (Number(state.date.month) === 1) {
+        state.date.year = Number(state.date.year) - 1;
+        state.date.month = 12;
+        return;
+      }
+
+      state.date.month = Number(state.date.month) - 1;
+    },
+    goForwardOneMonth: (state, action) => {
+      if (Number(state.date.month) === 12) {
+        state.date.year = Number(state.date.year) + 1;
+        state.date.month = 1;
+        return;
+      }
+      state.date.month = Number(state.date.month) + 1;
+    },
+  },
 };
 
 const reportSlice = createSlice({
@@ -69,22 +88,9 @@ const reportSlice = createSlice({
       state.error = action.error.message;
       state.isLoading = true;
     },
-
-    // [getFullTransInfo.pending]: (state, _) => {
-    //   state.error = null;
-    //   state.isLoading = true;
-    // },
-
-    // [getFullTransInfo.fulfilled]: (state, { payload }) => {
-    //   state.items = payload;
-    //   state.isLoading = false;
-    // },
-
-    // [getFullTransInfo.rejected]: (state, action) => {
-    //   state.error = action.error.message;
-    //   state.isLoading = false;
-    // },
   },
 });
+
+export const { goBackOneMonth, goForwardOneMonth } = reportSlice.actions;
 
 export default reportSlice.reducer;

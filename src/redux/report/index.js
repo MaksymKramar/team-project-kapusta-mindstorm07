@@ -9,4 +9,7 @@ export {
   getCategoriesExpenses,
   getCategoriesIncomes,
   getDescription,
+  getMonth,
+  getYear,
 } from "./reportSelectors";
+export * as reportReducer from "./reportSlices";
