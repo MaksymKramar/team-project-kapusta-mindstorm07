@@ -1,7 +1,3 @@
-.tableContainer {
-  // width: 282px;
-}
-
 .tableRow {
   display: flex;
   margin: 10px 0 12px;
@@ -66,4 +62,12 @@
   border: 0;
   background: transparent;
   cursor: pointer;
+}
+
+.iconDelete {
+  fill: var(--main-color);
+
+  &:focus {
+    fill: var(--balance-minus);
+  }
 }

@@ -13,21 +13,21 @@
     line-height: var(--line-height);
     letter-spacing: var(--letter-spacing-first);
 
-    color: var(--second-white-color);
+    color: var(--black-color);
     background: var(--light-gray-color);
 
     padding-left: 21px;
 
     border: 2px solid var(--white-color);
     border-radius: 16px 16px 0px 0px;
-  }
 
-  .itemInput::placeholder {
-    color: var(--second-white-color);
-    font-weight: normal;
-    font-size: var(--font-size);
-    line-height: var(--line-height);
-    letter-spacing: var(--letter-spacing-first);
+    &::placeholder {
+      color: var(--second-white-color);
+      font-weight: normal;
+      font-size: var(--font-size);
+      line-height: var(--line-height);
+      letter-spacing: var(--letter-spacing-first);
+    }
   }
 
   .amountInput {
@@ -49,18 +49,18 @@
     border: 2px solid var(--white-color);
     box-sizing: border-box;
     border-radius: 22px 0px 0px 22px;
-  }
 
-  .amountInput::placeholder {
-    font-weight: bold;
-    font-size: var(--font-size);
-    line-height: var(--line-height);
-    align-items: center;
-    text-align: right;
-    letter-spacing: var(--letter-spacing-first);
-    text-transform: uppercase;
+    &::placeholder {
+      font-weight: normal;
+      font-size: var(--font-size);
+      line-height: var(--line-height);
+      align-items: center;
+      text-align: right;
+      letter-spacing: var(--letter-spacing-first);
+      text-transform: uppercase;
 
-    color: var(--black-color);
+      color: var(--black-color);
+    }
   }
 
   .amountDiv {
@@ -108,43 +108,37 @@
     text-transform: uppercase;
 
     color: var(--main-color);
-  }
 
-  .enterBtn:hover,
-  .enterBtn:focus,
-  .clearBtn:hover,
-  .clearBtn:focus {
-    background: var(--accent-color);
-    color: var(--white-color);
-    filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
+    &:hover,
+    &:focus {
+      background: var(--accent-color);
+      color: var(--white-color);
+      filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
+    }
   }
 
   .dateWrapper {
-  display: flex;
-}
+    display: flex;
+  }
 
-.calendarSvg {
-  margin-right: 10px;
-}
+  .calendarSvg {
+    margin-right: 10px;
+  }
 
-.dateFormat {
-  display: block;
-  width: 74px;
-  border: none;
-  font-weight: 900;
-  font-size: var(--font-size);
-  line-height: var(--line-height);
-  letter-spacing: var(--letter-spacing-second);
-  text-transform: uppercase;
+  .dateFormat {
+    display: block;
+    width: 74px;
+    border: none;
+    font-weight: 900;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing-second);
+    text-transform: uppercase;
 
-  color: var(--main-color);
-}
+    color: var(--main-color);
+  }
 
-
-
-
-
-.dropbtn {
+  .dropbtn {
     cursor: pointer;
 
     display: block;
@@ -224,7 +218,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .mainWrapper{
+  .mainWrapper {
     display: flex;
   }
   .dates {
@@ -294,7 +288,6 @@
     border: none;
   }
 
-
   .dropbtn {
     width: 171px;
     background: var(--white-color);
@@ -329,8 +322,7 @@
     width: 46px;
   }
 
-
-   .dropbtn {
+  .dropbtn {
     width: 188px;
   }
   .dropdown-content {

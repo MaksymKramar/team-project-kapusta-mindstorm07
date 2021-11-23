@@ -63,7 +63,7 @@ export default function TableHistoryMobile({ allTransactions }) {
                   type="button"
                   onClick={() => dispatch(deleteTransactionById(_id))}
                 >
-                  <svg width="18px" height="18px">
+                  <svg className={styles.iconDelete} width="18px" height="18px">
                     <use href={sprite + "#icon-delete-1"} />
                   </svg>
                 </button>
