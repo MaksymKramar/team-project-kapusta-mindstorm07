@@ -52,10 +52,11 @@ export default function SumCategoryInfo() {
   function handleClick() {
     if (btnType === "incomes") {
       setbtnType("expenses");
-      setType(false);
+      setType(true);
+      console.log(type);
     } else {
       setbtnType("incomes");
-      setType(true);
+      setType(false);
     }
   }
   const viewPort = useWindowDimensions();
@@ -82,7 +83,7 @@ export default function SumCategoryInfo() {
               <use href={sprite + "#icon-previous"}></use>
             </svg>
           </button>
-          {type === true ? (
+          {type === false ? (
             <p className={s.title}> Расходы </p>
           ) : (
             <p className={s.title}> Доходы </p>
@@ -98,7 +99,7 @@ export default function SumCategoryInfo() {
           </button>
         </div>
 
-        {type === true ? (
+        {type === false ? (
           <CategoryInfo
             trans={expenses}
             type={type}
@@ -118,6 +119,7 @@ export default function SumCategoryInfo() {
       <div className={`${s.container} ${type}`}>
         {viewPort.width < 768 && (
           <GraphMobile
+            categoryId={categoryId}
             // transactions={filtredTransactions(type, chartsCategoryId)}
             chartsCategoryId={chartsCategoryId}
           />

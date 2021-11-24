@@ -1,43 +1,88 @@
+import React from "react";
+
 import { Chart } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import s from "./Graph.module.scss";
+import { useSelector } from "react-redux";
+import { getDescription, getCategoriesExpenses } from "../../redux/report";
 
 Chart.register(ChartDataLabels);
+function ChartReportMobile({ categoryId }) {
+  const description = useSelector(getDescription);
+  const currentCategory = useSelector(getCategoriesExpenses)[0];
 
-export default function GraphMobile({ type }) {
-  const expensesOpt = [
-    { id: "Свинина", nested: { value: 5000 } },
-    { id: "Говядина", nested: { value: 4500 } },
-    { id: "Курица", nested: { value: 3200 } },
-  ];
+  const sortDescription = description.filter(
+    (desc) => desc.group.category === categoryId
+  );
+  console.log(sortDescription);
 
-  const incomesOpt = [
-    { id: "ЗП", nested: { value: 25000 } },
-    { id: "Доп.доход", nested: { value: 20000 } },
-  ];
+  function ExpSort() {
+    if (sortDescription) {
+      /// Сумма
+      return getExp();
+    }
+  }
 
-  const optArr = type === "expenses" ? incomesOpt : expensesOpt;
-  const aspect = type === "expenses" ? 0.5 : 2;
+  function getExp() {
+    const res = [...sortDescription];
+    return res.sort((a, b) => b.total - a.total);
+  }
 
-  const data = {
+  function IncSort() {
+    if (sortDescription) {
+      return getInc();
+    }
+  }
+  function getInc() {
+    const res = [...sortDescription];
+    return res.sort((a, b) => b.total - a.total);
+  }
+
+  const dataIncomings = {
     datasets: [
       {
-        data: optArr.sort((a, b) => {
-          return b.nested.value - a.nested.value;
-        }),
+        data: IncSort(),
         maxBarThickness: 15,
-        borderRadius: 10,
-        minBarLength: 80,
-        backgroundColor: ["#ff751d", "#ffdac0", "#ffdac0"],
+        borderRadius: 20,
+        minBarLength: 100,
+        backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
+        borderColor: ["rgba(0, 0, 0, 0)"],
+        borderWidth: 1,
         datalabels: {
           formatter: function (value, context) {
             return (
               context.chart.data.datasets[0].data[context.dataIndex].nested
-                .value + " грн"
+                .value + "грн"
             );
           },
-          color: "#52555f",
+          color: "#52555F",
+          anchor: "end",
+          align: "top",
+        },
+        plugins: [ChartDataLabels],
+      },
+    ],
+  };
+
+  const dataExpenses = {
+    datasets: [
+      {
+        data: ExpSort(),
+        maxBarThickness: 15,
+        borderRadius: 20,
+        minBarLength: 100,
+        backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
+        borderColor: ["rgba(0, 0, 0, 0)"],
+        borderWidth: 1,
+        datalabels: {
+          formatter: function (value, context) {
+            return (
+              context.chart.data.datasets[0].data[context.dataIndex].nested
+                .value + "грн"
+            );
+          },
+          color: "#52555F",
           anchor: "end",
           align: "top",
         },
@@ -48,25 +93,33 @@ export default function GraphMobile({ type }) {
 
   const options = {
     indexAxis: "y",
+
     layout: {
       padding: {
-        left: 0,
+        left: 15,
         right: 30,
-        top: 0,
+        top: 25,
       },
     },
     parsing: {
       xAxisKey: "nested.value",
       yAxisKey: "id",
-      // key: 'data.nested.value',
+      key: "data.nested.value",
     },
-    maintainAspectRatio: false,
+
+    elements: {
+      bar: {
+        borderWidth: 1,
+      },
+    },
+    maintainAspectRatio: true,
     responsive: true,
+    aspectRatio: 1,
     scales: {
       x: {
         grid: {
           display: false,
-          borderColor: ["rgba(0, 0, 0, 0)"],
+          borderColor: "white",
         },
         ticks: {
           display: false,
@@ -75,115 +128,33 @@ export default function GraphMobile({ type }) {
       y: {
         grid: {
           display: false,
-          borderColor: ["rgba(0, 0, 0, 0)"],
+          borderColor: "white",
         },
         ticks: {
           align: "start",
           mirror: true,
-          labelOffset: -21,
+          labelOffset: -19,
         },
       },
     },
     plugins: {
       legend: {
         display: false,
+        // position: 'top',
       },
     },
   };
 
   return (
-    <div className={s.container}>
-      <Bar data={data} options={options} />
+    <div className={s.charterReport}>
+      {currentCategory?.type === true && (
+        <Bar data={dataIncomings} options={options} height={400} width={320} />
+      )}
+      {currentCategory?.type === false && (
+        <Bar data={dataExpenses} options={options} height={300} width={320} />
+      )}
     </div>
   );
 }
 
-// import { Chart } from "chart.js";
-// import { Bar } from "react-chartjs-2";
-// import ChartDataLabels from "chartjs-plugin-datalabels";
-// import s from "./Graph.module.scss";
-
-// Chart.register(ChartDataLabels);
-
-// export default function GraphMobile({
-//   transactions,
-//   categories,
-//   chartsCategoryId,
-// }) {
-//   const data = chartsCategoryId ? transactions : categories;
-
-//   const graphInfo = {
-//     datasets: [
-//       {
-//         data: data,
-//         maxBarThickness: 15,
-//         borderRadius: 10,
-//         minBarLength: 80,
-//         backgroundColor: ["#ff751d", "#ffdac0", "#ffdac0"],
-//         datalabels: {
-//           formatter: function (value, context) {
-//             return (
-//               context.chart.data.datasets[0].data[context.dataIndex].nested
-//                 .value + " грн"
-//             );
-//           },
-//           color: "#52555f",
-//           anchor: "end",
-//           align: "top",
-//         },
-//         plugins: [ChartDataLabels],
-//       },
-//     ],
-//   };
-
-//   const options = {
-//     indexAxis: "y",
-//     layout: {
-//       padding: {
-//         left: 0,
-//         right: 30,
-//         top: 0,
-//       },
-//     },
-//     parsing: {
-//       xAxisKey: "nested.value",
-//       yAxisKey: "id",
-//       key: "data.nested.value",
-//     },
-//     maintainAspectRatio: false,
-//     responsive: true,
-//     scales: {
-//       x: {
-//         grid: {
-//           display: false,
-//           borderColor: ["rgba(0, 0, 0, 0)"],
-//         },
-//         ticks: {
-//           display: false,
-//         },
-//       },
-//       y: {
-//         grid: {
-//           display: false,
-//           borderColor: ["rgba(0, 0, 0, 0)"],
-//         },
-//         ticks: {
-//           align: "start",
-//           mirror: true,
-//           labelOffset: -21,
-//         },
-//       },
-//     },
-//     plugins: {
-//       legend: {
-//         display: false,
-//       },
-//     },
-//   };
-
-//   return (
-//     <div className={s.container}>
-//       <Bar data={graphInfo} options={options} height={300} width={320} />
-//     </div>
-//   );
-// }
+export default ChartReportMobile;
