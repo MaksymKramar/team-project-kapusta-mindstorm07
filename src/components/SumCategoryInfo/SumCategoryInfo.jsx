@@ -22,8 +22,18 @@ export default function SumCategoryInfo() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllCategories());
-  }, [dispatch]);
+    const date = new Date();
+    const actualMonth = `${date.getMonth() + 1}.${date.getFullYear()}`;
+    if (type === false) {
+      dispatch(getAllCategories());
+      dispatch(getFullTransInfo({ type: type, date: actualMonth }));
+    }
+    if (type === true) {
+      dispatch(getAllCategories());
+      dispatch(getFullTransInfo({ type: type, date: actualMonth }));
+    }
+    // dispatch(getAllCategories());
+  }, [dispatch, type]);
 
   const expenses = useSelector(getCategoriesExpenses);
   const categories = [...expenses, ...incomes];
@@ -32,17 +42,12 @@ export default function SumCategoryInfo() {
   function handleClickGetChart(id) {
     setChartsCategoryId(id);
     // setType(type)
-    console.log(categories);
-    const result = categories.find(({ _id }) => _id === id);
-
-    console.log(result.type);
-    const cattype = result.type;
+    // const result = categories.find(({ _id }) => _id === id);
+    // const cattype = result.type;
     // setType(result.type.toString())
-    const date = "11.2021";
+    // const date = "11.2021";
     // const string = true
-    dispatch(getFullTransInfo({ type: cattype, date }));
-    console.log(id);
-    // console.log(type)
+    // dispatch(getFullTransInfo({ type: cattype, date }));
   }
   function handleClick() {
     if (btnType === "incomes") {
@@ -55,6 +60,14 @@ export default function SumCategoryInfo() {
   }
   const viewPort = useWindowDimensions();
   const description = useSelector(getDescription);
+  const [categoryId, setCategoryId] = useState("");
+
+  // const getIdCategory = (valueId) => {
+  //   console.log("valueId", valueId)
+  //   setCategoryId(val)
+  //   //console.log(e.target.value);
+  //   // dispatch(getFullTransInfo({ data, type }));
+  // };
 
   return (
     <div>
@@ -90,12 +103,14 @@ export default function SumCategoryInfo() {
             trans={expenses}
             type={type}
             handleClick={handleClickGetChart}
+            onClick={setCategoryId}
           />
         ) : (
           <CategoryInfo
             trans={incomes}
             type={type}
             handleClick={handleClickGetChart}
+            onClick={setCategoryId}
           />
         )}
       </div>
@@ -110,6 +125,7 @@ export default function SumCategoryInfo() {
 
         {viewPort.width >= 768 && (
           <Graph
+            categoryId={categoryId}
             // transactions={filtredTransactions(type, chartsCategoryId)}
             chartsCategoryId={chartsCategoryId}
           />

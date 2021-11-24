@@ -9,7 +9,7 @@ import { getFullTransInfo } from "../../redux/report";
 import { getDescription } from "../../redux/report";
 import { getData } from "../../redux/transactionAdd/transactionADD-selectors";
 
-export default function CategoryInfo({ trans, handleClick }) {
+export default function CategoryInfo({ trans, handleClick, onClick }) {
   const categories = useSelector(getAllCategories);
   // console.log(categories)
   const data = useSelector(getData);
@@ -27,11 +27,13 @@ export default function CategoryInfo({ trans, handleClick }) {
 
   const [isActiveId, setIsActiveId] = useState("");
   const dispatch = useDispatch();
-
-  const onClick = (e) => {
-    //console.log(e.target.value);
-    // dispatch(getFullTransInfo({ data, type }));
-  };
+  console.log("isActiveId", isActiveId); //Id categorii
+  console.log("trans", trans);
+  // const onClick = (item) => {
+  //   console.log("dfdsfsdkjnf", item._id)
+  //   //console.log(e.target.value);
+  //   // dispatch(getFullTransInfo({ data, type }));
+  // };
 
   // useEffect(() =>{
   //   dispatch(getFullTransInfo())
@@ -47,8 +49,7 @@ export default function CategoryInfo({ trans, handleClick }) {
             key={item.category}
             className={s.item}
             onClick={() => {
-              onClick();
-
+              onClick(item._id);
               handleClick(item._id);
               setIsActiveId(item._id);
             }}
