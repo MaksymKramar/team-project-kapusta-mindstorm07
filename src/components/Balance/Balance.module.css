@@ -62,7 +62,7 @@
     line-height: 1.667;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    background: #f5f6fb;
+    background: var(--light-gray-color);
     border: 2px solid var(--white-color);
     box-sizing: border-box;
   }
@@ -71,7 +71,7 @@
   .balance-amount:focus,
   .balance-btn:hover,
   .balance-btn:focus {
-    color: white;
+    color: var(--white-color);
     background-color: var(--accent-color);
   }
 }
@@ -85,8 +85,6 @@
     width: 634px;
     padding-left: 40px;
     margin-bottom: 58px;
-
-    /* top: 97px; */
   }
 
   .balance-container {

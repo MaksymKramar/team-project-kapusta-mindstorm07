@@ -34,6 +34,7 @@
   }
   @media screen and (min-width: 1280px) {
     min-width: 84px;
+    // max-width: 84px;
   }
 }
 
@@ -43,9 +44,11 @@
 
   @media screen and (min-width: 768px) {
     min-width: 168px;
+    max-width: 168px;
   }
   @media screen and (min-width: 1280px) {
     min-width: 188px;
+    max-width: 188px;
   }
 }
 
@@ -54,10 +57,12 @@
   margin-right: 20px;
 
   @media screen and (min-width: 768px) {
-    min-width: 97px;
+    min-width: 100px;
+    max-width: 100px;
   }
   @media screen and (min-width: 1280px) {
     min-width: 172px;
+    max-width: 172px;
   }
 }
 
