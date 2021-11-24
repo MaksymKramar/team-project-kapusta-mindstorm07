@@ -55,7 +55,7 @@ export default function Graph({ categoryId }) {
         data: IncSort(),
 
         maxBarThickness: 38,
-        borderRadius: 20,
+        borderRadius: 10,
         minBarLength: 2,
         backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
         borderColor: ["rgba(0, 0, 0, 0)"],
@@ -80,7 +80,7 @@ export default function Graph({ categoryId }) {
       {
         data: ExpSort(),
         maxBarThickness: 38,
-        borderRadius: 20,
+        borderRadius: 10,
         minBarLength: 2,
         backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
         borderColor: ["rgba(0, 0, 0, 0)"],
@@ -110,7 +110,7 @@ export default function Graph({ categoryId }) {
       padding: {
         left: 5,
         right: 5,
-        top: 30,
+        top: 40,
         // bottom: 20,
       },
     },
@@ -119,12 +119,11 @@ export default function Graph({ categoryId }) {
       x: {
         grid: {
           display: false,
-          borderColor: "white",
         },
       },
       y: {
         grid: {
-          borderColor: "white",
+          borderColor: ["rgba(0, 0, 0, 0)"],
         },
         ticks: {
           display: false,
