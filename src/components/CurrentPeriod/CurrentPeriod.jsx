@@ -15,12 +15,12 @@ export default function CurrentPeriod() {
   // const year = useSelector(getYear);
   // const correctMonth = arrMonths.find(el => Number(el.id) === Number(month));
 
-  const handleClickLeft = () => {
-    dispatch(goBackOneMonth());
-  };
-  const handleClickRight = () => {
-    dispatch(goForwardOneMonth());
-  };
+  // const handleClickLeft = () => {
+  //   dispatch(goBackOneMonth());
+  // };
+  // const handleClickRight = () => {
+  //   dispatch(goForwardOneMonth());
+  // };
 
   return (
     <div className={s.currentPeriodWrapper}>
@@ -29,7 +29,7 @@ export default function CurrentPeriod() {
         <button
           className={s.button}
           type="button"
-          onClick={() => handleClickLeft()}
+          // onClick={() => handleClickLeft()}
         >
           <svg className={s.icon}>
             <use href={sprite + "#icon-previous"}></use>
@@ -42,7 +42,7 @@ export default function CurrentPeriod() {
         <button
           className={s.button}
           type="button"
-          onClick={() => handleClickRight()}
+          // onClick={() => handleClickRight()}
         >
           <svg className={s.icon}>
             <use href={sprite + "#icon-next"}></use>
