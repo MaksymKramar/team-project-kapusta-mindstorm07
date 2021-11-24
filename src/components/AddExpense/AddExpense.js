@@ -6,12 +6,12 @@ import * as selectors from "../../redux/transactionAdd/transactionADD-selectors"
 // import DatePicker from "react-datepicker";
 // import ItemCategories from "../ItemsCategories/ItemsCategories";
 import sprite from "../../images/sprite.svg";
-import styles from "./AddExpense.module.scss";
+import styles from "./AddExpense.module.css";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DateCalendar from "../Date/Date";
 
-// import { getBalance } from "../../redux/auth/auth-operation";
+import { getBalance } from "../../redux/auth/auth-operation";
 
 export default function AddExpense() {
   const [startDate, setStartDate] = useState(new Date());
@@ -27,15 +27,22 @@ export default function AddExpense() {
     startDate.getMonth() + 1
   }.${startDate.getFullYear()}`;
   console.log(date)
+  // setDate(transDate)
 
-  const getCategoriesItem = () => {
-    dispatch(operations.getGategories());
-  };
+  // const getCategoriesItem = () => {
+  //   dispatch(operations.getGategories());
+  // };
+
 
   const categories = useSelector(selectors.getCategoriesAll);
-  const expCategories = categories.filter(cat => cat.type===false)
   const getDatas = useSelector(selectors.getData);
-  // const getDescription = useSelector(selectors.getDescription);
+  const getDescription = useSelector(selectors.getDescription);
+
+  const [showCategs, setShowCategs] = useState(false)
+
+  const onClick = () => {
+    setShowCategs(!showCategs)
+  }
 
   const change = (e) => {
     categories.map((i) => {
@@ -43,7 +50,9 @@ export default function AddExpense() {
         setCategory(i._id);
         setType(i.type);
       }
-    });
+    },
+    setShowCategs(false)
+    );
 
     setValue(e.target.textContent);
   };
@@ -63,7 +72,7 @@ export default function AddExpense() {
     const newTransaction = { date: getDatas, description, sum, type, category };
     console.log(description);
     dispatch(operations.transactionAdd(newTransaction));
-    clearBtn()
+    // clearBtn()
   };
 
   const clearBtn = () => {
@@ -73,6 +82,9 @@ export default function AddExpense() {
   };
 
   return (
+    //     <div className="container">
+    //       <DateCalendar />
+
     <div>
       <div className={styles.mainWrapper}>
         <div className={styles.dates}>
@@ -89,25 +101,38 @@ export default function AddExpense() {
                 value={description}
                 onChange={handleChange}
               />
+              {/* <ItemCategories /> */}
+              {/* <div className={styles["dropdown"]}>
+            <ul className={styles["dropdown-content"]} name="category" onClick={getCategoriesItem}>
+                {categories.map(cat => (
+                  <li className={styles["dropdown-content-a"]} key={cat._id} value={cat._id} onClick={()=>handleSelect}>{cat.title}</li>
+                ))
+
+                }
+             </ul>
+             </div> */}
+
             <div className={styles["dropdown"]}>
-              <button type="button" className={styles["dropbtn"]} onClick={getCategoriesItem}>
+              <button type="button" className={styles["dropbtn"]} onClick={onClick} >
                 {value}
                 <svg
                   width="12"
                   height="20"
-                  className={styles["category-svg-down"]}>
-                    <use href={sprite + "#down"}></use>
-                  </svg>
-                  <svg
-                    width="12"
-                    height="20"
-                    className={styles["category-svg-up"]}
+                  className={styles["category-svg-down"]}
+                >
+                  <use href={sprite + "#down"}></use>
+                </svg>
+                <svg
+                  width="12"
+                  height="20"
+                  className={styles["category-svg-up"]}
                   >
                     <use href={sprite + "#up"}></use>
                   </svg>
                 </button>
+                {showCategs &&
                 <ul className={styles["dropdown-content"]}>
-                  {expCategories.map((category) => (
+                  {categories.map((category) => (
                     <li
                       className={styles["dropdown-content-a"]}
                       key={category._id}
@@ -117,7 +142,7 @@ export default function AddExpense() {
                       {category.title}
                     </li>
                   ))}
-                </ul>
+                </ul>}
               </div>
             </div>
             <div className={styles.amountDiv}>

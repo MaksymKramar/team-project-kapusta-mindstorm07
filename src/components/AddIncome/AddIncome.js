@@ -28,23 +28,26 @@ export default function AddIncome() {
   }.${startDate.getFullYear()}`;
   console.log(date)
 
-  const getCategoriesItem = () => {
-    dispatch(operations.getGategories());
-  };
-
   const categories = useSelector(selectors.getCategoriesAll);
   const incomeCategories = categories.filter(cat => cat.type===true)
   const getDatas = useSelector(selectors.getData);
   console.log(getDatas)
   // const getDescription = useSelector(selectors.getDescription);
+  const [showCategs, setShowCategs] = useState(false)
 
+  const onClick = () => {
+    setShowCategs(!showCategs)
+  }
+  
   const change = (e) => {
     categories.map((i) => {
       if (i.title === e.target.textContent) {
         setCategory(i._id);
         setType(i.type);
       }
-    });
+    },
+    setShowCategs(false)
+    );
 
     setValue(e.target.textContent);
   };
@@ -91,7 +94,7 @@ export default function AddIncome() {
                 onChange={handleChange}
               />
             <div className={styles["dropdown"]}>
-              <button type="button" className={styles["dropbtn"]} onClick={getCategoriesItem}>
+              <button type="button" className={styles["dropbtn"]} onClick={onClick}>
                 {value}
                 <svg
                   width="12"
@@ -108,6 +111,7 @@ export default function AddIncome() {
                     <use href={sprite + "#up"}></use>
                   </svg>
                 </button>
+                {showCategs &&
                 <ul className={styles["dropdown-content"]}>
                   {incomeCategories.map((category) => (
                     <li
@@ -119,7 +123,7 @@ export default function AddIncome() {
                       {category.title}
                     </li>
                   ))}
-                </ul>
+                </ul>}
               </div>
             </div>
             <div className={styles.amountDiv}>

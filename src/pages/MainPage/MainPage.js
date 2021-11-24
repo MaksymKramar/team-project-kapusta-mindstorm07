@@ -17,6 +17,7 @@ import {
   getTransactionsTrue,
 } from "../../redux/transactions/transactionsSelectors";
 import { useEffect, useState } from "react";
+import * as operations from "../../redux/transactionAdd/transactionAdd-operations"
 
 export default function MainPage({ setActive }) {
   const getDescription = useSelector(selectors.getDescription);
@@ -30,8 +31,12 @@ export default function MainPage({ setActive }) {
 
   const [clickedTabId, setСlickedTabID] = useState("expense");
 
+  const getCategoriesItem = () => {
+    dispatch(operations.getGategories());
+  };
   const eventBtn = (e) => {
     setСlickedTabID(e.target.value);
+    getCategoriesItem()
   };
 
   return (
