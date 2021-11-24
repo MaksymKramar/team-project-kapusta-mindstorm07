@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
 import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
-// import {transactionAdd, getGategories} from '../../redux/transactionAdd/transactionAdd-operations'
-// import DatePicker from "react-datepicker";
-// import ItemCategories from "../ItemsCategories/ItemsCategories";
 import sprite from "../../images/sprite.svg";
 import styles from "./AddExpense.module.css";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DateCalendar from "../Date/Date";
-
-import { getBalance } from "../../redux/auth/auth-operation";
 
 export default function AddExpense() {
   const [startDate, setStartDate] = useState(new Date());
@@ -26,17 +21,11 @@ export default function AddExpense() {
   const date = `${startDate.getDate()}.${
     startDate.getMonth() + 1
   }.${startDate.getFullYear()}`;
-  console.log(date)
-  // setDate(transDate)
-
-  // const getCategoriesItem = () => {
-  //   dispatch(operations.getGategories());
-  // };
-
-
+ 
   const categories = useSelector(selectors.getCategoriesAll);
+  const expenseCategories = categories.filter(cat => cat.type===false)
   const getDatas = useSelector(selectors.getData);
-  const getDescription = useSelector(selectors.getDescription);
+  // const getDescription = useSelector(selectors.getDescription);
 
   const [showCategs, setShowCategs] = useState(false)
 
@@ -70,9 +59,8 @@ export default function AddExpense() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
-    console.log(description);
     dispatch(operations.transactionAdd(newTransaction));
-    // clearBtn()
+    clearBtn()
   };
 
   const clearBtn = () => {
@@ -82,10 +70,6 @@ export default function AddExpense() {
   };
 
   return (
-    //     <div className="container">
-    //       <DateCalendar />
-
-    <div>
       <div className={styles.mainWrapper}>
         <div className={styles.dates}>
           <DateCalendar />
@@ -100,18 +84,8 @@ export default function AddExpense() {
                 name="description"
                 value={description}
                 onChange={handleChange}
+                required
               />
-              {/* <ItemCategories /> */}
-              {/* <div className={styles["dropdown"]}>
-            <ul className={styles["dropdown-content"]} name="category" onClick={getCategoriesItem}>
-                {categories.map(cat => (
-                  <li className={styles["dropdown-content-a"]} key={cat._id} value={cat._id} onClick={()=>handleSelect}>{cat.title}</li>
-                ))
-
-                }
-             </ul>
-             </div> */}
-
             <div className={styles["dropdown"]}>
               <button type="button" className={styles["dropbtn"]} onClick={onClick} >
                 {value}
@@ -132,7 +106,7 @@ export default function AddExpense() {
                 </button>
                 {showCategs &&
                 <ul className={styles["dropdown-content"]}>
-                  {categories.map((category) => (
+                  {expenseCategories.map((category) => (
                     <li
                       className={styles["dropdown-content-a"]}
                       key={category._id}
@@ -152,6 +126,7 @@ export default function AddExpense() {
                 name="sum"
                 value={sum}
                 onChange={handleChange}
+                required
               />
               <button className={styles.calculatorBtn}>
                 <svg width="20" height="20" className={styles["report-svg"]}>
@@ -187,6 +162,5 @@ export default function AddExpense() {
           </div>
         </form>
       </div>
-    </div>
   );
 }

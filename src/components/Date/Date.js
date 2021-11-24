@@ -34,7 +34,6 @@ export default function DateCalendar() {
       </svg>
       <DatePicker
         selected={startDate}
-        //onChange={(date) => setStartDate(date)}
         onChange={handleDateChange}
         dateFormat="dd.MM.yyyy"
         maxDate={new Date()}
