@@ -21,25 +21,25 @@ const initialState = {
     year: null,
     month: null,
   },
-  reducers: {
-    goBackOneMonth: (state, action) => {
-      if (Number(state.date.month) === 1) {
-        state.date.year = Number(state.date.year) - 1;
-        state.date.month = 12;
-        return;
-      }
+  // reducers: {
+  //   goBackOneMonth: (state, action) => {
+  //     if (Number(state.date.month) === 1) {
+  //       state.date.year = Number(state.date.year) - 1;
+  //       state.date.month = 12;
+  //       return;
+  //     }
 
-      state.date.month = Number(state.date.month) - 1;
-    },
-    goForwardOneMonth: (state, action) => {
-      if (Number(state.date.month) === 12) {
-        state.date.year = Number(state.date.year) + 1;
-        state.date.month = 1;
-        return;
-      }
-      state.date.month = Number(state.date.month) + 1;
-    },
-  },
+  //     state.date.month = Number(state.date.month) - 1;
+  //   },
+  //   goForwardOneMonth: (state, action) => {
+  //     if (Number(state.date.month) === 12) {
+  //       state.date.year = Number(state.date.year) + 1;
+  //       state.date.month = 1;
+  //       return;
+  //     }
+  //     state.date.month = Number(state.date.month) + 1;
+  //   },
+  // },
 };
 
 const reportSlice = createSlice({
