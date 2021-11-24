@@ -25,7 +25,7 @@ import Modal from "../../modal/modal";
 
 export default function TableHistory({ clickedTabId }) {
   const balance = useSelector(authSelector.getBalance);
-  const [modalActive, setModalActive] = useState(true);
+  const [modalActive, setModalActive] = useState(false);
   const [id, setId] = useState(true);
 
   const dispatch = useDispatch();
