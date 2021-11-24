@@ -1,91 +1,100 @@
+import React from "react";
 import { Chart } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import s from "./Graph.module.scss";
 import { useSelector } from "react-redux";
-import { getDescription } from "../../redux/report";
+import { getDescription, getCategoriesExpenses } from "../../redux/report";
+
 Chart.register(ChartDataLabels);
 
-export default function Graph({ type }) {
+export default function Graph({ categoryId }) {
   const description = useSelector(getDescription);
-  // description.map((i) => {
-  //   console.log(i.total)
-  // })
-  const items = [...description];
-  // console.log(des)
-  // function sortDesc() {
-  //   const items = [...description]
-  //   return items.sort((a, b) => {
-  //     return b.total - a.total
-  //   })
-  // }
-  // console.log(sortDesc())
-  // const items = description.sort((a, b) => {
-  //   return b.total - a.total
-  // })
-  // console.log(items)
-  const expensesOpt = [
-    { id: "Свинина", nested: { value: 5000 } },
-    { id: "Говядина", nested: { value: 4500 } },
-    { id: "Курица", nested: { value: 3200 } },
-    { id: "Рыба", nested: { value: 2100 } },
-  ];
+  const currentCategory = useSelector(getCategoriesExpenses)[0];
 
-  const incomesOpt = [
-    { id: "ЗП", nested: { value: 25000 } },
-    { id: "Доп.доход", nested: { value: 20000 } },
-  ];
-
-  const optArr = type === "expenses" ? incomesOpt : expensesOpt;
-
-  // const aspect = type === 'expenses' ? 3 : 3
-
-  console.log(
-    optArr.sort((a, b) => {
-      return b.nested.value - a.nested.value;
-    })
+  const sortDescription = description.filter(
+    (desc) => desc.group.category === categoryId
   );
-  console.log(
-    items.sort((a, b) => {
-      return b.total - a.total;
-    })
-  );
-  const data = {
+
+  function ExpSort() {
+    if (sortDescription) {
+      /// Сумма
+      return getExp();
+    }
+  }
+
+  function getExp() {
+    const res = [...sortDescription];
+    return res.sort((a, b) => b.total - a.total);
+  }
+
+  function IncSort() {
+    if (sortDescription) {
+      return getInc();
+    }
+  }
+  function getInc() {
+    const res = [...sortDescription];
+    return res.sort((a, b) => b.total - a.total);
+  }
+
+  const aspect = currentCategory?.type === "false" ? 3 : 3;
+
+  const dataIncomings = {
     datasets: [
       {
-        // data: optArr.sort((a, b) => {
-        //   return b.nested.value - a.nested.value
-        // }),
-
-        // {
-        data: items.sort((a, b) => {
-          return b.total - a.total;
-        }),
+        data: IncSort(),
 
         maxBarThickness: 38,
         borderRadius: 10,
         minBarLength: 2,
-        backgroundColor: ["#ff751d", "#ffdac0", "#ffdac0"],
+        backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
+        borderColor: ["rgba(0, 0, 0, 0)"],
+        borderWidth: 1,
+        datalabels: {
+          formatter: function (value, context) {
+            return `${
+              context.chart.data.datasets[0].data[context.dataIndex].total
+            } грн`;
+          },
+          color: "#52555F",
+          anchor: "end",
+          align: "top",
+        },
+        plugins: [ChartDataLabels],
+      },
+    ],
+  };
 
-        // datalabels: {
-        //   formatter: function (value, context) {
-        //     return (
-        //       context.chart.data.datasets[0].data[context.dataIndex].value +
-        //       ' грн'
-        //     )
-        //   },
-        //   color: '#52555f',
-        //   anchor: 'end',
-        //   align: 'top',
-        // },
+  const dataExpenses = {
+    datasets: [
+      {
+        data: ExpSort(),
+        maxBarThickness: 38,
+        borderRadius: 10,
+        minBarLength: 2,
+        backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
+        borderColor: ["rgba(0, 0, 0, 0)"],
+        borderWidth: 1,
+        datalabels: {
+          formatter: function (value, context) {
+            return `${
+              context.chart.data.datasets[0].data[context.dataIndex].total
+            } грн`;
+          },
+          color: "#52555F",
+          anchor: "end",
+          align: "top",
+        },
         plugins: [ChartDataLabels],
       },
     ],
   };
   const options = {
     parsing: {
-      xAxisKey: "id",
-      yAxisKey: "nested.value",
-      // key: 'data.nested.value',
+      xAxisKey: "group.description", ///Свинина Говядина ....
+      yAxisKey: "total", /// Сумма 5000 4500 ...
+      key: "data.total",
     },
     responsive: true,
     layout: {
@@ -93,9 +102,10 @@ export default function Graph({ type }) {
         left: 5,
         right: 5,
         top: 40,
+        // bottom: 20,
       },
     },
-    aspectRatio: 3,
+    aspectRatio: aspect,
     scales: {
       x: {
         grid: {
@@ -119,11 +129,141 @@ export default function Graph({ type }) {
   };
 
   return (
-    <div>
-      <Bar data={data} options={options} />
+    <div className={s.charterReport}>
+      {<Bar data={dataExpenses} options={options} />}
+      {currentCategory?.type === true && (
+        <Bar data={dataIncomings} options={options} />
+      )}
     </div>
   );
 }
+
+// import { Chart } from "chart.js";
+// import { Bar } from "react-chartjs-2";
+// import ChartDataLabels from "chartjs-plugin-datalabels";
+// import { useSelector } from "react-redux";
+// import { getDescription } from "../../redux/report";
+// Chart.register(ChartDataLabels);
+
+// export default function Graph({ type }) {
+//   const description = useSelector(getDescription);
+//   // description.map((i) => {
+//   //   console.log(i.total)
+//   // })
+//   const items = [...description];
+//   // console.log(des)
+//   // function sortDesc() {
+//   //   const items = [...description]
+//   //   return items.sort((a, b) => {
+//   //     return b.total - a.total
+//   //   })
+//   // }
+//   // console.log(sortDesc())
+//   // const items = description.sort((a, b) => {
+//   //   return b.total - a.total
+//   // })
+//   // console.log(items)
+//   const expensesOpt = [
+//     { id: "Свинина", nested: { value: 5000 } },
+//     { id: "Говядина", nested: { value: 4500 } },
+//     { id: "Курица", nested: { value: 3200 } },
+//     { id: "Рыба", nested: { value: 2100 } },
+//   ];
+
+//   const incomesOpt = [
+//     { id: "ЗП", nested: { value: 25000 } },
+//     { id: "Доп.доход", nested: { value: 20000 } },
+//   ];
+
+//   const optArr = type === "expenses" ? incomesOpt : expensesOpt;
+
+// const aspect = type === 'expenses' ? 3 : 3
+
+//   console.log(
+//     optArr.sort((a, b) => {
+//       return b.nested.value - a.nested.value;
+//     })
+//   );
+//   console.log(
+//     items.sort((a, b) => {
+//       return b.total - a.total;
+//     })
+//   );
+//   const data = {
+//     datasets: [
+//       {
+//         // data: optArr.sort((a, b) => {
+//         //   return b.nested.value - a.nested.value
+//         // }),
+
+//         // {
+//         data: items.sort((a, b) => {
+//           return b.total - a.total;
+//         }),
+
+//         maxBarThickness: 38,
+//         borderRadius: 10,
+//         minBarLength: 2,
+//         backgroundColor: ["#ff751d", "#ffdac0", "#ffdac0"],
+
+//         // datalabels: {
+//         //   formatter: function (value, context) {
+//         //     return (
+//         //       context.chart.data.datasets[0].data[context.dataIndex].value +
+//         //       ' грн'
+//         //     )
+//         //   },
+//         //   color: '#52555f',
+//         //   anchor: 'end',
+//         //   align: 'top',
+//         // },
+//         plugins: [ChartDataLabels],
+//       },
+//     ],
+//   };
+//   const options = {
+//     parsing: {
+//       xAxisKey: "id",
+//       yAxisKey: "nested.value",
+//       // key: 'data.nested.value',
+//     },
+//     responsive: true,
+//     layout: {
+//       padding: {
+//         left: 5,
+//         right: 5,
+//         top: 40,
+//       },
+//     },
+//     aspectRatio: 3,
+//     scales: {
+//       x: {
+//         grid: {
+//           display: false,
+//         },
+//       },
+//       y: {
+//         grid: {
+//           borderColor: ["rgba(0, 0, 0, 0)"],
+//         },
+//         ticks: {
+//           display: false,
+//         },
+//       },
+//     },
+//     plugins: {
+//       legend: {
+//         display: false,
+//       },
+//     },
+//   };
+
+//   return (
+//     <div>
+//       <Bar data={data} options={options} />
+//     </div>
+//   );
+// }
 
 // import { Chart } from "chart.js";
 // import { Bar } from "react-chartjs-2";

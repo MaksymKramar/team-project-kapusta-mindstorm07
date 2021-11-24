@@ -63,6 +63,7 @@
   background: transparent;
   cursor: pointer;
 
+  fill: black;
   &:hover,
   &:focus {
     fill: var(--balance-minus);
@@ -76,6 +77,8 @@
     fill: var(--balance-minus);
   }
 }
+
+
 .table {
   width: 100%;
   overflow-x: auto;

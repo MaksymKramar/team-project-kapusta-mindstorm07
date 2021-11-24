@@ -10,7 +10,7 @@ function BalanceForReports() {
       <div className={styles["balance-container"]}>
         <p className={styles["balance-name"]}>Баланс:</p>
         <div className={styles["balance-container2"]}>
-            <span className={styles["balance-amount"]}>{balance + "UAH"}</span>
+            <span className={styles["balance-amount"]}>{`${balance}  UAH.`}</span>
         </div>
       </div>
       </div>

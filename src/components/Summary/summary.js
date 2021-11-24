@@ -35,6 +35,7 @@ const Summary = ({ clickedTabId }) => {
         {dataMonth.map(({ _id, name, sum }) => (
           <li key={_id} className={s.summaryItem}>
             <p className={s.summaryDescription}>{name}</p>
+            {/* <zxc dfds={_id}/>  */}
             {/* <p className={s.summaryDescription}>{amounts[_id]}</p> */}
           </li>
         ))}
