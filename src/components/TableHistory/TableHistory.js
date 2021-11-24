@@ -4,7 +4,7 @@ import styles from "./TableHistory.module.scss";
 import sprite from "../../images/sprite.svg";
 import TableHistoryMobile from "../TabelHistoryMobile/TableHistoryMobile";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   getTransByMonthMinus,
   getTransByMonthPlus,
@@ -20,9 +20,13 @@ import {
   getCategoriesIncomes,
 } from "../../redux/report";
 import authSelector from "../../redux/auth/auth-selector";
+import Modal from "../../modal/modal";
+
 
 export default function TableHistory({ clickedTabId }) {
   const balance = useSelector(authSelector.getBalance);
+  const [modalActive, setModalActive] = useState(true);
+  const [id, setId] = useState(true);
 
   const dispatch = useDispatch();
   const date = new Date();
@@ -51,6 +55,14 @@ export default function TableHistory({ clickedTabId }) {
     clickedTabId === "expense" ? falseTransactions : trueTransactions;
 
   const matches = useMediaQuery("(min-width:768px)");
+
+
+  const deleteHandler = _id => {
+    setId(_id)
+    setModalActive(true)
+  }
+
+
   if (matches) {
     return (
       <div className={styles.TableHistoryContainer}>
@@ -82,7 +94,7 @@ export default function TableHistory({ clickedTabId }) {
                   <button
                     className={styles.TrashIcon}
                     type="button"
-                    onClick={() => dispatch(deleteTransactionById(_id))}
+                    onClick={ () => deleteHandler(_id)}
                   >
                     <svg
                       className={styles.iconDelete}
@@ -97,7 +109,9 @@ export default function TableHistory({ clickedTabId }) {
             }
           )}
         </ul>
+        <Modal transactionId={id} active={modalActive} setActive={setModalActive}/>
       </div>
+      
     );
   } else {
     return <TableHistoryMobile allTransactions={allTransactions} />;

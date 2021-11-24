@@ -46,6 +46,7 @@ const addTransaction = createAsyncThunk(
 const deleteTransactionById = createAsyncThunk(
   "transactions/deleteTransactionById",
   async (transactionId) => {
+      console.log('da', transactionId)
     await api.deleteTransactionById(transactionId);
     return transactionId;
   }
