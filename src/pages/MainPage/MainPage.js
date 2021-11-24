@@ -1,5 +1,6 @@
 import Header from "../../components/Header/Header";
 import AddExpense from "../../components/AddExpense/AddExpense";
+import AddIncome from "../../components/AddIncome/AddIncome";
 import Balance from "../../components/Balance/Balance";
 import ExpIncomeBtns from "../../components/ExpIncomeBtns/ExpIncomeBtns";
 import TableHistory from "../../components/TableHistory/TableHistory";
@@ -32,6 +33,7 @@ export default function MainPage({ setActive }) {
   const eventBtn = (e) => {
     setСlickedTabID(e.target.value);
   };
+
   return (
     <>
       <div className={s.mainPage}>
@@ -46,7 +48,8 @@ export default function MainPage({ setActive }) {
             <div className={s.tableWraper}>
               <div className={s.balanceString}>
                 {/* <DateCalendar /> */}
-                <AddExpense />
+                {clickedTabId === "income" && <AddIncome />}
+                {clickedTabId === "expense" && <AddExpense />}
               </div>
 
               <div className={s.allTables}>

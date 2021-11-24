@@ -29,13 +29,8 @@ function Balance() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // console.log(balance)
     dispatch(createBalance({ balance: balanceAmount }));
   };
-  // const reset = () => {
-  //   setBalance('');
-  // };
 
   return (
     <div className={styles["container"]}>
