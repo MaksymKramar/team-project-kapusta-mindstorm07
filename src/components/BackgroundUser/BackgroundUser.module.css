@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: #f5f6fb;
+  background-color: var(--light-gray-color);
   height: 286px;
   border-bottom-left-radius: 20%;
 
