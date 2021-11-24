@@ -3,51 +3,42 @@ import { Chart } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import s from "./Graph.module.scss";
-// import { expensesOpt, incomesOpt } from '../../data/optionsChart';
-// import { expensesOpt } from '../../pages/ReportsView/index';
 import { useSelector } from "react-redux";
-import {} from "../../redux/transactions";
 import { getDescription, getCategoriesExpenses } from "../../redux/report";
 
 Chart.register(ChartDataLabels);
 
 export default function Graph({ categoryId }) {
-  // const sumExp = useSelector(getFilteredCategExp);
-  // const sumInc = useSelector(getFilteredCategInc);
-
   const description = useSelector(getDescription);
-  const currentCategory = useSelector(getCategoriesExpenses);
+  const currentCategory = useSelector(getCategoriesExpenses)[0];
 
-  // description.map(desc=>desc.group.category)
-
-  const sortDescription = description.filter((desc) =>
-    console.log(desc.group.category === categoryId)
+  const sortDescription = description.filter(
+    (desc) => desc.group.category === categoryId
   );
-  // console.log(sortDescription);
 
   function ExpSort() {
-    if (description) {
+    if (sortDescription) {
       /// Сумма
       return getExp();
     }
   }
 
   function getExp() {
-    const res = [...description];
+    const res = [...sortDescription];
     return res.sort((a, b) => b.total - a.total);
   }
 
   function IncSort() {
-    if (description) {
+    if (sortDescription) {
       return getInc();
     }
   }
   function getInc() {
-    const res = [...description];
+    const res = [...sortDescription];
     return res.sort((a, b) => b.total - a.total);
   }
 
-  const aspect = currentCategory === "expenses" ? 3 : 3;
+  const aspect = currentCategory?.type === "false" ? 3 : 3;
 
   const dataIncomings = {
     datasets: [
@@ -140,7 +131,7 @@ export default function Graph({ categoryId }) {
   return (
     <div className={s.charterReport}>
       {<Bar data={dataExpenses} options={options} />}
-      {currentCategory === "incomings" && (
+      {currentCategory?.type === true && (
         <Bar data={dataIncomings} options={options} />
       )}
     </div>

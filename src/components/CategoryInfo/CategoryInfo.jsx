@@ -26,9 +26,6 @@ export default function CategoryInfo({ trans, handleClick, onClick }) {
   // const type = {type}
 
   const [isActiveId, setIsActiveId] = useState("");
-  const dispatch = useDispatch();
-  console.log("isActiveId", isActiveId); //Id categorii
-  console.log("trans", trans);
   // const onClick = (item) => {
   //   console.log("dfdsfsdkjnf", item._id)
   //   //console.log(e.target.value);
