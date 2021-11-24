@@ -24,7 +24,6 @@ function Balance() {
   const handleChange = (e) => {
     const { value } = e.target;
     const valueNum = Number(value);
-    console.log(typeof valueNum);
     setbalanceAmount(valueNum);
   };
   const handleSubmit = (e) => {
@@ -48,7 +47,7 @@ function Balance() {
          
           <input
             className={styles["balance-amount"]}
-            placeholder={balance + "UAH"}
+            placeholder={`${balance}  UAH`}
             onChange={handleChange}
             disabled={balance}
           />
