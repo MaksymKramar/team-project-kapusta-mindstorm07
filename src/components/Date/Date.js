@@ -37,6 +37,7 @@ export default function DateCalendar() {
         //onChange={(date) => setStartDate(date)}
         onChange={handleDateChange}
         dateFormat="dd.MM.yyyy"
+        maxDate={new Date()}
         className={styles.dateFormat}
       />
     </div>

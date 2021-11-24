@@ -6,20 +6,20 @@ import * as selectors from "../../redux/transactionAdd/transactionADD-selectors"
 // import DatePicker from "react-datepicker";
 // import ItemCategories from "../ItemsCategories/ItemsCategories";
 import sprite from "../../images/sprite.svg";
-import styles from "./AddExpense.module.scss";
+import styles from "./AddIncome.module.css";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DateCalendar from "../Date/Date";
 
 // import { getBalance } from "../../redux/auth/auth-operation";
 
-export default function AddExpense() {
+export default function AddIncome() {
   const [startDate, setStartDate] = useState(new Date());
   const [description, setDescription] = useState("");
   const [sum, setSum] = useState("");
   const [category, setCategory] = useState("");
   const [type, setType] = useState();
-  const [value, setValue] = useState("Категория товара");
+  const [value, setValue] = useState("Категория дохода");
 
   const dispatch = useDispatch();
 
@@ -33,8 +33,9 @@ export default function AddExpense() {
   };
 
   const categories = useSelector(selectors.getCategoriesAll);
-  const expCategories = categories.filter(cat => cat.type===false)
+  const incomeCategories = categories.filter(cat => cat.type===true)
   const getDatas = useSelector(selectors.getData);
+  console.log(getDatas)
   // const getDescription = useSelector(selectors.getDescription);
 
   const change = (e) => {
@@ -69,7 +70,7 @@ export default function AddExpense() {
   const clearBtn = () => {
     setSum("");
     setDescription("");
-    setValue("Категория товара");
+    setValue("Категория дохода");
   };
 
   return (
@@ -84,7 +85,7 @@ export default function AddExpense() {
             <div className={styles.itemDiv}>
               <input
                 className={styles.itemInput}
-                placeholder="Описание товара"
+                placeholder="Описание дохода"
                 name="description"
                 value={description}
                 onChange={handleChange}
@@ -95,19 +96,20 @@ export default function AddExpense() {
                 <svg
                   width="12"
                   height="20"
-                  className={styles["category-svg-down"]}>
-                    <use href={sprite + "#down"}></use>
-                  </svg>
-                  <svg
-                    width="12"
-                    height="20"
-                    className={styles["category-svg-up"]}
+                  className={styles["category-svg-down"]}
+                >
+                  <use href={sprite + "#down"}></use>
+                </svg>
+                <svg
+                  width="12"
+                  height="20"
+                  className={styles["category-svg-up"]}
                   >
                     <use href={sprite + "#up"}></use>
                   </svg>
                 </button>
                 <ul className={styles["dropdown-content"]}>
-                  {expCategories.map((category) => (
+                  {incomeCategories.map((category) => (
                     <li
                       className={styles["dropdown-content-a"]}
                       key={category._id}
@@ -135,7 +137,7 @@ export default function AddExpense() {
               </button>
 
               <ul className={styles["dropdown-content"]}>
-                {categories.map((category) => (
+                {incomeCategories.map((category) => (
                   <li
                     className={styles["dropdown-content-a"]}
                     key={category._id}

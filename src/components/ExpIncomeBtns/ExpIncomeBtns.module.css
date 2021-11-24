@@ -24,6 +24,7 @@
   .incomeBtn:focus {
     color: #ffffff;
     background: #ff751d;
+    cursor: pointer;
   }
 }
 
