@@ -60,11 +60,35 @@
 .TrashIcon {
   outline: none;
   border: 0;
-  padding: 0;
   background: transparent;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    fill: var(--balance-minus);
+  }
 }
 
 .iconDelete {
-  fill: var(--balance-minus);
+  fill: var(--main-color);
+
+  &:hover {
+    fill: var(--balance-minus);
+  }
+}
+.table {
+  width: 100%;
+  overflow-x: auto;
+  max-height: 344px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #fff;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: var(--accent-color);
+  }
 }

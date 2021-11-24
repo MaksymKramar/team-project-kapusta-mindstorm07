@@ -2,7 +2,7 @@
   .summaryContainer {
     width: 230px;
     height: 278px;
-    margin-top: 30px;
+    margin-top: 50px;
   }
 }
 
@@ -70,5 +70,10 @@
 @media screen and (min-width: 1280px) {
   .summaryContainer {
     margin-top: 0px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .summaryContainer {
+    display: none;
   }
 }
