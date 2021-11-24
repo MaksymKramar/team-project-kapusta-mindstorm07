@@ -1,9 +1,7 @@
 import SumCategoryInfo from "../SumCategoryInfo/SumCategoryInfo";
 import s from "./ExpensesIncome.module.scss";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-
 import {
   getTransByMonthPlus,
   getTransByMonthMinus,
