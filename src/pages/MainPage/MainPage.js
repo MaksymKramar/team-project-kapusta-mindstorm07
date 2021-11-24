@@ -5,6 +5,7 @@ import Balance from "../../components/Balance/Balance";
 import ExpIncomeBtns from "../../components/ExpIncomeBtns/ExpIncomeBtns";
 import TableHistory from "../../components/TableHistory/TableHistory";
 import Summary from "../../components/Summary/summary";
+import DateCalendar from "../../components/Date/Date";
 import s from "./MainPage.module.css";
 // import DateCalendar from "../../components/Date/Date";
 import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
@@ -47,6 +48,9 @@ export default function MainPage({ setActive }) {
         <div className={s.container}>
           <section className={s.section}>
             <Balance />
+            <div className={s.calendar}>
+              <DateCalendar />
+              </div>
             <div className={s.btn1}>
               <ExpIncomeBtns onClick={eventBtn} />
             </div>
