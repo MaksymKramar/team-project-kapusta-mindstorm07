@@ -69,7 +69,7 @@ export default function SumCategoryInfo() {
               <use href={sprite + "#icon-previous"}></use>
             </svg>
           </button>
-          {type === false ? (
+          {type === true ? (
             <p className={s.title}> Расходы </p>
           ) : (
             <p className={s.title}> Доходы </p>
