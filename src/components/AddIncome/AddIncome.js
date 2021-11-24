@@ -2,16 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
 import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
-// import {transactionAdd, getGategories} from '../../redux/transactionAdd/transactionAdd-operations'
-// import DatePicker from "react-datepicker";
-// import ItemCategories from "../ItemsCategories/ItemsCategories";
 import sprite from "../../images/sprite.svg";
 import styles from "./AddIncome.module.css";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DateCalendar from "../Date/Date";
-
-// import { getBalance } from "../../redux/auth/auth-operation";
 
 export default function AddIncome() {
   const [startDate, setStartDate] = useState(new Date());
@@ -31,8 +26,7 @@ export default function AddIncome() {
   const categories = useSelector(selectors.getCategoriesAll);
   const incomeCategories = categories.filter(cat => cat.type===true)
   const getDatas = useSelector(selectors.getData);
-  console.log(getDatas)
-  // const getDescription = useSelector(selectors.getDescription);
+
   const [showCategs, setShowCategs] = useState(false)
 
   const onClick = () => {
@@ -65,7 +59,6 @@ export default function AddIncome() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
-    console.log(description);
     dispatch(operations.transactionAdd(newTransaction));
     clearBtn()
   };
@@ -92,6 +85,7 @@ export default function AddIncome() {
                 name="description"
                 value={description}
                 onChange={handleChange}
+                required
               />
             <div className={styles["dropdown"]}>
               <button type="button" className={styles["dropbtn"]} onClick={onClick}>
@@ -133,6 +127,7 @@ export default function AddIncome() {
                 name="sum"
                 value={sum}
                 onChange={handleChange}
+                required
               />
               <button className={styles.calculatorBtn}>
                 <svg width="20" height="20" className={styles["report-svg"]}>
