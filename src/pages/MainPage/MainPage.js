@@ -18,7 +18,7 @@ import {
   getTransactionsTrue,
 } from "../../redux/transactions/transactionsSelectors";
 import { useEffect, useState } from "react";
-import * as operations from "../../redux/transactionAdd/transactionAdd-operations"
+import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
 
 export default function MainPage({ setActive }) {
   const getDescription = useSelector(selectors.getDescription);
@@ -28,7 +28,7 @@ export default function MainPage({ setActive }) {
 
   useEffect(() => {
     dispatch(getBalance());
-  }, [getDescription, transactionsFalse, transactionsTrue]);
+  }, [dispatch, getDescription, transactionsFalse, transactionsTrue]);
 
   const [clickedTabId, setСlickedTabID] = useState("expense");
 
@@ -37,7 +37,7 @@ export default function MainPage({ setActive }) {
   };
   const eventBtn = (e) => {
     setСlickedTabID(e.target.value);
-    getCategoriesItem()
+    getCategoriesItem();
   };
 
   return (
@@ -50,7 +50,7 @@ export default function MainPage({ setActive }) {
             <Balance />
             <div className={s.calendar}>
               <DateCalendar />
-              </div>
+            </div>
             <div className={s.btn1}>
               <ExpIncomeBtns onClick={eventBtn} />
             </div>
@@ -71,7 +71,6 @@ export default function MainPage({ setActive }) {
             </div>
           </section>
         </div>
-        
       </div>
     </>
   );

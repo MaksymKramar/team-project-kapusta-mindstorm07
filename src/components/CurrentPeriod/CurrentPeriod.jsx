@@ -8,19 +8,28 @@ import arrMonths from "../../data/Month.json";
 import sprite from "../../images/sprite.svg";
 import s from "./CurrentPeriod.module.scss";
 
-export default function CurrentPeriod() {
-  const dispatch = useDispatch();
+export default function CurrentPeriod({
+  month,
+  year,
+  onHandleClickRight,
+  onHandleClickLeft,
+}) {
+  const mouths = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
 
-  // const month = useSelector(getMonth);
-  // const year = useSelector(getYear);
-  // const correctMonth = arrMonths.find(el => Number(el.id) === Number(month));
-
-  // const handleClickLeft = () => {
-  //   dispatch(goBackOneMonth());
-  // };
-  // const handleClickRight = () => {
-  //   dispatch(goForwardOneMonth());
-  // };
+  const currentMonth = mouths[month - 1];
 
   return (
     <div className={s.currentPeriodWrapper}>
@@ -29,20 +38,19 @@ export default function CurrentPeriod() {
         <button
           className={s.button}
           type="button"
-          // onClick={() => handleClickLeft()}
+          onClick={() => onHandleClickLeft()}
         >
           <svg className={s.icon}>
             <use href={sprite + "#icon-previous"}></use>
           </svg>
         </button>
         <p className={s.periodP}>
-          дата
-          {/* {correctMonth.name} {year} */}
+          {currentMonth} {year}
         </p>
         <button
           className={s.button}
           type="button"
-          // onClick={() => handleClickRight()}
+          onClick={() => onHandleClickRight()}
         >
           <svg className={s.icon}>
             <use href={sprite + "#icon-next"}></use>

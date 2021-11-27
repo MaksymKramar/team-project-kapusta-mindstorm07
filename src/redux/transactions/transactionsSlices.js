@@ -15,8 +15,8 @@ const transactionsSlice = createSlice({
     itemsFalse: [],
     incomes: [],
     expenses: [],
-    totalAmountMinus: null,
-    totalAmountPlus: null,
+    totalAmountMinus: 0,
+    totalAmountPlus: 0,
     sum: null,
     error: null,
     isLoading: false,
@@ -70,6 +70,7 @@ const transactionsSlice = createSlice({
     [getTransByMonthMinus.rejected]: (state, action) => {
       state.error = action.error.message;
       state.isLoading = false;
+      state.totalAmountMinus = 0;
     },
 
     [getTransByMonthPlus.pending]: (state, _) => {
@@ -86,6 +87,7 @@ const transactionsSlice = createSlice({
     [getTransByMonthPlus.rejected]: (state, action) => {
       state.error = action.error.message;
       state.isLoading = false;
+      state.totalAmountPlus = 0;
     },
 
     [deleteTransactionById.pending]: (state, _) => {
