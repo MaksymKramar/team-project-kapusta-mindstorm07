@@ -26,6 +26,8 @@
   }
 
   .balance-amount {
+    display: flex;
+    justify-content: center;
     font-weight: bold;
     color: var(--black-color);
     border-radius: 22px;
@@ -38,12 +40,6 @@
     background: #f5f6fb;
     border: 2px solid var(--white-color);
     box-sizing: border-box;
-  }
-
-  .balance-amount:hover,
-  .balance-amount:focus {
-    color: white;
-    background-color: var(--accent-color);
   }
 }
 

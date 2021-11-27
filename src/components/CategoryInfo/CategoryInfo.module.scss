@@ -24,7 +24,7 @@
 
   &:hover,
   &:focus {
-    background: var(--light-orange-color);
+    transform: scale(1.1);
   }
 
   &:hover .svgContainer,
