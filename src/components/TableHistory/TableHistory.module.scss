@@ -128,9 +128,11 @@
   background: transparent;
   cursor: pointer;
   fill: black;
+
   &:hover,
   &:focus {
     fill: var(--balance-minus);
+    transform: scale(1.1);
   }
 }
 

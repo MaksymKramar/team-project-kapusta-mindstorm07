@@ -24,6 +24,11 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 }
 
 .iconPrevious {
@@ -34,6 +39,13 @@
 .iconNext {
   width: 8px;
   height: 14px;
+}
+
+.TrashIcon {
+  outline: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -82,10 +94,4 @@
   .amountIncomeSum {
     margin-left: 20px;
   }
-}
-.TrashIcon {
-  outline: none;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
 }
