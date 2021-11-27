@@ -1,30 +1,30 @@
 // import Button from '@mui/material/Button';
 import { useState } from "react";
-import { useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
-import {getCategoriesAll} from "../../redux/transactionAdd/transactionADD-selectors";
+import { getCategoriesAll } from "../../redux/transactionAdd/transactionADD-selectors";
 import sprite from "../../images/sprite.svg";
-import styles from "./ItemsCategories.module.css";
+import styles from "./ItemsCategories.module.scss";
 
 function ItemsCategories() {
   // const [category, setCategories] = useState('');
-  const [value, setValue] = useState('Категория товара');
-  const [category, setCategory] = useState('');
-  
+  const [value, setValue] = useState("Категория товара");
+  const [category, setCategory] = useState("");
+
   const dispatch = useDispatch();
 
   const getCategoriesItem = () => {
     dispatch(operations.getGategories());
-  }
+  };
 
-  const categories = useSelector(getCategoriesAll)
+  const categories = useSelector(getCategoriesAll);
 
   const change = (e) => {
-    console.log(e)
-    setValue(e.target.textContent)
-    setCategory(e.target.__reactProps$qk4iqhvwvj.value)
-    console.log(category)
-  }
+    console.log(e);
+    setValue(e.target.textContent);
+    setCategory(e.target.__reactProps$qk4iqhvwvj.value);
+    console.log(category);
+  };
 
   return (
     <div className={styles["dropdown"]}>
@@ -38,11 +38,16 @@ function ItemsCategories() {
         </svg>
       </button>
       <ul className={styles["dropdown-content"]}>
-        {categories.map(category => (
-                  <li className={styles["dropdown-content-a"]} key={category._id} value={category._id} onClick={change}>{category.title}</li>
-                ))
-
-                }
+        {categories.map((category) => (
+          <li
+            className={styles["dropdown-content-a"]}
+            key={category._id}
+            value={category._id}
+            onClick={change}
+          >
+            {category.title}
+          </li>
+        ))}
         {/* <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Категория товара</li>
         <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Транспорт</li>
         <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Продукты</li>

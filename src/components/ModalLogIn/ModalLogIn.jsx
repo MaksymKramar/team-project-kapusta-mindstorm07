@@ -1,4 +1,4 @@
-import styles from "./ModalLogIn.module.css";
+import styles from "./ModalLogIn.module.scss";
 import sprite from "../../images/sprite.svg";
 
 import { useState, useEffect } from "react";

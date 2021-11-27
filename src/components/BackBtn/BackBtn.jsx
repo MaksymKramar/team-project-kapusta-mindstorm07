@@ -1,10 +1,10 @@
 import { useHistory } from "react-router-dom";
 import sprite from "../../images/sprite.svg";
-import styles from "./BackBtn.module.css";
+import styles from "./BackBtn.module.scss";
 
 export default function BackBtn() {
   let history = useHistory();
-  
+
   return (
     <div>
       <button className={styles.backBtn} onClick={() => history.goBack()}>

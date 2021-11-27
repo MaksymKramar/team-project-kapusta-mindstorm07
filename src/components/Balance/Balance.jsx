@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import styles from "./Balance.module.css";
+import styles from "./Balance.module.scss";
 import sprite from "../../images/sprite.svg";
 import { NavLink } from "react-router-dom";
 import { createBalance } from "../../redux/auth/auth-operation";
 
 import authSelector from "../../redux/auth/auth-selector";
 
-import Notification  from "../Notification/Notification";
+import Notification from "../Notification/Notification";
 
 function Balance() {
   const [balanceAmount, setbalanceAmount] = useState(0);
@@ -44,22 +44,19 @@ function Balance() {
       <form className={styles["balance-container"]} onSubmit={handleSubmit}>
         <p className={styles["balance-name"]}>Баланс:</p>
         <div className={styles["balance-container2"]}>
-         
           <input
             className={styles["balance-amount"]}
             placeholder={`${balance}  UAH`}
             onChange={handleChange}
             disabled={balance}
           />
-          {balanceAmount === 0 && (
-            <Notification />
-          )}
-           
-          <button type="submit"className={styles["balance-btn"]}>Подтвердить</button>
+          {balanceAmount === 0 && <Notification />}
+
+          <button type="submit" className={styles["balance-btn"]}>
+            Подтвердить
+          </button>
         </div>
-        
       </form>
-      
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
 import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
 import sprite from "../../images/sprite.svg";
-import styles from "./AddIncome.module.css";
+import s from "./AddIncome.module.scss";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DateCalendar from "../Date/Date";
@@ -21,27 +21,25 @@ export default function AddIncome() {
   const date = `${startDate.getDate()}.${
     startDate.getMonth() + 1
   }.${startDate.getFullYear()}`;
-  console.log(date)
+  console.log(date);
 
   const categories = useSelector(selectors.getCategoriesAll);
-  const incomeCategories = categories.filter(cat => cat.type===true)
+  const incomeCategories = categories.filter((cat) => cat.type === true);
   const getDatas = useSelector(selectors.getData);
 
-  const [showCategs, setShowCategs] = useState(false)
+  const [showCategs, setShowCategs] = useState(false);
 
   const onClick = () => {
-    setShowCategs(!showCategs)
-  }
-  
+    setShowCategs(!showCategs);
+  };
+
   const change = (e) => {
     categories.map((i) => {
       if (i.title === e.target.textContent) {
         setCategory(i._id);
         setType(i.type);
       }
-    },
-    setShowCategs(false)
-    );
+    }, setShowCategs(false));
 
     setValue(e.target.textContent);
   };
@@ -60,7 +58,7 @@ export default function AddIncome() {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
     dispatch(operations.transactionAdd(newTransaction));
-    clearBtn()
+    clearBtn();
   };
 
   const clearBtn = () => {
@@ -71,74 +69,75 @@ export default function AddIncome() {
 
   return (
     <div>
-      <div className={styles.mainWrapper}>
-        <div className={styles.dates}>
+      <div className={s.mainWrapper}>
+        <div className={s.dates}>
           <DateCalendar />
         </div>
 
-        <form className={styles.wrapper} onSubmit={handleSubmit}>
-          <div className={styles.itemsWrapper}>
-            <div className={styles.itemDiv}>
+        <form className={s.wrapper} onSubmit={handleSubmit}>
+          <div className={s.itemsWrapper}>
+            <div className={s.itemDiv}>
               <input
-                className={styles.itemInput}
+                className={s.itemInput}
                 placeholder="Описание дохода"
                 name="description"
                 value={description}
                 onChange={handleChange}
                 required
               />
-            <div className={styles["dropdown"]}>
-              <button type="button" className={styles["dropbtn"]} onClick={onClick}>
-                {value}
-                <svg
-                  width="12"
-                  height="20"
-                  className={styles["category-svg-down"]}
+              <div className={s["dropdown"]}>
+                <button
+                  type="button"
+                  className={s["dropbtn"]}
+                  onClick={onClick}
                 >
-                  <use href={sprite + "#down"}></use>
-                </svg>
-                <svg
-                  width="12"
-                  height="20"
-                  className={styles["category-svg-up"]}
+                  {value}
+                  <svg
+                    width="12"
+                    height="20"
+                    className={s["category-svg-down"]}
                   >
+                    <use href={sprite + "#down"}></use>
+                  </svg>
+                  <svg width="12" height="20" className={s["category-svg-up"]}>
                     <use href={sprite + "#up"}></use>
                   </svg>
                 </button>
-                {showCategs &&
-                <ul className={styles["dropdown-content"]}>
-                  {incomeCategories.map((category) => (
-                    <li
-                      className={styles["dropdown-content-a"]}
-                      key={category._id}
-                      value={category}
-                      onClick={change}
-                    >
-                      {category.title}
-                    </li>
-                  ))}
-                </ul>}
+                {showCategs && (
+                  <ul className={s["dropdown-content"]}>
+                    {incomeCategories.map((category) => (
+                      <li
+                        className={s["dropdown-content-a"]}
+                        key={category._id}
+                        value={category}
+                        onClick={change}
+                      >
+                        {category.title}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
-            <div className={styles.amountDiv}>
+            <div className={s.amountDiv}>
               <input
-                className={styles.amountInput}
+                className={s.amountInput}
                 placeholder="00.00 UAH"
                 name="sum"
                 value={sum}
                 onChange={handleChange}
                 required
               />
-              <button className={styles.calculatorBtn}>
-                <svg width="20" height="20" className={styles["report-svg"]}>
+              <button className={s.calculatorBtn}>
+                <svg width="20" height="20" className={s["report-svg"]}>
                   <use href={sprite + "#icon-calculator"}></use>
                 </svg>
               </button>
 
-              <ul className={styles["dropdown-content"]}>
+              <ul className={s["dropdown-content"]}>
                 {incomeCategories.map((category) => (
                   <li
-                    className={styles["dropdown-content-a"]}
+                    className={s["dropdown-content-a"]}
                     key={category._id}
                     value={category._id}
                     onClick={change}
@@ -149,15 +148,11 @@ export default function AddIncome() {
               </ul>
             </div>
           </div>
-          <div className={styles.btnsDiv}>
-            <button type="submit" className={styles.enterBtn}>
+          <div className={s.btnsDiv}>
+            <button type="submit" className={s.enterBtn}>
               Ввод
             </button>
-            <button
-              type="button"
-              className={styles.clearBtn}
-              onClick={clearBtn}
-            >
+            <button type="button" className={s.clearBtn} onClick={clearBtn}>
               Очистить
             </button>
           </div>

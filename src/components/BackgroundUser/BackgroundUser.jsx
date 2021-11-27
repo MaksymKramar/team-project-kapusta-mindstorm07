@@ -1,4 +1,4 @@
-import styles from "./BackgroundUser.module.css";
+import styles from "./BackgroundUser.module.scss";
 import sprite from "../../images/sprite.svg";
 
 export default function BackgroundHome() {

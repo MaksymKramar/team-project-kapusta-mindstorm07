@@ -22,6 +22,11 @@
   cursor: pointer;
   margin-bottom: 40px;
 
+  &:hover,
+  &:focus {
+    background: var(--light-orange-color);
+  }
+
   &:hover .svgContainer,
   &:focus .svgContainer {
     background: var(--light-orange-color);

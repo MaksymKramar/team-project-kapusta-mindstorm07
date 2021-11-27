@@ -1,4 +1,4 @@
-import styles from "./ExpIncomeBtns.module.css";
+import styles from "./ExpIncomeBtns.module.scss";
 
 export default function ExpIncomeBtns({ onClick }) {
   return (
