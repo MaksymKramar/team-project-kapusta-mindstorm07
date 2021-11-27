@@ -1,4 +1,4 @@
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 import LogoHeader from "../LogoHeader/LogoHeader";
 import UserMenuHeader from "../UserMenuHeader/UserMenuHeader";
 import { useSelector } from "react-redux";

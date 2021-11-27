@@ -1,4 +1,4 @@
-import styles from "./LogoHeader.module.css";
+import styles from "./LogoHeader.module.scss";
 import sprite from "../../images/sprite.svg";
 
 export default function logoHeader() {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import sprite from "../../images/sprite.svg";
-import styles from "./Date.module.css";
+import styles from "./Date.module.scss";
 
 import { addDate } from "../../redux/transactionAdd/transactionAdd-slice";
 import { useDispatch } from "react-redux";
@@ -14,7 +14,9 @@ export default function DateCalendar() {
   const dispatch = useDispatch();
 
   const updateDate = (date) => {
-    const allDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
+    const allDate = `${date.getDate()}.${
+      date.getMonth() + 1
+    }.${date.getFullYear()}`;
     dispatch(addDate(allDate));
   };
 
