@@ -20,7 +20,7 @@
     &:hover,
     &:focus {
       transform: scale(1.1);
-      text-shadow: var(--accent-color) 1px 0 10px;
+      transition-duration: 500ms;
     }
   }
 
@@ -31,6 +31,12 @@
     letter-spacing: 0.04em;
     color: var(--main-color-grey);
     margin-right: 15px;
+
+    &:hover,
+    &:focus {
+      color: var(--black-color);
+      transition-duration: 500ms;
+    }
   }
 
   .balance-name {
@@ -77,10 +83,11 @@
     cursor: pointer;
   }
 
-  .balance-amount:hover,
-  .balance-amount:focus,
+  // .balance-amount:hover,
+  // .balance-amount:focus,
   .balance-btn:hover,
   .balance-btn:focus {
+    transition-duration: 500ms;
     color: var(--white-color);
     background-color: var(--accent-color);
   }

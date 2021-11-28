@@ -16,6 +16,7 @@
   &:hover,
   &:focus {
     box-shadow: 5px 10px 20px rgba(214, 114, 0, 0.993);
+    transition-duration: 500ms;
   }
 }
 
@@ -92,6 +93,7 @@
   &:hover {
     filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
     background: var(--accent-color);
+    transition-duration: 500ms;
   }
 }
 
@@ -143,6 +145,7 @@
   &:focus {
     outline: none;
     border: 2px solid rgb(255, 125, 4);
+    transition-duration: 500ms;
   }
 
   &::placeholder {
@@ -187,6 +190,7 @@
   &:focus {
     filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
     background: var(--accent-color);
+    transition-duration: 500ms;
 
     color: var(--white-color);
     cursor: pointer;
