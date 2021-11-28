@@ -71,6 +71,7 @@ const transactionsSlice = createSlice({
       state.error = action.error.message;
       state.isLoading = false;
       state.totalAmountMinus = 0;
+      state.itemsFalse = [];
     },
 
     [getTransByMonthPlus.pending]: (state, _) => {
@@ -88,6 +89,7 @@ const transactionsSlice = createSlice({
       state.error = action.error.message;
       state.isLoading = false;
       state.totalAmountPlus = 0;
+      state.itemsTrue = [];
     },
 
     [deleteTransactionById.pending]: (state, _) => {

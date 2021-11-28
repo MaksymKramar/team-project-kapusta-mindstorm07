@@ -8,7 +8,9 @@ import { createBalance } from "../../redux/auth/auth-operation";
 
 import authSelector from "../../redux/auth/auth-selector";
 
-import Notification  from "../Notification/Notification";
+import Notification from "../Notification/Notification";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Balance() {
   const [balanceAmount, setbalanceAmount] = useState(0);
@@ -29,6 +31,7 @@ function Balance() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createBalance({ balance: balanceAmount }));
+    toast.success("Баланс успешно обновлен!");
   };
 
   return (
@@ -44,22 +47,19 @@ function Balance() {
       <form className={styles["balance-container"]} onSubmit={handleSubmit}>
         <p className={styles["balance-name"]}>Баланс:</p>
         <div className={styles["balance-container2"]}>
-         
           <input
             className={styles["balance-amount"]}
             placeholder={`${balance}  UAH`}
             onChange={handleChange}
             disabled={balance}
           />
-          {balanceAmount === 0 && (
-            <Notification />
-          )}
-           
-          <button type="submit"className={styles["balance-btn"]}>Подтвердить</button>
+          {balanceAmount === 0 && <Notification />}
+
+          <button type="submit" className={styles["balance-btn"]}>
+            Подтвердить
+          </button>
         </div>
-        
       </form>
-      
     </div>
   );
 }

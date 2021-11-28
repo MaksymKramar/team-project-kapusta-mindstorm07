@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Suspense, lazy } from "react";
 import Modal from "./modal/modal";
 import ModalExit from "./modal/modalExit";
 
@@ -10,11 +10,7 @@ import authSelector from "./redux/auth/auth-selector";
 import { Switch, Redirect } from "react-router-dom";
 import PubliceRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
-import { Suspense, lazy } from "react";
-
-import Summary from "./components/Summary/summary";
-
-import Balance from "./components/Balance/Balance";
+import { ToastContainer } from "react-toastify";
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
@@ -33,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-     <Switch>
+      <Switch>
         <Suspense fallback={null}>
           <PubliceRoute path="/" exact>
             <Redirect to="/login" />
@@ -67,6 +63,8 @@ function App() {
       </Switch>
       <Modal active={modalActive} setActive={setModalActive} />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
+
+      <ToastContainer style={{ width: "250px" }} />
     </div>
   );
 }

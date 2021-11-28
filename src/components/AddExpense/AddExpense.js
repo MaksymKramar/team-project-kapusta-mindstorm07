@@ -21,17 +21,17 @@ export default function AddExpense() {
   const date = `${startDate.getDate()}.${
     startDate.getMonth() + 1
   }.${startDate.getFullYear()}`;
- 
+
   const categories = useSelector(selectors.getCategoriesAll);
-  const expenseCategories = categories.filter(cat => cat.type===false)
+  const expenseCategories = categories.filter((cat) => cat.type === false);
   const getDatas = useSelector(selectors.getData);
   // const getDescription = useSelector(selectors.getDescription);
 
-  const [showCategs, setShowCategs] = useState(false)
+  const [showCategs, setShowCategs] = useState(false);
 
   const onClick = () => {
-    setShowCategs(!showCategs)
-  }
+    setShowCategs(!showCategs);
+  };
 
   const change = (e) => {
     categories.map((i) => {
@@ -39,9 +39,7 @@ export default function AddExpense() {
         setCategory(i._id);
         setType(i.type);
       }
-    },
-    setShowCategs(false)
-    );
+    }, setShowCategs(false));
 
     setValue(e.target.textContent);
   };
@@ -60,7 +58,8 @@ export default function AddExpense() {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
     dispatch(operations.transactionAdd(newTransaction));
-    clearBtn()
+
+    clearBtn();
   };
 
   const clearBtn = () => {
@@ -70,24 +69,28 @@ export default function AddExpense() {
   };
 
   return (
-      <div className={styles.mainWrapper}>
-        <div className={styles.dates}>
-          <DateCalendar />
-        </div>
+    <div className={styles.mainWrapper}>
+      <div className={styles.dates}>
+        <DateCalendar />
+      </div>
 
-        <form className={styles.wrapper} onSubmit={handleSubmit}>
-          <div className={styles.itemsWrapper}>
-            <div className={styles.itemDiv}>
-              <input
-                className={styles.itemInput}
-                placeholder="Описание товара"
-                name="description"
-                value={description}
-                onChange={handleChange}
-                required
-              />
+      <form className={styles.wrapper} onSubmit={handleSubmit}>
+        <div className={styles.itemsWrapper}>
+          <div className={styles.itemDiv}>
+            <input
+              className={styles.itemInput}
+              placeholder="Описание товара"
+              name="description"
+              value={description}
+              onChange={handleChange}
+              required
+            />
             <div className={styles["dropdown"]}>
-              <button type="button" className={styles["dropbtn"]} onClick={onClick} >
+              <button
+                type="button"
+                className={styles["dropbtn"]}
+                onClick={onClick}
+              >
                 {value}
                 <svg
                   width="12"
@@ -100,11 +103,11 @@ export default function AddExpense() {
                   width="12"
                   height="20"
                   className={styles["category-svg-up"]}
-                  >
-                    <use href={sprite + "#up"}></use>
-                  </svg>
-                </button>
-                {showCategs &&
+                >
+                  <use href={sprite + "#up"}></use>
+                </svg>
+              </button>
+              {showCategs && (
                 <ul className={styles["dropdown-content"]}>
                   {expenseCategories.map((category) => (
                     <li
@@ -116,51 +119,48 @@ export default function AddExpense() {
                       {category.title}
                     </li>
                   ))}
-                </ul>}
-              </div>
+                </ul>
+              )}
             </div>
-            <div className={styles.amountDiv}>
-              <input
-                className={styles.amountInput}
-                placeholder="00.00 UAH"
-                name="sum"
-                value={sum}
-                onChange={handleChange}
-                required
-              />
-              <button className={styles.calculatorBtn}>
-                <svg width="20" height="20" className={styles["report-svg"]}>
-                  <use href={sprite + "#icon-calculator"}></use>
-                </svg>
-              </button>
+          </div>
+          <div className={styles.amountDiv}>
+            <input
+              className={styles.amountInput}
+              placeholder="00.00 UAH"
+              name="sum"
+              value={sum}
+              onChange={handleChange}
+              required
+            />
+            <button className={styles.calculatorBtn}>
+              <svg width="20" height="20" className={styles["report-svg"]}>
+                <use href={sprite + "#icon-calculator"}></use>
+              </svg>
+            </button>
 
-              <ul className={styles["dropdown-content"]}>
-                {categories.map((category) => (
-                  <li
-                    className={styles["dropdown-content-a"]}
-                    key={category._id}
-                    value={category._id}
-                    onClick={change}
-                  >
-                    {category.title}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className={styles["dropdown-content"]}>
+              {categories.map((category) => (
+                <li
+                  className={styles["dropdown-content-a"]}
+                  key={category._id}
+                  value={category._id}
+                  onClick={change}
+                >
+                  {category.title}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className={styles.btnsDiv}>
-            <button type="submit" className={styles.enterBtn}>
-              Ввод
-            </button>
-            <button
-              type="button"
-              className={styles.clearBtn}
-              onClick={clearBtn}
-            >
-              Очистить
-            </button>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div className={styles.btnsDiv}>
+          <button type="submit" className={styles.enterBtn}>
+            Ввод
+          </button>
+          <button type="button" className={styles.clearBtn} onClick={clearBtn}>
+            Очистить
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
