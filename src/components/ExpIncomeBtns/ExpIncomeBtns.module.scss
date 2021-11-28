@@ -25,6 +25,7 @@
     color: #ffffff;
     background: #ff751d;
     cursor: pointer;
+    transition-duration: 500ms;
   }
 }
 
@@ -49,6 +50,7 @@
   .incomeBtn:focus {
     color: #ff751d;
     background: #ffffff;
+    transition-duration: 500ms;
   }
 }
 

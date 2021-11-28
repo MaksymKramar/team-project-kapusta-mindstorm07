@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
 import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
 import sprite from "../../images/sprite.svg";
-import styles from "./AddExpense.module.css";
+import styles from "./AddExpense.module.scss";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DateCalendar from "../Date/Date";
@@ -58,7 +58,6 @@ export default function AddExpense() {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
     dispatch(operations.transactionAdd(newTransaction));
-
     clearBtn();
   };
 

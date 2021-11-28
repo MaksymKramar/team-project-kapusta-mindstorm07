@@ -24,6 +24,13 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
+    transform: scale(1.1);
+    transition-duration: 500ms;
+  }
 }
 
 .iconPrevious {
@@ -34,6 +41,13 @@
 .iconNext {
   width: 8px;
   height: 14px;
+}
+
+.TrashIcon {
+  outline: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -82,10 +96,4 @@
   .amountIncomeSum {
     margin-left: 20px;
   }
-}
-.TrashIcon {
-  outline: none;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
 }

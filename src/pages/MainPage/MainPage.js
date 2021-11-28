@@ -6,7 +6,7 @@ import ExpIncomeBtns from "../../components/ExpIncomeBtns/ExpIncomeBtns";
 import TableHistory from "../../components/TableHistory/TableHistory";
 import Summary from "../../components/Summary/summary";
 import DateCalendar from "../../components/Date/Date";
-import s from "./MainPage.module.css";
+import s from "./MainPage.module.scss";
 // import DateCalendar from "../../components/Date/Date";
 import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
 

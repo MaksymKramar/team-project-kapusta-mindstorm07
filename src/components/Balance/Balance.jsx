@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import styles from "./Balance.module.css";
+import styles from "./Balance.module.scss";
 import sprite from "../../images/sprite.svg";
 import { NavLink } from "react-router-dom";
 import { createBalance } from "../../redux/auth/auth-operation";

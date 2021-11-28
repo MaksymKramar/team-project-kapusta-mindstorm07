@@ -1,9 +1,14 @@
-@media screen and (min-width: 320px) {
-  .backBtn {
-    border: none;
-    background: none;
-    font-size: 0;
-    cursor: pointer;
+.backBtn {
+  border: none;
+  background: none;
+  font-size: 0;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    transition-duration: 500ms;
+    color: var(--black-color);
   }
 }
 
