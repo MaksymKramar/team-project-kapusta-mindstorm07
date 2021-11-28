@@ -9,6 +9,8 @@ import { createBalance } from "../../redux/auth/auth-operation";
 import authSelector from "../../redux/auth/auth-selector";
 
 import Notification from "../Notification/Notification";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Balance() {
   const [balanceAmount, setbalanceAmount] = useState(0);
@@ -29,6 +31,7 @@ function Balance() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createBalance({ balance: balanceAmount }));
+    toast.success("Баланс успешно обновлен!");
   };
 
   return (

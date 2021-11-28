@@ -28,7 +28,7 @@ export default function MainPage({ setActive }) {
 
   useEffect(() => {
     dispatch(getBalance());
-  }, [getDescription, transactionsFalse, transactionsTrue]);
+  }, [dispatch, getDescription, transactionsFalse, transactionsTrue]);
 
   const [clickedTabId, setСlickedTabID] = useState("expense");
 

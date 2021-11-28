@@ -1,27 +1,7 @@
 import SumCategoryInfo from "../SumCategoryInfo/SumCategoryInfo";
 import s from "./ExpensesIncome.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import {
-  getTransByMonthPlus,
-  getTransByMonthMinus,
-} from "../../redux/transactions";
-import {
-  getTransactionsTotalAmountFalse,
-  getTransactionsTotalAmountTrue,
-} from "../../redux/transactions";
 
-export default function ExpensesIncome() {
-  const totalIncomes = useSelector(getTransactionsTotalAmountTrue) || 0;
-  const totalExpences = useSelector(getTransactionsTotalAmountFalse) || 0;
-  const date = "11.2021";
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getTransByMonthPlus(date));
-    dispatch(getTransByMonthMinus(date));
-  }, [dispatch]);
-
+export default function ExpensesIncome({ totalExpences, totalIncomes }) {
   return (
     <div className={s.container}>
       <section className={s.section}>
