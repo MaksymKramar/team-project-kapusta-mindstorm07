@@ -3,7 +3,7 @@ import { authGoogle } from "../../redux/auth/auth-operation";
 import { useLocation } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spiner";
 import queryString from "query-string";
-import s from "./LoadingPage.module.css";
+import s from "./LoadingPage.module.scss";
 
 export default function LoadingPage() {
   const search = useLocation().search;

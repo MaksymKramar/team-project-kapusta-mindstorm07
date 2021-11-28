@@ -25,16 +25,19 @@
   &:hover,
   &:focus {
     transform: scale(1.1);
+    transition-duration: 500ms;
   }
 
   &:hover .svgContainer,
   &:focus .svgContainer {
     background: var(--light-orange-color);
+    transition-duration: 500ms;
   }
 
   &:hover .icon,
   &:focus .icon {
     fill: var(--accent-color);
+    transition-duration: 500ms;
   }
 }
 

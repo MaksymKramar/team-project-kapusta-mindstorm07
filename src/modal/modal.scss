@@ -13,8 +13,10 @@
 
   z-index: 10000;
 }
+
 .modal.active {
   transform: scale(1);
+  transition-duration: 500ms;
 }
 
 .modalDelete {
@@ -32,6 +34,7 @@
 
   &.active {
     transform: scale(1);
+    transition-duration: 500ms;
   }
 }
 
@@ -58,6 +61,7 @@
   text-align: center;
   padding-top: 50px;
 }
+
 .modal-button {
   width: 125px;
   height: 44px;
@@ -70,17 +74,16 @@
   margin-right: 15px;
   //   margin: 0 auto;
 
-  &:hover {
-    background-color: #ff751d;
-    color: #ffffff;
-    cursor: pointer;
-  }
+  &:hover,
   &:focus {
+    filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
     background-color: #ff751d;
     color: #ffffff;
+    transition-duration: 500ms;
     cursor: pointer;
   }
 }
+
 .areYouSure {
   font-family: "Roboto";
   font-weight: 400px;
@@ -89,6 +92,7 @@
   text-align: center;
   padding-bottom: 20px;
 }
+
 .close-button {
   padding: 0px;
   display: flex;

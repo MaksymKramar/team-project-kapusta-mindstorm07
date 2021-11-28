@@ -48,6 +48,7 @@
   &:hover,
   &:focus {
     transform: scale(1.1);
+    transition-duration: 500ms;
   }
 }
 
@@ -86,6 +87,7 @@
     &::before {
       top: -6px;
     }
+
     &::after {
       content: " ";
       display: inline-block;
@@ -124,6 +126,7 @@
     &:hover,
     &:focus {
       color: var(--accent-color);
+      transition-duration: 500ms;
     }
   }
 
