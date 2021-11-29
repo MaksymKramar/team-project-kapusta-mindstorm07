@@ -1,7 +1,12 @@
 import SumCategoryInfo from "../SumCategoryInfo/SumCategoryInfo";
 import s from "./ExpensesIncome.module.scss";
 
-export default function ExpensesIncome({ totalExpences, totalIncomes }) {
+export default function ExpensesIncome({
+  totalExpences,
+  totalIncomes,
+  month,
+  year,
+}) {
   return (
     <div className={s.container}>
       <section className={s.section}>
@@ -21,7 +26,7 @@ export default function ExpensesIncome({ totalExpences, totalIncomes }) {
           </div>
         </div>
 
-        <SumCategoryInfo />
+        <SumCategoryInfo month={month} year={year} />
       </section>
     </div>
   );
