@@ -1,5 +1,5 @@
 import Loader from "react-loader-spinner";
-import styles from "./Spinner.module.css";
+import styles from "./Spinner.module.scss";
 
 export default function Spinner({ width, height }) {
   return (

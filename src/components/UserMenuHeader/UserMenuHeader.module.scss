@@ -44,6 +44,12 @@
 
 .logOutText {
   display: none;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    transition-duration: 500ms;
+  }
 }
 
 .firstLetterUser {
@@ -77,8 +83,22 @@
     padding-top: 0;
   }
 
-  .wrapper::before {
-    top: -6px;
+  .wrapper {
+    &::before {
+      top: -6px;
+    }
+
+    &::after {
+      content: " ";
+      display: inline-block;
+      height: 36px;
+      width: 1px;
+      background-color: #f5f6fa;
+      position: absolute;
+
+      top: -8px;
+      right: 66px;
+    }
   }
 
   .firstLetterUser {
@@ -102,23 +122,12 @@
     text-decoration: underline;
 
     color: var(--main-color);
-  }
 
-  .logOutText:hover,
-  .logOutText:focus {
-    color: var(--accent-color);
-  }
-
-  .wrapper::after {
-    content: " ";
-    display: inline-block;
-    height: 36px;
-    width: 1px;
-    background-color: #f5f6fa;
-    position: absolute;
-
-    top: -8px;
-    right: 66px;
+    &:hover,
+    &:focus {
+      color: var(--accent-color);
+      transition-duration: 500ms;
+    }
   }
 
   /* .logOutText::before {

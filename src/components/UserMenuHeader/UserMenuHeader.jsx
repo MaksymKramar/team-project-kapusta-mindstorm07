@@ -1,5 +1,5 @@
 import sprite from "../../images/sprite.svg";
-import styles from "./UserMenuHeader.module.css";
+import styles from "./UserMenuHeader.module.scss";
 import { useSelector } from "react-redux";
 import authSelector from "../../redux/auth/auth-selector";
 

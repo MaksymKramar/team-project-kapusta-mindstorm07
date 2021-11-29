@@ -22,7 +22,6 @@ import {
 import authSelector from "../../redux/auth/auth-selector";
 import Modal from "../../modal/modal";
 
-
 export default function TableHistory({ clickedTabId }) {
   const balance = useSelector(authSelector.getBalance);
   const [modalActive, setModalActive] = useState(false);
@@ -35,12 +34,12 @@ export default function TableHistory({ clickedTabId }) {
     dispatch(
       getTransByMonthPlus(`${date.getMonth() + 1}.${date.getFullYear()}`)
     );
-  }, [balance]);
+  }, [dispatch, balance]);
   useEffect(() => {
     dispatch(
       getTransByMonthMinus(`${date.getMonth() + 1}.${date.getFullYear()}`)
     );
-  }, [balance]);
+  }, [dispatch, balance]);
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
@@ -56,12 +55,10 @@ export default function TableHistory({ clickedTabId }) {
 
   const matches = useMediaQuery("(min-width:768px)");
 
-
-  const deleteHandler = _id => {
-    setId(_id)
-    setModalActive(true)
-  }
-
+  const deleteHandler = (_id) => {
+    setId(_id);
+    setModalActive(true);
+  };
 
   if (matches) {
     return (
@@ -99,7 +96,7 @@ export default function TableHistory({ clickedTabId }) {
                   <button
                     className={styles.TrashIcon}
                     type="button"
-                    onClick={ () => deleteHandler(_id)}
+                    onClick={() => deleteHandler(_id)}
                   >
                     <svg
                       className={styles.iconDelete}
@@ -114,9 +111,12 @@ export default function TableHistory({ clickedTabId }) {
             }
           )}
         </ul>
-        <Modal transactionId={id} active={modalActive} setActive={setModalActive}/>
+        <Modal
+          transactionId={id}
+          active={modalActive}
+          setActive={setModalActive}
+        />
       </div>
-      
     );
   } else {
     return <TableHistoryMobile clickedTabId={clickedTabId} allTransactions={allTransactions}/>;

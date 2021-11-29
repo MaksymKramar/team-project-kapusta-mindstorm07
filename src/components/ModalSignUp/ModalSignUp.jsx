@@ -1,4 +1,4 @@
-import styles from "./ModalSignUp.module.css";
+import styles from "./ModalSignUp.module.scss";
 import sprite from "../../images/sprite.svg";
 import { useState, useEffect } from "react";
 import { signUp, authGoogle } from "../../redux/auth/auth-operation";

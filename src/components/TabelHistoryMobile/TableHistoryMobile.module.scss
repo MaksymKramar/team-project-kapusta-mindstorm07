@@ -67,6 +67,7 @@
   &:hover,
   &:focus {
     fill: var(--balance-minus);
+    transition-duration: 500ms;
   }
 }
 
@@ -75,6 +76,7 @@
 
   &:hover {
     fill: var(--balance-minus);
+    transition-duration: 500ms;
   }
 }
 

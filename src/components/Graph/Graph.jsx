@@ -12,29 +12,33 @@ export default function Graph({ categoryId }) {
   const description = useSelector(getDescription);
   const currentCategory = useSelector(getCategoriesExpenses)[0];
 
-  const sortDescription = description.filter(
-    (desc) => desc.group.category === categoryId
-  );
+  // const sortDescription = description.filter(
+  //   (desc) => desc.group.category === categoryId,
+  // )
 
   function ExpSort() {
-    if (sortDescription) {
+    if (description) {
       /// Сумма
       return getExp();
     }
   }
 
   function getExp() {
-    const res = [...sortDescription];
+    const res = description.filter(
+      (desc) => desc.group.category === categoryId
+    );
     return res.sort((a, b) => b.total - a.total);
   }
 
   function IncSort() {
-    if (sortDescription) {
+    if (description) {
       return getInc();
     }
   }
   function getInc() {
-    const res = [...sortDescription];
+    const res = description.filter(
+      (desc) => desc.group.category === categoryId
+    );
     return res.sort((a, b) => b.total - a.total);
   }
 

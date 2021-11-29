@@ -1,0 +1,11 @@
+.logoIcon {
+  box-sizing: border-box;
+  display: block;
+  color: black;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    transition-duration: 500ms;
+  }
+}

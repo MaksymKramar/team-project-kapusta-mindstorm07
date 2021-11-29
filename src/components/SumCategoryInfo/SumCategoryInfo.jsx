@@ -14,7 +14,7 @@ import GraphMobile from "../Graph/GraphMobile";
 import sprite from "../../images/sprite.svg";
 import s from "./SumCategoryInfo.module.scss";
 
-export default function SumCategoryInfo() {
+export default function SumCategoryInfo({ month, year }) {
   const incomes = useSelector(getCategoriesIncomes);
   const [type, setType] = useState(false);
   const [btnType, setbtnType] = useState("expenses");
@@ -23,17 +23,20 @@ export default function SumCategoryInfo() {
   const dispatch = useDispatch();
   useEffect(() => {
     const date = new Date();
-    const actualMonth = `${date.getMonth() + 1}.${date.getFullYear()}`;
+    // const actualMonth = `${date.getMonth() + 1}.${date.getFullYear()}`;
+    const actualMonth = `${month}.${year}`;
+
+    console.log(actualMonth);
     if (type === false) {
       dispatch(getAllCategories());
-      dispatch(getFullTransInfo({ type: type, date: actualMonth }));
+      dispatch(getFullTransInfo({ type: type, date: `${month}.${year}` }));
     }
     if (type === true) {
       dispatch(getAllCategories());
       dispatch(getFullTransInfo({ type: type, date: actualMonth }));
     }
     // dispatch(getAllCategories());
-  }, [dispatch, type]);
+  }, [dispatch, type, month, year]);
 
   const expenses = useSelector(getCategoriesExpenses);
   const categories = [...expenses, ...incomes];
