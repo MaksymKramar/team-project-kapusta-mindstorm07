@@ -69,6 +69,8 @@ export default function ReportPage({ setActive }) {
         <ExpensesIncome
           totalIncomes={totalIncomes}
           totalExpences={totalExpences}
+          month={month}
+          year={year}
         />
       </div>
     </>
