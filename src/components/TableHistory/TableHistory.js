@@ -86,7 +86,12 @@ export default function TableHistory({ clickedTabId }) {
                     {relativeCategObdj?.title ?? "Нет такой категории"}
                   </div>
                   <div className={styles.TableHistoryAmount}>
-                    {`${sum}  грн.`}{" "}
+                    {clickedTabId === "expense" ? (
+                      <span className={styles.TableHistoryAmountExpense}>
+                        {`-${sum}  грн.`}{" "}</span>
+                    ) : (<span className={styles.TableHistoryAmountIncome}>
+                        {`+${sum}  грн.`}{" "}</span>)}
+                    
                   </div>
                   <button
                     className={styles.TrashIcon}
@@ -114,6 +119,6 @@ export default function TableHistory({ clickedTabId }) {
       </div>
     );
   } else {
-    return <TableHistoryMobile allTransactions={allTransactions} />;
+    return <TableHistoryMobile clickedTabId={clickedTabId} allTransactions={allTransactions}/>;
   }
 }
