@@ -78,7 +78,6 @@
   }
 }
 
-
 .table {
   width: 100%;
   overflow-x: auto;
@@ -94,4 +93,13 @@
     border-radius: 2px;
     background-color: var(--accent-color);
   }
+}
+.TableHistoryMobIncome {
+  font-weight: bold;
+  width: 130px;
+  color: #407946;
+}
+.TableHistoryMobExpense {
+  font-weight: bold;
+  color: #e7192e;
 }

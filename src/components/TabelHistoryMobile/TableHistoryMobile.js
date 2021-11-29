@@ -2,7 +2,7 @@ import styles from "./TableHistoryMobile.module.scss";
 import sprite from "../../images/sprite.svg";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   getTransByMonthMinus,
   getTransByMonthPlus,
@@ -14,10 +14,12 @@ import {
   getCategoriesIncomes,
 } from "../../redux/report";
 import authSelector from "../../redux/auth/auth-selector";
+import Modal from "../../modal/modal";
 
-export default function TableHistoryMobile({ allTransactions }) {
+export default function TableHistoryMobile({ allTransactions,clickedTabId }) {
   const balance = useSelector(authSelector.getBalance);
-
+const [modalActive, setModalActive] = useState(false);
+  const [id, setId] = useState(true);
   const dispatch = useDispatch();
   const date = new Date();
 
@@ -39,6 +41,12 @@ export default function TableHistoryMobile({ allTransactions }) {
   const incomes = useSelector(getCategoriesIncomes);
   const allCategories = [...expenses, ...incomes];
 
+
+ const deleteHandler = _id => {
+    setId(_id)
+    setModalActive(true)
+  }
+
   return (
     <div className={styles.tableContainer}>
       <ul className={styles.table}>
@@ -57,11 +65,16 @@ export default function TableHistoryMobile({ allTransactions }) {
                 <div className={styles.tableCategory}>
                   {relativeCategObdj?.title ?? "Нет такой категории"}
                 </div>
-                <div className={styles.tableAmount}>{`${sum}  грн.`}</div>
+                <div className={styles.tableAmount}>
+                  {clickedTabId === "expense" ? (
+                    <span className={styles.TableHistoryMobExpense}>
+                      {`-${sum}  грн.`}{" "}</span>) : (<span className={styles.TableHistoryMobIncome}>
+                        {`+${sum}  грн.`}{" "}</span>)}
+                </div>
                 <button
                   className={styles.TrashIcon}
                   type="button"
-                  onClick={() => dispatch(deleteTransactionById(_id))}
+                  onClick={ () => deleteHandler(_id)}
                 >
                   <svg className={styles.iconDelete} width="18px" height="18px">
                     <use href={sprite + "#icon-delete-1"} />
@@ -72,6 +85,7 @@ export default function TableHistoryMobile({ allTransactions }) {
           }
         )}
       </ul>
+      <Modal transactionId={id} active={modalActive} setActive={setModalActive}/>
     </div>
   );
 }
