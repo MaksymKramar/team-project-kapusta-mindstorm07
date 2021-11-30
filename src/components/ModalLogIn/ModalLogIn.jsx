@@ -8,7 +8,7 @@ import { logIn, authGoogle } from "../../redux/auth/auth-operation";
 import authSelector from "../../redux/auth/auth-selector";
 import { NavLink } from "react-router-dom";
 
-import Spinner from "../Spinner/Spiner";
+import Spinner from "../Spinner/Spinner";
 
 // import GoogleAuth from "../GoogleAuth/GoogleAuth";
 // import { useLocation } from 'react-router-dom'
