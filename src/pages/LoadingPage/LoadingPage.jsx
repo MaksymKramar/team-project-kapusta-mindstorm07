@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { authGoogle } from "../../redux/auth/auth-operation";
 import { useLocation } from "react-router-dom";
-import Spinner from "../../components/Spinner/Spiner";
+import Spinner from "../../components/Spinner/Spinner";
 import queryString from "query-string";
 import s from "./LoadingPage.module.scss";
 

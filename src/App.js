@@ -1,16 +1,14 @@
-import { useState, Suspense, lazy } from "react";
-import Modal from "./modal/modal";
-import ModalExit from "./modal/modalExit";
-
-import "./App.css";
-import { useEffect } from "react";
+import { useState, useEffect, Suspense, lazy } from "react";
+import { useDispatch } from "react-redux";
 import { fetchCurrentUser } from "./redux/auth/auth-operation";
-import { useSelector, useDispatch } from "react-redux";
-import authSelector from "./redux/auth/auth-selector";
 import { Switch, Redirect } from "react-router-dom";
 import PubliceRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 import { ToastContainer } from "react-toastify";
+import Modal from "./modal/modal";
+import ModalExit from "./modal/modalExit";
+import Spinner from "./components/Spinner/Spinner";
+import "./App.css";
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
@@ -30,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Suspense fallback={null}>
+        <Suspense fallback={<Spinner />}>
           <PubliceRoute path="/" exact>
             <Redirect to="/login" />
           </PubliceRoute>
@@ -57,7 +55,7 @@ function App() {
           </PrivateRoute>
 
           <PrivateRoute path="/main">
-            {<MainPage setActive={setModalExitActive} />}
+            {<MainPage setActive={setModalExitActive}></MainPage>}
           </PrivateRoute>
         </Suspense>
       </Switch>

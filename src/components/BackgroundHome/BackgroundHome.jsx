@@ -1,3 +1,4 @@
+import SmoothList from "react-smooth-list";
 import styles from "./BackgroundHome.module.scss";
 import sprite from "../../images/sprite.svg";
 
@@ -5,10 +6,12 @@ export default function BackgroundHome() {
   return (
     <div className={styles.wrapper}>
       <div className="container">
-        <svg className={styles.logoIcon} width="183px" height="46px">
-          <use href={sprite + "#icon-kapusta-mobile"} />
-        </svg>
-        <h1 className={styles.title}> Smart finance</h1>
+        <SmoothList>
+          <svg className={styles.logoIcon} width="183px" height="46px">
+            <use href={sprite + "#icon-kapusta-mobile"} />
+          </svg>
+          <h1 className={styles.title}> Smart finance</h1>
+        </SmoothList>
 
         <svg className={styles.logoCabbageMobile} width="83px" height="89px">
           <use href={sprite + "#icon-cabbage_x1mobile"} />

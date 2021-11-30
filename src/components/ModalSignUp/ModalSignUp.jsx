@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { signUp, authGoogle } from "../../redux/auth/auth-operation";
 import { useDispatch, useSelector } from "react-redux";
 import authSelector from "../../redux/auth/auth-selector";
-import Spinner from "../Spinner/Spiner";
+import Spinner from "../Spinner/Spinner";
 import { NavLink } from "react-router-dom";
 
 export default function ModalSignUp() {
