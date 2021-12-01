@@ -7,7 +7,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import { ToastContainer } from "react-toastify";
 import Modal from "./modal/modal";
 import ModalExit from "./modal/modalExit";
-import Spinner from "./components/Spinner/Spinner";
+import ProjectLoader from "./components/ProjectLoader/ProjectLoader";
 import "./App.css";
 
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage"));
@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<ProjectLoader />}>
           <PubliceRoute path="/" exact>
             <Redirect to="/login" />
           </PubliceRoute>
