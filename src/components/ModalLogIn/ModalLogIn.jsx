@@ -167,7 +167,14 @@ export default function ModalLogIn() {
 
         <div className={styles.buttonsWrapper}>
           <button disabled={!formValid} className={styles.button} type="submit">
-            {isLoading && <Spinner width="20px" height="20px" />}
+            {isLoading && (
+              <Spinner
+                width="20px"
+                height="20px"
+                color="#f8f8f8"
+                type="ThreeDots"
+              />
+            )}
             Войти
           </button>
 

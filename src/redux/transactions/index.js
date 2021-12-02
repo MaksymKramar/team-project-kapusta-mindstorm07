@@ -12,5 +12,6 @@ export {
   isLoadingValue,
   getTransactionsTotalAmountTrue,
   getTransactionsTotalAmountFalse,
+  getIsLoadingSummary,
 } from "./transactionsSelectors";
 export { default as transactionsReducer } from "./transactionsSlices";
