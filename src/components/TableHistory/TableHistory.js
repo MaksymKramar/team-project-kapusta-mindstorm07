@@ -13,6 +13,7 @@ import {
 import {
   getTransactionsListTrue,
   getTransactionsListFalse,
+  getLoading,
 } from "../../redux/transactions/transactionsSelectors";
 import { getAllCategories } from "../../redux/operation/categories";
 import {
@@ -21,25 +22,37 @@ import {
 } from "../../redux/report";
 import authSelector from "../../redux/auth/auth-selector";
 import Modal from "../../modal/modal";
+import Spinner from "../Spinner/Spinner";
+
+import { getData } from "../../redux/transactionAdd/transactionADD-selectors";
 
 export default function TableHistory({ clickedTabId }) {
   const balance = useSelector(authSelector.getBalance);
   const [modalActive, setModalActive] = useState(false);
   const [id, setId] = useState(true);
 
+  const isloading = useSelector(getLoading);
+
+  const date = useSelector(getData);
+
+  const month = date.split(".")[1];
+  const year = date.split(".")[2];
+
   const dispatch = useDispatch();
-  const date = new Date();
+  // const date = new Date()
 
   useEffect(() => {
-    dispatch(
-      getTransByMonthPlus(`${date.getMonth() + 1}.${date.getFullYear()}`)
-    );
-  }, [dispatch, balance]);
+    dispatch(getTransByMonthPlus(`${month}.${year}`));
+  }, [dispatch, balance, date]);
+
+  // useEffect(() => {
+  //   dispatch(
+  //     getTransByMonthPlus(`${date.getMonth() + 1}.${date.getFullYear()}`),
+  //   )
+  // }, [dispatch, balance])
   useEffect(() => {
-    dispatch(
-      getTransByMonthMinus(`${date.getMonth() + 1}.${date.getFullYear()}`)
-    );
-  }, [dispatch, balance]);
+    dispatch(getTransByMonthMinus(`${month}.${year}`));
+  }, [dispatch, balance, date]);
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
@@ -71,11 +84,59 @@ export default function TableHistory({ clickedTabId }) {
           <li className={styles.TableHistoryHeaderRow}></li>
         </ul>
         <ul className={styles.TableHistoryBody}>
-          {allTransactions.map(
+          {isloading ? (
+            <div className={styles.spinner}>
+              <Spinner width="40px" height="40px" color="#ff751d" type="Oval" />
+            </div>
+          ) : (
+            allTransactions.map(
+              ({ _id, date, description, category, sum, type }) => {
+                const relativeCategObdj = allCategories.find((categoryObj) => {
+                  return category === categoryObj._id;
+                });
+                return (
+                  <li key={_id} className={styles.TableHistoryRow}>
+                    <div className={styles.TableHistoryDate}>{date}</div>
+                    <div className={styles.TableHistoryDescription}>
+                      {description}
+                    </div>
+                    <div className={styles.TableHistoryCategory}>
+                      {relativeCategObdj?.title ?? "Нет такой категории"}
+                    </div>
+                    <div className={styles.TableHistoryAmount}>
+                      {clickedTabId === "expense" ? (
+                        <span className={styles.TableHistoryAmountExpense}>
+                          {`-${sum}  грн.`}{" "}
+                        </span>
+                      ) : (
+                        <span className={styles.TableHistoryAmountIncome}>
+                          {`+${sum}  грн.`}{" "}
+                        </span>
+                      )}
+                    </div>
+                    <button
+                      className={styles.TrashIcon}
+                      type="button"
+                      onClick={() => deleteHandler(_id)}
+                    >
+                      <svg
+                        className={styles.iconDelete}
+                        width="18px"
+                        height="18px"
+                      >
+                        <use href={sprite + "#icon-delete-1"} />
+                      </svg>
+                    </button>
+                  </li>
+                );
+              }
+            )
+          )}
+          {/* {allTransactions.map(
             ({ _id, date, description, category, sum, type }) => {
               const relativeCategObdj = allCategories.find((categoryObj) => {
-                return category === categoryObj._id;
-              });
+                return category === categoryObj._id
+              })
               return (
                 <li key={_id} className={styles.TableHistoryRow}>
                   <div className={styles.TableHistoryDate}>{date}</div>
@@ -83,15 +144,18 @@ export default function TableHistory({ clickedTabId }) {
                     {description}
                   </div>
                   <div className={styles.TableHistoryCategory}>
-                    {relativeCategObdj?.title ?? "Нет такой категории"}
+                    {relativeCategObdj?.title ?? 'Нет такой категории'}
                   </div>
                   <div className={styles.TableHistoryAmount}>
-                    {clickedTabId === "expense" ? (
+                    {clickedTabId === 'expense' ? (
                       <span className={styles.TableHistoryAmountExpense}>
-                        {`-${sum}  грн.`}{" "}</span>
-                    ) : (<span className={styles.TableHistoryAmountIncome}>
-                        {`+${sum}  грн.`}{" "}</span>)}
-                    
+                        {`-${sum}  грн.`}{' '}
+                      </span>
+                    ) : (
+                      <span className={styles.TableHistoryAmountIncome}>
+                        {`+${sum}  грн.`}{' '}
+                      </span>
+                    )}
                   </div>
                   <button
                     className={styles.TrashIcon}
@@ -103,13 +167,13 @@ export default function TableHistory({ clickedTabId }) {
                       width="18px"
                       height="18px"
                     >
-                      <use href={sprite + "#icon-delete-1"} />
+                      <use href={sprite + '#icon-delete-1'} />
                     </svg>
                   </button>
                 </li>
-              );
-            }
-          )}
+              )
+            },
+          )} */}
         </ul>
         <Modal
           transactionId={id}
@@ -119,6 +183,11 @@ export default function TableHistory({ clickedTabId }) {
       </div>
     );
   } else {
-    return <TableHistoryMobile clickedTabId={clickedTabId} allTransactions={allTransactions}/>;
+    return (
+      <TableHistoryMobile
+        clickedTabId={clickedTabId}
+        allTransactions={allTransactions}
+      />
+    );
   }
 }

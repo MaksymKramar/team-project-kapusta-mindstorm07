@@ -200,7 +200,14 @@ export default function ModalSignUp() {
 
         <div className={styles.buttonsWrapper}>
           <button disabled={!formValid} type="submit" className={styles.button}>
-            {isLoading && <Spinner width="20px" height="20px" />}
+            {isLoading && (
+              <Spinner
+                width="20px"
+                height="20px"
+                color="#f8f8f8"
+                type="ThreeDots"
+              />
+            )}
             Зарегистрироваться
           </button>
           <NavLink to="/login" exact className={styles.button}>

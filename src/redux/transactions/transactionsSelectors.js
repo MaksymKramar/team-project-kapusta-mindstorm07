@@ -13,10 +13,12 @@ export const getTransactionsTotalAmountTrue = (state) =>
 export const getTransactionsTotalAmountFalse = (state) =>
   state.transactions.totalAmountMinus;
 export const getTransactionsSum = (state) => state.transactions.sum;
-export const getLoading = (state) => state.transactions.isLoading;
+export const getLoading = (state) => state.transactions.isLoadingTransactions;
 
 export const getSummaryIncomes = (state) => state.transactions.summaryIncomes;
 export const getSummaryExpenses = (state) => state.transactions.summaryExpenses;
+export const getIsLoadingSummary = (state) =>
+  state.transactions.isLoadingSummary;
 
 const getFilteredCategExp = createSelector(
   [getCategoriesExpenses],
