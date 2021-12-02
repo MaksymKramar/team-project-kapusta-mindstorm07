@@ -46,11 +46,16 @@ const addTransaction = createAsyncThunk(
 const deleteTransactionById = createAsyncThunk(
   "transactions/deleteTransactionById",
   async (transactionId) => {
-      console.log('da', transactionId)
+    console.log("da", transactionId);
     await api.deleteTransactionById(transactionId);
     return transactionId;
   }
 );
+
+const getSummary = createAsyncThunk("transactions/getSummary", async () => {
+  const { data } = await api.getSummary();
+  return data;
+});
 
 export {
   // getFullTransInfoMinus,
@@ -59,4 +64,5 @@ export {
   getTransByMonthPlus,
   addTransaction,
   deleteTransactionById,
+  getSummary,
 };

@@ -5,6 +5,7 @@ export {
   getTransByMonthPlus,
   addTransaction,
   deleteTransactionById,
+  getSummary,
 } from "./transactionsOperations";
 export {
   // getTransactionsList,

@@ -48,3 +48,8 @@ export async function addBalance(balanceSum) {
   const { data } = await axios.patch("api/auth/user", balanceSum);
   return data;
 }
+
+export async function getSummary() {
+  const { data } = await axios.get("api/transactions/report");
+  return data;
+}

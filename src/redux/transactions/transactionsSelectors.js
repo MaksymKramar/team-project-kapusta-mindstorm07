@@ -15,6 +15,9 @@ export const getTransactionsTotalAmountFalse = (state) =>
 export const getTransactionsSum = (state) => state.transactions.sum;
 export const getLoading = (state) => state.transactions.isLoading;
 
+export const getSummaryIncomes = (state) => state.transactions.summaryIncomes;
+export const getSummaryExpenses = (state) => state.transactions.summaryExpenses;
+
 const getFilteredCategExp = createSelector(
   [getCategoriesExpenses],
   (arr, category) => arr?.find((ar) => ar.category === category)?.details
