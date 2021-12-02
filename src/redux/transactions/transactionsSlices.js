@@ -6,6 +6,7 @@ import {
   getTransByMonthMinus,
   getTransByMonthPlus,
   deleteTransactionById,
+  getSummary,
 } from "./index";
 
 const transactionsSlice = createSlice({
@@ -20,6 +21,8 @@ const transactionsSlice = createSlice({
     sum: null,
     error: null,
     isLoading: false,
+    summaryIncomes: [],
+    summaryExpenses: [],
   },
   extraReducers: {
     // [getFullTransInfoMinus.pending]: (state, _) => {
@@ -106,6 +109,15 @@ const transactionsSlice = createSlice({
     [deleteTransactionById.rejected]: (state, action) => {
       state.error = action.error.message;
       state.isLoading = false;
+    },
+
+    [getSummary.fulfilled]: (state, action) => {
+      state.summaryIncomes = action.payload.totalReport.filter(
+        (item) => item._id.type
+      );
+      state.summaryExpenses = action.payload.totalReport.filter(
+        (item) => !item._id.type
+      );
     },
   },
 });
