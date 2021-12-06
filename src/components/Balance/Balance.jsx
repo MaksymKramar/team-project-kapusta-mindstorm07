@@ -60,8 +60,7 @@ function Balance() {
             <Notification />
           
           )}
-           
-          <button type="submit"className={styles["balance-btn"]}>Подтвердить</button>
+          <button type="submit"className={styles["balance-btn"]} disabled={balance}>Подтвердить</button>
 
         </div>
       </form>

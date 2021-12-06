@@ -30,14 +30,18 @@ export default function MainPage({ setActive }) {
     dispatch(getBalance());
   }, [dispatch, getDescription, transactionsFalse, transactionsTrue]);
 
+  useEffect(()=> {
+    dispatch(operations.getGategories())
+  }, [dispatch])
+
   const [clickedTabId, setСlickedTabID] = useState("expense");
 
-  const getCategoriesItem = () => {
-    dispatch(operations.getGategories());
-  };
+  // const getCategoriesItem = () => {
+  //   dispatch(operations.getGategories());
+  // };
   const eventBtn = (e) => {
     setСlickedTabID(e.target.value);
-    getCategoriesItem();
+    // getCategoriesItem();
   };
 
   return (
@@ -51,7 +55,7 @@ export default function MainPage({ setActive }) {
             <div className={s.calendar}>
               <DateCalendar />
             </div>
-            <div className={s.btn1}>
+            <div className={s.btn1} active>
               <ExpIncomeBtns onClick={eventBtn} />
             </div>
             <div className={s.tableWraper}>
