@@ -108,4 +108,8 @@
   border: none;
   cursor: pointer;
   fill: #52555f;
+
+  &:hover {
+    fill: #ff751d;
+  }
 }
