@@ -9,6 +9,16 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
   // console.log('aljo', transactionId)
   const dispatch = useDispatch();
 
+  const onEscCloseModal = () => {
+    window.addEventListener("keydown", onEscKeyPress);
+
+    function onEscKeyPress(e) {
+      if (e.code === "Escape") {
+        setActive(false);
+      }
+    }
+  };
+
   return (
     <>
       <div
@@ -18,15 +28,8 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
         <div
           className="modalDelete-content"
           onClick={(e) => {
-            window.addEventListener("keydown", onEscKeyPress);
-
-            function onEscKeyPress(e) {
-              if (e.code === "Escape") {
-                setActive(false);
-              }
-            }
-
             e.stopPropagation();
+            onEscCloseModal();
           }}
         >
           <button

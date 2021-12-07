@@ -15,7 +15,6 @@ const ModalExit = ({ active, setActive, onCancel }) => {
     function onEscKeyPress(e) {
       if (e.code === "Escape") {
         setActive(false);
-        window.removeEventListener("keydown", onEscKeyPress);
       }
     }
   };
