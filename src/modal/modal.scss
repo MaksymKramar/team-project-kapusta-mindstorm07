@@ -1,65 +1,38 @@
-.modal {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.25);
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop {
   position: fixed;
-  border-radius: 12px;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: scale(0);
 
-  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  opacity: 1;
+  z-index: 999999;
+  overflow-y: scroll;
 }
 
-.modal.active {
-  transform: scale(1);
-  transition-duration: 500ms;
-}
-
-.modalDelete {
-  height: 100vw;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.25);
-  position: fixed;
-  border-radius: 12px;
-  top: -14%;
-  left: -22%;
-  display: flex;
-  justify-content: center;
-  transform: scale(0);
-  z-index: 10000;
-
-  &.active {
-    transform: scale(1);
-    transition-duration: 500ms;
-  }
-}
-
-.modalDelete-content {
-  position: sticky;
+.modalOpen {
+  position: absolute;
   top: 50%;
   left: 50%;
-  height: 194px;
-  width: 380px;
-  background-color: #ffffff;
-  border-radius: 30px;
-  offset: 10px, 10px rgba(82, 85, 95, 0.4);
-  text-align: center;
-  padding-top: 50px;
-}
+  transform: translate(-50%, -50%);
 
-.modal-content {
-  position: absolute;
   height: 194px;
   width: 380px;
+  padding-top: 50px;
+
   background-color: #ffffff;
   border-radius: 30px;
   offset: 10px, 10px rgba(82, 85, 95, 0.4);
   text-align: center;
-  padding-top: 50px;
 }
 
 .modal-button {
@@ -108,4 +81,8 @@
   border: none;
   cursor: pointer;
   fill: #52555f;
+
+  &:hover {
+    fill: #ff751d;
+  }
 }
