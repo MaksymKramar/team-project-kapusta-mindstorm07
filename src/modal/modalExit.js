@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../redux/auth/auth-operation";
 import authSelector from "../redux/auth/auth-selector";
 
-const ModalExit = ({ active, setActive, onCancel }) => {
+const ModalExit = ({ active, setActive }) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
 
-  const onEscCloseModal = () => {
+  const onEscModalClose = () => {
     window.addEventListener("keydown", onEscKeyPress);
 
     function onEscKeyPress(e) {
@@ -23,14 +23,14 @@ const ModalExit = ({ active, setActive, onCancel }) => {
     <>
       {isLoggedIn && active && (
         <div
-          className={active ? "modal active" : "modal"}
+          className={active ? "backdrop" : "backdrop hidden"}
           onClick={() => setActive(false)}
         >
           <div
-            className="modal-content"
+            className="modalOpen"
             onClick={(e) => {
               e.stopPropagation();
-              onEscCloseModal();
+              onEscModalClose();
             }}
           >
             <button

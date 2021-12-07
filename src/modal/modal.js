@@ -1,7 +1,7 @@
 import React from "react";
 import "./modal.scss";
 import sprite from "../images/sprite.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { deleteTransactionById } from "../redux/transactions";
 
@@ -9,7 +9,7 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
   // console.log('aljo', transactionId)
   const dispatch = useDispatch();
 
-  const onEscCloseModal = () => {
+  const onEscModalClose = () => {
     window.addEventListener("keydown", onEscKeyPress);
 
     function onEscKeyPress(e) {
@@ -22,14 +22,14 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
   return (
     <>
       <div
-        className={active ? "modalDelete active" : " modalDelete"}
+        className={active ? "backdrop" : "backdrop hidden"}
         onClick={() => setActive(false)}
       >
         <div
-          className="modalDelete-content"
+          className="modalOpen"
           onClick={(e) => {
             e.stopPropagation();
-            onEscCloseModal();
+            onEscModalClose();
           }}
         >
           <button
