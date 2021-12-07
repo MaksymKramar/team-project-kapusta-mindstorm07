@@ -15,56 +15,75 @@ import sprite from "../../images/sprite.svg";
 import s from "./SumCategoryInfo.module.scss";
 
 export default function SumCategoryInfo({ month, year }) {
-  const incomes = useSelector(getCategoriesIncomes);
-  const [type, setType] = useState(false);
-  const [btnType, setbtnType] = useState("expenses");
-  // const [id, setId] = useState(0)
-
+  const viewPort = useWindowDimensions();
   const dispatch = useDispatch();
+
+  const incomes = useSelector(getCategoriesIncomes);
+  const expenses = useSelector(getCategoriesExpenses);
+
+  const [type, setType] = useState(false);
+  // const [btnType, setbtnType] = useState("expenses");
+  const [categoryId, setCategoryId] = useState("");
+  const [chartsCategoryId, setChartsCategoryId] = useState("");
+
   useEffect(() => {
-    const date = new Date();
-    // const actualMonth = `${date.getMonth() + 1}.${date.getFullYear()}`;
     const actualMonth = `${month}.${year}`;
 
-    console.log(actualMonth);
-    if (type === false) {
-      dispatch(getAllCategories());
-      dispatch(getFullTransInfo({ type: type, date: `${month}.${year}` }));
-    }
-    if (type === true) {
-      dispatch(getAllCategories());
-      dispatch(getFullTransInfo({ type: type, date: actualMonth }));
-    }
-    // dispatch(getAllCategories());
+    dispatch(getAllCategories());
+    dispatch(getFullTransInfo({ type: type, date: actualMonth }));
+
+    // if (type === false) {
+    //   dispatch(getAllCategories());
+    //   dispatch(getFullTransInfo({ type: type, date: actualMonth }));
+    // }
+    // if (type === true) {
+    //   dispatch(getAllCategories());
+    //   dispatch(getFullTransInfo({ type: type, date: actualMonth }));
+    // }
   }, [dispatch, type, month, year]);
 
-  const expenses = useSelector(getCategoriesExpenses);
-  const categories = [...expenses, ...incomes];
-  // console.log(categories)
-  const [chartsCategoryId, setChartsCategoryId] = useState("");
-  function handleClickGetChart(id) {
+  // const categories = [...expenses, ...incomes];
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      setIsLoading(false);
+    };
+  }, [isLoading]);
+
+  function HandleClickGetChart(id) {
     setChartsCategoryId(id);
-    // setType(type)
-    // const result = categories.find(({ _id }) => _id === id);
-    // const cattype = result.type;
-    // setType(result.type.toString())
-    // const date = "11.2021";
-    // const string = true
-    // dispatch(getFullTransInfo({ type: cattype, date }));
+
+    setIsLoading(true);
+
+    // setTimeout(() => {
+    //   setIsLoading(false);
+    // }, );
   }
+
   function handleClick() {
-    if (btnType === "incomes") {
-      setbtnType("expenses");
-      setType(true);
-      console.log(type);
-    } else {
-      setbtnType("incomes");
+    if (type) {
       setType(false);
+      setIsLoading(true);
+    } else {
+      setType(true);
+      setIsLoading(true);
     }
+
+    // if (btnType === "incomes") {
+    //   setbtnType("expenses");
+    //   setType(true);
+    // setIsLoading(true);
+
+    // } else {
+    //   setbtnType("incomes");
+    //   setType(false);
+    // setIsLoading(true);
+
+    // }
   }
-  const viewPort = useWindowDimensions();
-  const description = useSelector(getDescription);
-  const [categoryId, setCategoryId] = useState("");
+  // const description = useSelector(getDescription);
 
   // const getIdCategory = (valueId) => {
   //   console.log("valueId", valueId)
@@ -106,34 +125,43 @@ export default function SumCategoryInfo({ month, year }) {
           <CategoryInfo
             trans={expenses}
             type={type}
-            handleClick={handleClickGetChart}
+            handleClick={HandleClickGetChart}
             onClick={setCategoryId}
           />
         ) : (
           <CategoryInfo
             trans={incomes}
             type={type}
-            handleClick={handleClickGetChart}
+            handleClick={HandleClickGetChart}
             onClick={setCategoryId}
           />
         )}
       </div>
 
       <div className={`${s.container} ${type}`}>
-        {viewPort.width < 768 && (
-          <GraphMobile
-            categoryId={categoryId}
-            // transactions={filtredTransactions(type, chartsCategoryId)}
-            chartsCategoryId={chartsCategoryId}
-          />
-        )}
-
-        {viewPort.width >= 768 && (
-          <Graph
-            categoryId={categoryId}
-            // transactions={filtredTransactions(type, chartsCategoryId)}
-            chartsCategoryId={chartsCategoryId}
-          />
+        {viewPort.width < 768 ? (
+          <>
+            {isLoading ? (
+              "loading"
+            ) : (
+              <GraphMobile
+                categoryId={categoryId}
+                chartsCategoryId={chartsCategoryId}
+              />
+            )}
+          </>
+        ) : (
+          <>
+            {console.log("isLoading:", isLoading)}
+            {isLoading ? (
+              "loading"
+            ) : (
+              <Graph
+                categoryId={categoryId}
+                chartsCategoryId={chartsCategoryId}
+              />
+            )}
+          </>
         )}
       </div>
     </div>

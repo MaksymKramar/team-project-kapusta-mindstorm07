@@ -8,34 +8,38 @@ import { useSelector } from "react-redux";
 import { getDescription, getCategoriesExpenses } from "../../redux/report";
 
 Chart.register(ChartDataLabels);
+
 function ChartReportMobile({ categoryId }) {
   const description = useSelector(getDescription);
   const currentCategory = useSelector(getCategoriesExpenses)[0];
 
-  const sortDescription = description.filter(
-    (desc) => desc.group.category === categoryId
-  );
-  console.log(sortDescription);
+  // const sortDescription = description.filter(
+  //   (desc) => desc.group.category === categoryId
+  // );
 
   function ExpSort() {
-    if (sortDescription) {
+    if (description) {
       /// Сумма
       return getExp();
     }
   }
 
   function getExp() {
-    const res = [...sortDescription];
+    const res = description.filter(
+      (desc) => desc.group.category === categoryId
+    );
     return res.sort((a, b) => b.total - a.total);
   }
 
   function IncSort() {
-    if (sortDescription) {
+    if (description) {
       return getInc();
     }
   }
   function getInc() {
-    const res = [...sortDescription];
+    const res = description.filter(
+      (desc) => desc.group.category === categoryId
+    );
     return res.sort((a, b) => b.total - a.total);
   }
 
@@ -51,10 +55,11 @@ function ChartReportMobile({ categoryId }) {
         borderWidth: 1,
         datalabels: {
           formatter: function (value, context) {
-            return (
-              context.chart.data.datasets[0].data[context.dataIndex].nested
-                .value + "грн"
-            );
+            console.log(context.chart.data.datasets);
+
+            return `${
+              context.chart.data.datasets[0].data[context.dataIndex].total
+            } грн`;
           },
           color: "#52555F",
           anchor: "end",
@@ -77,10 +82,14 @@ function ChartReportMobile({ categoryId }) {
         borderWidth: 1,
         datalabels: {
           formatter: function (value, context) {
-            return (
-              context.chart.data.datasets[0].data[context.dataIndex].nested
-                .value + "грн"
+            console.log(context.chart.data.datasets);
+            console.log(
+              context.chart.data.datasets[0].data[context.dataIndex].total
             );
+
+            return `${
+              context.chart.data.datasets[0].data[context.dataIndex].total
+            } грн`;
           },
           color: "#52555F",
           anchor: "end",
@@ -93,7 +102,11 @@ function ChartReportMobile({ categoryId }) {
 
   const options = {
     indexAxis: "y",
-
+    parsing: {
+      xAxisKey: "total", /// Сумма 5000 4500 ...
+      yAxisKey: "group.description", ///Свинина Говядина ....
+      key: "data.category",
+    },
     layout: {
       padding: {
         left: 15,
@@ -101,15 +114,9 @@ function ChartReportMobile({ categoryId }) {
         top: 25,
       },
     },
-    parsing: {
-      xAxisKey: "nested.value",
-      yAxisKey: "id",
-      key: "data.nested.value",
-    },
-
     elements: {
       bar: {
-        borderWidth: 1,
+        borderWidth: 2,
       },
     },
     maintainAspectRatio: true,
@@ -133,25 +140,32 @@ function ChartReportMobile({ categoryId }) {
         ticks: {
           align: "start",
           mirror: true,
-          labelOffset: -19,
+          labelOffset: -23, ////висота надпису
         },
       },
     },
     plugins: {
       legend: {
         display: false,
-        // position: 'top',
       },
     },
   };
 
   return (
     <div className={s.charterReport}>
-      {currentCategory?.type === true && (
-        <Bar data={dataIncomings} options={options} height={400} width={320} />
-      )}
-      {currentCategory?.type === false && (
-        <Bar data={dataExpenses} options={options} height={300} width={320} />
+      {currentCategory?.type ? (
+        <>
+          <Bar data={dataExpenses} options={options} />
+        </>
+      ) : (
+        <>
+          <Bar
+            data={dataIncomings}
+            options={options}
+            height={400}
+            width={320}
+          />
+        </>
       )}
     </div>
   );
