@@ -11,19 +11,8 @@ import { getData } from "../../redux/transactionAdd/transactionADD-selectors";
 
 export default function CategoryInfo({ trans, handleClick, onClick }) {
   const categories = useSelector(getAllCategories);
-  // console.log(categories)
+
   const data = useSelector(getData);
-  // const summs = Object.values(
-  //   trans.reduce((acc, { group, total_amounts }) => {
-  //     const category = categories.find((i) => i._id === group.category);
-  //     if (!acc[category.name]) {
-  //       acc[category.name] = { category, total_amounts: 0 };
-  //     }
-  //     acc[category.name].total_amounts += total_amounts;
-  //     return acc;
-  //   }, {})
-  // );
-  // const type = {type}
 
   const [isActiveId, setIsActiveId] = useState("");
   // const onClick = (item) => {
@@ -43,7 +32,7 @@ export default function CategoryInfo({ trans, handleClick, onClick }) {
       ) : (
         trans.map((item) => (
           <li
-            key={item.category}
+            key={item._id}
             className={s.item}
             onClick={() => {
               onClick(item._id);
