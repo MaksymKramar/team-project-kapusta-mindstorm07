@@ -12,7 +12,7 @@ import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getBalance } from "../../redux/auth/auth-operation";
-import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
+
 import {
   getTransactionsFalse,
   getTransactionsTrue,
@@ -21,18 +21,17 @@ import { useEffect, useState } from "react";
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
 
 export default function MainPage({ setActive }) {
-  const getDescription = useSelector(selectors.getDescription);
   const transactionsFalse = useSelector(getTransactionsFalse);
   const transactionsTrue = useSelector(getTransactionsTrue);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getBalance());
-  }, [dispatch, getDescription, transactionsFalse, transactionsTrue]);
+  }, [dispatch, transactionsFalse, transactionsTrue]);
 
-  useEffect(()=> {
-    dispatch(operations.getGategories())
-  }, [dispatch])
+  useEffect(() => {
+    dispatch(operations.getGategories());
+  }, [dispatch]);
 
   const [clickedTabId, setСlickedTabID] = useState("expense");
 
