@@ -21,15 +21,12 @@ import {
   getCategoriesIncomes,
 } from "../../redux/report";
 import authSelector from "../../redux/auth/auth-selector";
-import Modal from "../../modal/modal";
 import Spinner from "../Spinner/Spinner";
 
 import { getData } from "../../redux/transactionAdd/transactionADD-selectors";
 
-export default function TableHistory({ clickedTabId }) {
+export default function TableHistory({ clickedTabId, setActiveDelete, setId }) {
   const balance = useSelector(authSelector.getBalance);
-  const [modalActive, setModalActive] = useState(false);
-  const [id, setId] = useState(true);
 
   const isloading = useSelector(getLoading);
 
@@ -70,7 +67,7 @@ export default function TableHistory({ clickedTabId }) {
 
   const deleteHandler = (_id) => {
     setId(_id);
-    setModalActive(true);
+    setActiveDelete(true);
   };
 
   if (matches) {
@@ -175,11 +172,6 @@ export default function TableHistory({ clickedTabId }) {
             },
           )} */}
         </ul>
-        <Modal
-          transactionId={id}
-          active={modalActive}
-          setActive={setModalActive}
-        />
       </div>
     );
   } else {
@@ -187,6 +179,8 @@ export default function TableHistory({ clickedTabId }) {
       <TableHistoryMobile
         clickedTabId={clickedTabId}
         allTransactions={allTransactions}
+        setActiveDelete={setActiveDelete}
+        setId={setId}
       />
     );
   }
