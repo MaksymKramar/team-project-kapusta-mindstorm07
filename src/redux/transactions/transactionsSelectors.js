@@ -38,6 +38,7 @@ export const getTransactionsListTrue = createSelector(
     return data.reverse();
   }
 );
+
 export const getTransactionsListFalse = createSelector(
   [getTransactionsFalse],
   (transactions) => {
