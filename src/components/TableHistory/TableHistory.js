@@ -5,6 +5,7 @@ import sprite from "../../images/sprite.svg";
 import TableHistoryMobile from "../TabelHistoryMobile/TableHistoryMobile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import LinesEllipsis from "react-lines-ellipsis";
 import {
   getTransByMonthMinus,
   getTransByMonthPlus,
@@ -97,9 +98,17 @@ export default function TableHistory({ clickedTabId }) {
                 return (
                   <li key={_id} className={styles.TableHistoryRow}>
                     <div className={styles.TableHistoryDate}>{date}</div>
+
                     <div className={styles.TableHistoryDescription}>
-                      {description}
+                      <LinesEllipsis
+                        text={description}
+                        maxLine="1"
+                        ellipsis="..."
+                        trimRight
+                        basedOn="letters"
+                      />
                     </div>
+
                     <div className={styles.TableHistoryCategory}>
                       {relativeCategObdj?.title ?? "Нет такой категории"}
                     </div>
