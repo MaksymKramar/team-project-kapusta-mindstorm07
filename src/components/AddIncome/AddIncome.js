@@ -8,6 +8,8 @@ import s from "./AddIncome.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import DateCalendar from "../Date/Date";
 
+import { getBalance } from "../../redux/auth/auth-operation";
+
 export default function AddIncome() {
   const [startDate, setStartDate] = useState(new Date());
   const [description, setDescription] = useState("");
@@ -54,10 +56,11 @@ export default function AddIncome() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newTransaction = { date: getDatas, description, sum, type, category };
-    dispatch(operations.transactionAdd(newTransaction));
+    await dispatch(operations.transactionAdd(newTransaction));
+    dispatch(getBalance());
     clearBtn();
   };
 
