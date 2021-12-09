@@ -20,7 +20,7 @@ import {
 import { useEffect, useState } from "react";
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
 
-export default function MainPage({ setActive }) {
+export default function MainPage({ setActive, setActiveDelete, setId }) {
   const transactionsFalse = useSelector(getTransactionsFalse);
   const transactionsTrue = useSelector(getTransactionsTrue);
   const dispatch = useDispatch();
@@ -65,7 +65,11 @@ export default function MainPage({ setActive }) {
               </div>
 
               <div className={s.allTables}>
-                <TableHistory clickedTabId={clickedTabId} />
+                <TableHistory
+                  clickedTabId={clickedTabId}
+                  setActiveDelete={setActiveDelete}
+                  setId={setId}
+                />
                 <Summary clickedTabId={clickedTabId} />
               </div>
               <div className={s.btn2}>

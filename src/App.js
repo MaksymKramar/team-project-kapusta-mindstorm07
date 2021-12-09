@@ -24,6 +24,7 @@ function App() {
 
   const [modalActive, setModalActive] = useState(false);
   const [modalExitActive, setModalExitActive] = useState(false);
+  const [id, setId] = useState(null);
 
   return (
     <div className="App">
@@ -55,11 +56,21 @@ function App() {
           </PrivateRoute>
 
           <PrivateRoute path="/main">
-            {<MainPage setActive={setModalExitActive}></MainPage>}
+            {
+              <MainPage
+                setActive={setModalExitActive}
+                setActiveDelete={setModalActive}
+                setId={setId}
+              ></MainPage>
+            }
           </PrivateRoute>
         </Suspense>
       </Switch>
-      <Modal active={modalActive} setActive={setModalActive} />
+      <Modal
+        active={modalActive}
+        setActive={setModalActive}
+        transactionId={id}
+      />
       <ModalExit active={modalExitActive} setActive={setModalExitActive} />
 
       <ToastContainer style={{ width: "250px" }} />

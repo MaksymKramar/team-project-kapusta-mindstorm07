@@ -14,15 +14,19 @@ import {
   getCategoriesIncomes,
 } from "../../redux/report";
 import authSelector from "../../redux/auth/auth-selector";
-import Modal from "../../modal/modal";
 import { getData } from "../../redux/transactionAdd/transactionADD-selectors";
 import Spinner from "../Spinner/Spinner";
 import { getLoading } from "../../redux/transactions/transactionsSelectors";
 
-export default function TableHistoryMobile({ allTransactions, clickedTabId }) {
+export default function TableHistoryMobile({
+  allTransactions,
+  clickedTabId,
+  setActiveDelete,
+
+  setId,
+}) {
   const balance = useSelector(authSelector.getBalance);
-  const [modalActive, setModalActive] = useState(false);
-  const [id, setId] = useState(true);
+
   const dispatch = useDispatch();
   // const date = new Date();
   const isloading = useSelector(getLoading);
@@ -48,7 +52,7 @@ export default function TableHistoryMobile({ allTransactions, clickedTabId }) {
 
   const deleteHandler = (_id) => {
     setId(_id);
-    setModalActive(true);
+    setActiveDelete(true);
   };
 
   return (
@@ -145,11 +149,6 @@ export default function TableHistoryMobile({ allTransactions, clickedTabId }) {
           },
         )} */}
       </ul>
-      <Modal
-        transactionId={id}
-        active={modalActive}
-        setActive={setModalActive}
-      />
     </div>
   );
 }
