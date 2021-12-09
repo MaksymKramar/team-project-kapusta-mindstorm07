@@ -19,12 +19,10 @@ function Balance() {
 
   useEffect(() => {
     setbalanceAmount(balance);
-  }, []);
+  }, [balance]);
 
   const dispatch = useDispatch();
 
-
-  
   const handleChange = (e) => {
     const { value } = e.target;
     const valueNum = Number(value);
@@ -56,12 +54,14 @@ function Balance() {
             disabled={balance}
           />
 
-          {balanceAmount === 0 && (
-            <Notification />
-          
-          )}
-          <button type="submit"className={styles["balance-btn"]} disabled={balance}>Подтвердить</button>
-
+          {balanceAmount === 0 && <Notification />}
+          <button
+            type="submit"
+            className={styles["balance-btn"]}
+            disabled={balance}
+          >
+            Подтвердить
+          </button>
         </div>
       </form>
     </div>

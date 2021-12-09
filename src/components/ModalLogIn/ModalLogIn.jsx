@@ -131,7 +131,7 @@ export default function ModalLogIn() {
             value={email}
             onChange={handlerEmail}
             onBlur={(e) => handleBlur(e)}
-            title="Email должен собержать @"
+            title="Email должен содержать @"
           />
           {emailDirty && emailError && (
             <span className={styles.error}>{emailError}</span>
