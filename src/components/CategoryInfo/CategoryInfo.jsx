@@ -8,29 +8,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFullTransInfo } from "../../redux/report";
 import { getDescription } from "../../redux/report";
 import { getData } from "../../redux/transactionAdd/transactionADD-selectors";
+import { getCategorySums } from "../../redux/report/reportSelectors";
 
 export default function CategoryInfo({ trans, handleClick, onClick }) {
-  const categories = useSelector(getAllCategories);
-
-  const data = useSelector(getData);
-
   const [isActiveId, setIsActiveId] = useState("");
-  // const onClick = (item) => {
-  //   console.log("dfdsfsdkjnf", item._id)
-  //   //console.log(e.target.value);
-  //   // dispatch(getFullTransInfo({ data, type }));
-  // };
+  const categorySums = useSelector(getCategorySums) || [];
+  console.log(categorySums);
 
-  // useEffect(() =>{
-  //   dispatch(getFullTransInfo())
-  // }, [])
+  const filteredCategories = trans.filter((item) =>
+    categorySums.find((i) => i.group === item._id)
+  );
 
   return (
     <ul className={s.list}>
-      {trans.length === 0 ? (
+      {filteredCategories.length === 0 ? (
         <li className={s.transEmpty}>Транзакций нет</li>
       ) : (
-        trans.map((item) => (
+        filteredCategories.map((item) => (
           <li
             key={item._id}
             className={s.item}
@@ -40,7 +34,13 @@ export default function CategoryInfo({ trans, handleClick, onClick }) {
               setIsActiveId(item._id);
             }}
           >
-            <span className={s.price}>{item.value}</span>
+            <span className={s.price}>
+              {categorySums.map((i) => {
+                if (i.group === item._id) {
+                  return i.totalCategory;
+                }
+              })}
+            </span>
 
             <div className={s.iconContainer}>
               <div
