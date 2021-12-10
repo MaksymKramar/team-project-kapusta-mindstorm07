@@ -34,7 +34,7 @@ export const getTransactionsListTrue = createSelector(
   [getTransactionsTrue],
   (transactions) => {
     const transactionsSort = [...transactions];
-    const data = transactionsSort.sort((a, b) => (a.date > b.date ? 1 : -1));
+    const data = transactionsSort.sort((a, b) => (a.day > b.day ? 1 : -1));
     return data.reverse();
   }
 );
@@ -43,7 +43,7 @@ export const getTransactionsListFalse = createSelector(
   [getTransactionsFalse],
   (transactions) => {
     const transactionsSort = [...transactions];
-    const data = transactionsSort.sort((a, b) => (a.date > b.date ? 1 : -1));
+    const data = transactionsSort.sort((a, b) => (a.day > b.day ? 1 : -1));
     return data.reverse();
   }
 );
