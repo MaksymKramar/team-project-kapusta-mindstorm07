@@ -45,6 +45,7 @@ const reportSlice = createSlice({
       state.error = action.error.message;
       state.isLoading = false;
       state.description = [];
+      state.categorySums = [];
     },
 
     [getAllCategories.pending]: (state, _) => {
@@ -65,6 +66,8 @@ const reportSlice = createSlice({
     [getAllCategories.rejected]: (state, action) => {
       state.error = action.error.message;
       state.isLoading = true;
+      state.categories.expenses = [];
+      state.categories.incomes = [];
     },
   },
 });
