@@ -44,8 +44,8 @@ const reportSlice = createSlice({
     [getFullTransInfo.rejected]: (state, action) => {
       state.error = action.error.message;
       state.isLoading = false;
-      state.description = [];
-      state.categorySums = [];
+      // state.description = [];
+      // state.categorySums = [];
     },
 
     [getAllCategories.pending]: (state, _) => {
