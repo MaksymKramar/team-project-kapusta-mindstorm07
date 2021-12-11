@@ -129,26 +129,30 @@
 }
 
 .TrashIcon {
+  padding-top: 4px;
+  padding-bottom: 4px;
   outline: none;
-  border: 0;
+  border: none;
   background: transparent;
   cursor: pointer;
   fill: black;
 
   &:hover,
   &:focus {
-    fill: var(--balance-minus);
+    border-radius: 50%;
+    color: var(--balance-minus);
+    background-color: var(--balance-minus);
     transform: scale(1.1);
-    transition-duration: 500ms;
+    transition-duration: 550ms;
   }
 }
 
 .iconDelete {
   fill: var(--main-color);
+}
 
-  &:hover {
-    fill: var(--balance-minus);
-  }
+.TrashIcon:hover > .iconDelete {
+  fill: #fbfafa;
 }
 .TableHistoryAmountIncome {
   font-weight: bold;
