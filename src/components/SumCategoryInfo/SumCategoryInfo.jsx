@@ -13,6 +13,7 @@ import Graph from "../Graph/Graph";
 import GraphMobile from "../Graph/GraphMobile";
 import sprite from "../../images/sprite.svg";
 import s from "./SumCategoryInfo.module.scss";
+import Spinner from "../Spinner/Spinner";
 
 export default function SumCategoryInfo({ month, year }) {
   const viewPort = useWindowDimensions();
@@ -142,7 +143,14 @@ export default function SumCategoryInfo({ month, year }) {
         {viewPort.width < 768 ? (
           <>
             {isLoading ? (
-              "loading"
+              <div className={s.spinner}>
+                <Spinner
+                  width="40px"
+                  height="40px"
+                  color="#ff751d"
+                  type="Oval"
+                />
+              </div>
             ) : (
               <GraphMobile
                 categoryId={categoryId}
@@ -154,7 +162,14 @@ export default function SumCategoryInfo({ month, year }) {
           <>
             {console.log("isLoading:", isLoading)}
             {isLoading ? (
-              "loading"
+              <div className={s.spinner}>
+                <Spinner
+                  width="40px"
+                  height="40px"
+                  color="#ff751d"
+                  type="Oval"
+                />
+              </div>
             ) : (
               <Graph
                 categoryId={categoryId}
