@@ -82,18 +82,13 @@ function ChartReportMobile({ categoryId }) {
         borderWidth: 1,
         datalabels: {
           formatter: function (value, context) {
-            console.log(context.chart.data.datasets);
-            console.log(
-              context.chart.data.datasets[0].data[context.dataIndex].total
-            );
-
             return `${
               context.chart.data.datasets[0].data[context.dataIndex].total
             } грн`;
           },
           color: "#52555F",
           anchor: "end",
-          align: "top",
+          // align: "bottom",
         },
         plugins: [ChartDataLabels],
       },
@@ -108,18 +103,19 @@ function ChartReportMobile({ categoryId }) {
       key: "data.category",
     },
     layout: {
-      padding: {
-        left: 15,
-        right: 30,
-        top: 25,
-      },
+      autoPadding: "true",
+      // padding: {
+      //   // left: 15,
+      //   right: 30,
+      //   top:25,
+      // },
     },
     elements: {
       bar: {
         borderWidth: 2,
       },
     },
-    maintainAspectRatio: true,
+    // maintainAspectRatio: true,
     responsive: true,
     aspectRatio: 1,
     scales: {
@@ -138,9 +134,9 @@ function ChartReportMobile({ categoryId }) {
           borderColor: "white",
         },
         ticks: {
-          align: "start",
+          align: "top",
           mirror: true,
-          labelOffset: -23, ////висота надпису
+          labelOffset: -11, ////висота надпису
         },
       },
     },
@@ -152,18 +148,19 @@ function ChartReportMobile({ categoryId }) {
   };
 
   return (
-    <div className={s.charterReport}>
+    <div className={`${s.charterReport} ${s.scrollBar}`}>
+      {console.log("currentCategory?.type:", currentCategory?.type)}
       {currentCategory?.type ? (
         <>
-          <Bar data={dataExpenses} options={options} />
+          <Bar data={dataIncomings} options={options} />
         </>
       ) : (
         <>
           <Bar
-            data={dataIncomings}
+            data={dataExpenses}
             options={options}
-            height={400}
-            width={320}
+            // height={400}
+            // width={320}
           />
         </>
       )}
