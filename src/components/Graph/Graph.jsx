@@ -137,16 +137,11 @@ export default function Graph({ categoryId }) {
     <div className={s.charterReport}>
       {currentCategory?.type ? (
         <>
-          <Bar data={dataExpenses} options={options} />
+          <Bar data={dataIncomings} options={options} />
         </>
       ) : (
         <>
-          <Bar
-            data={dataIncomings}
-            options={options}
-            height={400}
-            width={320}
-          />
+          <Bar data={dataExpenses} options={options} height={400} width={320} />
         </>
       )}
     </div>
