@@ -129,6 +129,8 @@ export default function AddIncome() {
                 name="sum"
                 value={sum}
                 onChange={handleChange}
+                type="number"
+                min="0"
                 required
               />
               <button className={s.calculatorBtn}>
