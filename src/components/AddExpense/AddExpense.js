@@ -129,6 +129,8 @@ export default function AddExpense() {
             <input
               className={styles.amountInput}
               placeholder="00.00 UAH"
+              type="number"
+              min="0"
               name="sum"
               value={sum}
               onChange={handleChange}
