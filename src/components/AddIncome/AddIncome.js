@@ -131,6 +131,7 @@ export default function AddIncome() {
                 onChange={handleChange}
                 type="number"
                 min="0"
+                step="0.1"
                 required
               />
               <button className={s.calculatorBtn}>
