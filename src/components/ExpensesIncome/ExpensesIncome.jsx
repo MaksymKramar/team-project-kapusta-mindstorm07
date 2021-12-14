@@ -47,7 +47,7 @@ export default function ExpensesIncome({
                   />
                 </div>
               ) : (
-                <> {`- ${totalIncomes} грн.`} </>
+                <> {`+ ${totalIncomes} грн.`} </>
               )}
             </span>
           </div>
