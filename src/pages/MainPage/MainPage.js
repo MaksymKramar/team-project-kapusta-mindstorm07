@@ -51,9 +51,9 @@ export default function MainPage({ setActive, setActiveDelete, setId }) {
         <div className={s.container}>
           <section className={s.section}>
             <Balance />
-            <div className={s.calendar}>
+            {/* <div className={s.calendar}>
               <DateCalendar />
-            </div>
+            </div> */}
             <div className={s.btn1} active>
               <ExpIncomeBtns onClick={eventBtn} />
             </div>
