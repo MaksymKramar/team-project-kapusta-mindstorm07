@@ -20,3 +20,9 @@
 
   color: var(--main-color);
 }
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .dateWrapper {
+    margin-left: 80px;
+    margin-bottom: 10px;
+  }
+}

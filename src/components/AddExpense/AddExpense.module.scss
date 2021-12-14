@@ -194,10 +194,10 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  z-index: 1;
 
   &:hover .dropdown-content {
     display: block;
+    z-index: 1;
   }
 
   &:hover .category-svg-down {
