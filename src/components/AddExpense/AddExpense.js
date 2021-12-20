@@ -50,15 +50,23 @@ export default function AddExpense() {
       case "description":
         return setDescription(e.target.value);
       case "sum":
-        return setSum(Number(e.target.value));
+        return setSum(e.target.value);
       default:
         return;
     }
   };
 
+  const newTransaction = {
+    date: getDatas,
+    description: description,
+    type: type,
+    sum: Number(sum.includes(",") ? +sum.replace(/,/g, ".") : +sum),
+    category: category,
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newTransaction = { date: getDatas, description, sum, type, category };
+
     await dispatch(operations.transactionAdd(newTransaction));
     dispatch(getBalance());
     clearBtn();
@@ -130,8 +138,6 @@ export default function AddExpense() {
               className={styles.amountInput}
               placeholder="00.00 UAH"
               type="number"
-              min="0"
-              step="0.1"
               name="sum"
               value={sum}
               onChange={handleChange}
