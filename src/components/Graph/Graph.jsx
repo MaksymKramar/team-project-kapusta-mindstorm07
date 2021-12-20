@@ -7,7 +7,9 @@ import { useSelector } from "react-redux";
 import { getDescription, getCategoriesExpenses } from "../../redux/report";
 
 Chart.register(ChartDataLabels);
-
+// ======================
+// https://www.youtube.com/channel/UCojXvfr41NqDxaPb9amu8-A/featured
+// ======================
 export default function Graph({ categoryId }) {
   const description = useSelector(getDescription);
   const currentCategory = useSelector(getCategoriesExpenses)[0];
@@ -116,6 +118,7 @@ export default function Graph({ categoryId }) {
         grid: {
           display: false,
         },
+        grace: "5%",
       },
       y: {
         grid: {
@@ -124,6 +127,7 @@ export default function Graph({ categoryId }) {
         ticks: {
           display: false,
         },
+        grace: "5%",
       },
     },
     plugins: {

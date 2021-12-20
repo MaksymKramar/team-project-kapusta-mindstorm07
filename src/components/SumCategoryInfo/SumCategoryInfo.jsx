@@ -25,7 +25,7 @@ export default function SumCategoryInfo({ month, year }) {
   const [type, setType] = useState(false);
   // const [btnType, setbtnType] = useState("expenses");
   const [categoryId, setCategoryId] = useState("");
-  const [chartsCategoryId, setChartsCategoryId] = useState("");
+  // const [chartsCategoryId, setChartsCategoryId] = useState("");
 
   useEffect(() => {
     const actualMonth = `${month}.${year}`;
@@ -53,9 +53,9 @@ export default function SumCategoryInfo({ month, year }) {
     };
   }, [isLoading]);
 
-  function HandleClickGetChart(id) {
-    setChartsCategoryId(id);
-
+  function HandleClickSetCategoryId(id) {
+    // setChartsCategoryId(id);
+    setCategoryId(id);
     setIsLoading(true);
 
     // setTimeout(() => {
@@ -126,15 +126,15 @@ export default function SumCategoryInfo({ month, year }) {
           <CategoryInfo
             trans={expenses}
             type={type}
-            handleClick={HandleClickGetChart}
-            onClick={setCategoryId}
+            handleClick={HandleClickSetCategoryId}
+            // onClick={setCategoryId}
           />
         ) : (
           <CategoryInfo
             trans={incomes}
             type={type}
-            handleClick={HandleClickGetChart}
-            onClick={setCategoryId}
+            handleClick={HandleClickSetCategoryId}
+            // onClick={setCategoryId}
           />
         )}
       </div>
@@ -154,7 +154,7 @@ export default function SumCategoryInfo({ month, year }) {
             ) : (
               <GraphMobile
                 categoryId={categoryId}
-                chartsCategoryId={chartsCategoryId}
+                // chartsCategoryId={chartsCategoryId}
               />
             )}
           </>
@@ -173,7 +173,7 @@ export default function SumCategoryInfo({ month, year }) {
             ) : (
               <Graph
                 categoryId={categoryId}
-                chartsCategoryId={chartsCategoryId}
+                // chartsCategoryId={chartsCategoryId}
               />
             )}
           </>
