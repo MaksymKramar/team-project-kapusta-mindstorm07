@@ -73,10 +73,13 @@ function ChartReportMobile({ categoryId }) {
   const dataExpenses = {
     datasets: [
       {
+        barPercentage: 1, // используется для настройки толщины в процентах от доступной ширины группы.
+        categoryPercentage: 0.4, //Настраиваем categoryPercentage на более низкое значение, чтобы увеличить расстояние между столбцами
         data: ExpSort(),
+        // barThickness:10, // используется для настройки толщины столбцов в пикселях
         maxBarThickness: 15,
         borderRadius: 20,
-        minBarLength: 100,
+        minBarLength: 100, ///минимальная длина столбца, получается что они одинаковые 50=100 :(
         backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
         borderColor: ["rgba(0, 0, 0, 0)"],
         borderWidth: 1,
@@ -88,7 +91,7 @@ function ChartReportMobile({ categoryId }) {
           },
           color: "#52555F",
           anchor: "end",
-          // align: "bottom",
+          // align: "bottom", /// Позиция текста цена
         },
         plugins: [ChartDataLabels],
       },
@@ -103,7 +106,7 @@ function ChartReportMobile({ categoryId }) {
       key: "data.category",
     },
     layout: {
-      autoPadding: "true",
+      // autoPadding: "true",
       // padding: {
       //   // left: 15,
       //   right: 30,
@@ -117,7 +120,7 @@ function ChartReportMobile({ categoryId }) {
     },
     // maintainAspectRatio: true,
     responsive: true,
-    aspectRatio: 1,
+    // aspectRatio: 1,
     scales: {
       x: {
         grid: {
@@ -127,6 +130,7 @@ function ChartReportMobile({ categoryId }) {
         ticks: {
           display: false,
         },
+        grace: "8%", /// Расстояние до краев графика(тот же padding)
       },
       y: {
         grid: {
@@ -136,8 +140,9 @@ function ChartReportMobile({ categoryId }) {
         ticks: {
           align: "top",
           mirror: true,
-          labelOffset: -11, ////висота надпису
+          labelOffset: -10, ////висота надпису
         },
+        grace: "6%",
       },
     },
     plugins: {
@@ -149,21 +154,15 @@ function ChartReportMobile({ categoryId }) {
 
   return (
     <div className={`${s.charterReport} ${s.scrollBar}`}>
-      {console.log("currentCategory?.type:", currentCategory?.type)}
-      {currentCategory?.type ? (
+      {/* {currentCategory?.type ? (
         <>
           <Bar data={dataIncomings} options={options} />
         </>
-      ) : (
-        <>
-          <Bar
-            data={dataExpenses}
-            options={options}
-            // height={400}
-            // width={320}
-          />
-        </>
-      )}
+      ) : ( */}
+      <>
+        <Bar data={dataExpenses} options={options} height={400} width={320} />
+      </>
+      {/* )} */}
     </div>
   );
 }

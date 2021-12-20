@@ -44,7 +44,7 @@ export default function CategoryInfo({ trans, handleClick, onClick }) {
                 key={item._id}
                 className={s.item}
                 onClick={() => {
-                  onClick(item._id);
+                  // onClick(item._id);
                   handleClick(item._id);
                   setIsActiveId(item._id);
                 }}
