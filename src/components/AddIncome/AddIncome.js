@@ -50,15 +50,23 @@ export default function AddIncome() {
       case "description":
         return setDescription(e.target.value);
       case "sum":
-        return setSum(Number(e.target.value));
+        return setSum(e.target.value);
       default:
         return;
     }
   };
 
+  const newTransaction = {
+    date: getDatas,
+    description: description,
+    type: type,
+    sum: Number(sum.includes(",") ? +sum.replace(/,/g, ".") : +sum),
+    category: category,
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newTransaction = { date: getDatas, description, sum, type, category };
+
     await dispatch(operations.transactionAdd(newTransaction));
     dispatch(getBalance());
     clearBtn();
@@ -130,10 +138,9 @@ export default function AddIncome() {
                 value={sum}
                 onChange={handleChange}
                 type="number"
-                min="0"
-                step="0.1"
                 required
               />
+
               <button className={s.calculatorBtn}>
                 <svg width="20" height="20" className={s["report-svg"]}>
                   <use href={sprite + "#icon-calculator"}></use>
