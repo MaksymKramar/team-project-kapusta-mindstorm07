@@ -63,52 +63,56 @@ export default function TableHistoryMobile({
             <Spinner width="40px" height="40px" color="#ff751d" type="Oval" />
           </div>
         ) : (
-          allTransactions.map(
-            ({ _id, date, description, category, sum, type }) => {
-              const relativeCategObdj = allCategories.find((categoryObj) => {
-                return category === categoryObj._id;
-              });
-              return (
-                <li key={_id} className={styles.tableRow}>
-                  <div className={styles.tableCollapseColumn}>
-                    <span className={styles.tableDate}>{date}</span>
-                    <span className={styles.tableDescription}>
-                      {description}
-                    </span>
-                  </div>
+            allTransactions.map(
+              ({ _id, date, description, category, sum, type }) => {
+                const relativeCategObdj = allCategories.find((categoryObj) => {
+                  return category === categoryObj._id;
+                });
+                return (
+                  <li key={_id} className={styles.tableRow}>
+                    <div className={styles.tableCollapseColumn}>
+                      <span className={styles.tableDate}>{date}</span>
+                      <span className={styles.tableDescription}>
+                        {description}
+                      </span>
+                    </div>
 
-                  <div className={styles.tableCategory}>
-                    {relativeCategObdj?.title ?? "Нет такой категории"}
-                  </div>
-                  <div className={styles.tableAmount}>
-                    {clickedTabId === "expense" ? (
-                      <span className={styles.TableHistoryMobExpense}>
-                        {`-${sum}  грн.`}{" "}
-                      </span>
-                    ) : (
-                      <span className={styles.TableHistoryMobIncome}>
-                        {`+${sum}  грн.`}{" "}
-                      </span>
-                    )}
-                  </div>
-                  <button
-                    className={styles.TrashIcon}
-                    type="button"
-                    onClick={() => deleteHandler(_id)}
-                  >
-                    <svg
-                      className={styles.iconDelete}
-                      width="18px"
-                      height="18px"
+                    <div className={styles.tableCategory}>
+                      {relativeCategObdj?.title ?? "Нет такой категории"}
+                    </div>
+                    <div className={styles.tableAmount}>
+                      {clickedTabId === "expense" ? (
+                        <span className={styles.TableHistoryMobExpense}>
+                          {`-${sum}  грн.`}{" "}
+                        </span>
+                      ) : (
+                          <span className={styles.TableHistoryMobIncome}>
+                            {`+${sum}  грн.`}{" "}
+                          </span>
+                        )}
+                    </div>
+                    <button
+                      className={styles.TrashIcon}
+                      type="button"
+                      // onClick={() => deleteHandler(_id)}
+                      onClick={(e) => {
+                        deleteHandler(_id);
+                        document.body.style.overflow = "hidden";
+                      }}
                     >
-                      <use href={sprite + "#icon-delete-1"} />
-                    </svg>
-                  </button>
-                </li>
-              );
-            }
-          )
-        )}
+                      <svg
+                        className={styles.iconDelete}
+                        width="18px"
+                        height="18px"
+                      >
+                        <use href={sprite + "#icon-delete-1"} />
+                      </svg>
+                    </button>
+                  </li>
+                );
+              }
+            )
+          )}
         {/* {allTransactions.map(
           ({ _id, date, description, category, sum, type }) => {
             const relativeCategObdj = allCategories.find((categoryObj) => {
