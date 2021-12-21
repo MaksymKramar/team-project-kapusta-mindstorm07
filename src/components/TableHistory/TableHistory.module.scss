@@ -29,8 +29,23 @@
   text-transform: uppercase;
   text-align: start;
   align-items: center;
-}
 
+  cursor: pointer;
+}
+///========================== CSS СДЕЛАТЬ СТРЕЛОЧКИ
+.TableHistoryHeaderRow {
+  .ascending::after {
+    content: "👇";
+    display: inline-block;
+    margin-left: 1em;
+  }
+  &.descending::after {
+    content: "☝️";
+    display: inline-block;
+    margin-left: 1em;
+  }
+}
+///==============================
 .TableHistoryHeaderRow:first-child,
 .TableHistoryDate {
   margin-right: 20px;
