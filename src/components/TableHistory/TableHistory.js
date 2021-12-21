@@ -23,7 +23,7 @@ import {
 } from "../../redux/report";
 import authSelector from "../../redux/auth/auth-selector";
 import Spinner from "../Spinner/Spinner";
-
+import useSortableData from "../../hooks/useSortableData";
 import { getData } from "../../redux/transactionAdd/transactionADD-selectors";
 
 export default function TableHistory({ clickedTabId, setActiveDelete, setId }) {
@@ -64,6 +64,15 @@ export default function TableHistory({ clickedTabId, setActiveDelete, setId }) {
   const allTransactions =
     clickedTabId === "expense" ? falseTransactions : trueTransactions;
 
+  const { items, requestSort, sortConfig } = useSortableData(allTransactions);
+
+  const getClassNamesFor = (name) => {
+    if (!sortConfig) {
+      return;
+    }
+    return sortConfig.key === name ? sortConfig.direction : undefined;
+  };
+
   const matches = useMediaQuery("(min-width:768px)");
 
   const deleteHandler = (_id) => {
@@ -75,10 +84,38 @@ export default function TableHistory({ clickedTabId, setActiveDelete, setId }) {
     return (
       <div className={styles.TableHistoryContainer}>
         <ul className={styles.TableHistoryHeader}>
-          <li className={styles.TableHistoryHeaderRow}>Дата</li>
-          <li className={styles.TableHistoryHeaderRow}>Описание</li>
-          <li className={styles.TableHistoryHeaderRow}>Категория</li>
-          <li className={styles.TableHistoryHeaderRow}>Сумма</li>
+          <li
+            onClick={() => requestSort("day")}
+            className={`${styles.TableHistoryHeaderRow} ${getClassNamesFor(
+              "day"
+            )}`}
+          >
+            Дата
+          </li>
+          <li
+            onClick={() => requestSort("description")}
+            className={`${styles.TableHistoryHeaderRow} ${getClassNamesFor(
+              "description"
+            )}`}
+          >
+            Описание
+          </li>
+          <li
+            onClick={() => requestSort("category")}
+            className={`${styles.TableHistoryHeaderRow} ${getClassNamesFor(
+              "category"
+            )}`}
+          >
+            Категория
+          </li>
+          <li
+            onClick={() => requestSort("sum")}
+            className={`${styles.TableHistoryHeaderRow} ${getClassNamesFor(
+              "sum"
+            )}`}
+          >
+            Сумма
+          </li>
           <li className={styles.TableHistoryHeaderRow}></li>
         </ul>
         <ul className={styles.TableHistoryBody}>
@@ -87,79 +124,35 @@ export default function TableHistory({ clickedTabId, setActiveDelete, setId }) {
               <Spinner width="40px" height="40px" color="#ff751d" type="Oval" />
             </div>
           ) : (
-            allTransactions.map(
-              ({ _id, date, description, category, sum, type }) => {
-                const relativeCategObdj = allCategories.find((categoryObj) => {
-                  return category === categoryObj._id;
-                });
-                return (
-                  <li key={_id} className={styles.TableHistoryRow}>
-                    <div className={styles.TableHistoryDate}>{date}</div>
-
-                    <div className={styles.TableHistoryDescription}>
-                      <LinesEllipsis
-                        text={description}
-                        maxLine="1"
-                        ellipsis="..."
-                        trimRight
-                        basedOn="letters"
-                      />
-                    </div>
-
-                    <div className={styles.TableHistoryCategory}>
-                      {relativeCategObdj?.title ?? "Нет такой категории"}
-                    </div>
-                    <div className={styles.TableHistoryAmount}>
-                      {clickedTabId === "expense" ? (
-                        <span className={styles.TableHistoryAmountExpense}>
-                          {`-${sum}  грн.`}{" "}
-                        </span>
-                      ) : (
-                        <span className={styles.TableHistoryAmountIncome}>
-                          {`+${sum}  грн.`}{" "}
-                        </span>
-                      )}
-                    </div>
-                    <button
-                      className={styles.TrashIcon}
-                      type="button"
-                      onClick={() => deleteHandler(_id)}
-                    >
-                      <svg
-                        className={styles.iconDelete}
-                        width="18px"
-                        height="18px"
-                      >
-                        <use href={sprite + "#icon-delete-1"} />
-                      </svg>
-                    </button>
-                  </li>
-                );
-              }
-            )
-          )}
-          {/* {allTransactions.map(
-            ({ _id, date, description, category, sum, type }) => {
+            items.map(({ _id, date, description, category, sum }) => {
               const relativeCategObdj = allCategories.find((categoryObj) => {
-                return category === categoryObj._id
-              })
+                return category === categoryObj._id;
+              });
               return (
                 <li key={_id} className={styles.TableHistoryRow}>
                   <div className={styles.TableHistoryDate}>{date}</div>
+
                   <div className={styles.TableHistoryDescription}>
-                    {description}
+                    <LinesEllipsis
+                      text={description}
+                      maxLine="1"
+                      ellipsis="..."
+                      trimRight
+                      basedOn="letters"
+                    />
                   </div>
+
                   <div className={styles.TableHistoryCategory}>
-                    {relativeCategObdj?.title ?? 'Нет такой категории'}
+                    {relativeCategObdj?.title ?? "Нет такой категории"}
                   </div>
                   <div className={styles.TableHistoryAmount}>
-                    {clickedTabId === 'expense' ? (
+                    {clickedTabId === "expense" ? (
                       <span className={styles.TableHistoryAmountExpense}>
-                        {`-${sum}  грн.`}{' '}
+                        {`-${sum}  грн.`}{" "}
                       </span>
                     ) : (
                       <span className={styles.TableHistoryAmountIncome}>
-                        {`+${sum}  грн.`}{' '}
+                        {`+${sum}  грн.`}{" "}
                       </span>
                     )}
                   </div>
@@ -173,13 +166,13 @@ export default function TableHistory({ clickedTabId, setActiveDelete, setId }) {
                       width="18px"
                       height="18px"
                     >
-                      <use href={sprite + '#icon-delete-1'} />
+                      <use href={sprite + "#icon-delete-1"} />
                     </svg>
                   </button>
                 </li>
-              )
-            },
-          )} */}
+              );
+            })
+          )}
         </ul>
       </div>
     );
