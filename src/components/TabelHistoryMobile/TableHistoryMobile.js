@@ -94,7 +94,7 @@ export default function TableHistoryMobile({
                     <button
                       className={styles.TrashIcon}
                       type="button"
-                      // onClick={() => deleteHandler(_id)}
+
                       onClick={(e) => {
                         deleteHandler(_id);
                         document.body.style.overflow = "hidden";

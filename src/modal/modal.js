@@ -15,6 +15,7 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
     function onEscKeyPress(e) {
       if (e.code === "Escape") {
         setActive(false);
+        document.body.style.overflow = "auto";
       }
     }
   };
@@ -30,7 +31,6 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
           onClick={(e) => {
             e.stopPropagation();
             onEscModalClose();
-            document.body.style.overflow = "auto";
           }}
         >
           <button
