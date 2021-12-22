@@ -47,7 +47,7 @@ export default function MainPage({ setActive, setActiveDelete, setId }) {
             <Balance />
 
             <div className={s.btn1} active>
-              <ExpIncomeBtns onClick={eventBtn} />
+              <ExpIncomeBtns onClick={eventBtn} active={clickedTabId} />
             </div>
             <div className={s.tableWraper}>
               <div className={s.balanceString}>
@@ -64,7 +64,7 @@ export default function MainPage({ setActive, setActiveDelete, setId }) {
                 <Summary clickedTabId={clickedTabId} />
               </div>
               <div className={s.btn2}>
-                <ExpIncomeBtns onClick={eventBtn} />
+                <ExpIncomeBtns onClick={eventBtn} active={clickedTabId} />
               </div>
             </div>
           </section>
