@@ -14,7 +14,6 @@ export const getAllCategories = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const categories = await api.getAllCategories();
-      console.log(categories);
       return categories;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -33,5 +32,3 @@ export const getDetailInfo = createAsyncThunk(
     }
   }
 );
-
-// console.log(getFullTransInfo());

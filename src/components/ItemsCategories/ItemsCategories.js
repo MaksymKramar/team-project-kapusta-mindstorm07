@@ -1,4 +1,3 @@
-// import Button from '@mui/material/Button';
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
@@ -7,7 +6,6 @@ import sprite from "../../images/sprite.svg";
 import styles from "./ItemsCategories.module.scss";
 
 function ItemsCategories() {
-  // const [category, setCategories] = useState('');
   const [value, setValue] = useState("Категория товара");
   const [category, setCategory] = useState("");
 
@@ -20,10 +18,8 @@ function ItemsCategories() {
   const categories = useSelector(getCategoriesAll);
 
   const change = (e) => {
-    console.log(e);
     setValue(e.target.textContent);
     setCategory(e.target.__reactProps$qk4iqhvwvj.value);
-    console.log(category);
   };
 
   return (
@@ -48,17 +44,6 @@ function ItemsCategories() {
             {category.title}
           </li>
         ))}
-        {/* <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Категория товара</li>
-        <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Транспорт</li>
-        <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Продукты</li>
-        <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Здоровье</li>
-        <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Алкоголь</li>
-        <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Развлечения</li>
-        <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Всё для дома</li>
-        <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Коммуналка, связь</li>
-        <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Спорт, хобби</li>
-        <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Образование</li>
-        <li className={styles["dropdown-content-a"]} value={value} onClick={change}>Прочее</li> */}
       </ul>
     </div>
   );

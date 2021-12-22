@@ -6,7 +6,6 @@ import { getFullTransInfo } from "../../redux/report";
 import {
   getCategoriesIncomes,
   getCategoriesExpenses,
-  getDescription,
 } from "../../redux/report";
 import CategoryInfo from "../CategoryInfo/CategoryInfo";
 import Graph from "../Graph/Graph";
@@ -23,27 +22,14 @@ export default function SumCategoryInfo({ month, year }) {
   const expenses = useSelector(getCategoriesExpenses);
 
   const [type, setType] = useState(false);
-  // const [btnType, setbtnType] = useState("expenses");
   const [categoryId, setCategoryId] = useState("");
-  // const [chartsCategoryId, setChartsCategoryId] = useState("");
 
   useEffect(() => {
     const actualMonth = `${month}.${year}`;
 
     dispatch(getAllCategories());
     dispatch(getFullTransInfo({ type: type, date: actualMonth }));
-
-    // if (type === false) {
-    //   dispatch(getAllCategories());
-    //   dispatch(getFullTransInfo({ type: type, date: actualMonth }));
-    // }
-    // if (type === true) {
-    //   dispatch(getAllCategories());
-    //   dispatch(getFullTransInfo({ type: type, date: actualMonth }));
-    // }
   }, [dispatch, type, month, year]);
-
-  // const categories = [...expenses, ...incomes];
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -54,13 +40,8 @@ export default function SumCategoryInfo({ month, year }) {
   }, [isLoading]);
 
   function HandleClickSetCategoryId(id) {
-    // setChartsCategoryId(id);
     setCategoryId(id);
     setIsLoading(true);
-
-    // setTimeout(() => {
-    //   setIsLoading(false);
-    // }, );
   }
 
   function handleClick() {
@@ -71,27 +52,7 @@ export default function SumCategoryInfo({ month, year }) {
       setType(true);
       setIsLoading(true);
     }
-
-    // if (btnType === "incomes") {
-    //   setbtnType("expenses");
-    //   setType(true);
-    // setIsLoading(true);
-
-    // } else {
-    //   setbtnType("incomes");
-    //   setType(false);
-    // setIsLoading(true);
-
-    // }
   }
-  // const description = useSelector(getDescription);
-
-  // const getIdCategory = (valueId) => {
-  //   console.log("valueId", valueId)
-  //   setCategoryId(val)
-  //   //console.log(e.target.value);
-  //   // dispatch(getFullTransInfo({ data, type }));
-  // };
 
   return (
     <div>
@@ -127,14 +88,12 @@ export default function SumCategoryInfo({ month, year }) {
             trans={expenses}
             type={type}
             handleClick={HandleClickSetCategoryId}
-            // onClick={setCategoryId}
           />
         ) : (
           <CategoryInfo
             trans={incomes}
             type={type}
             handleClick={HandleClickSetCategoryId}
-            // onClick={setCategoryId}
           />
         )}
       </div>
@@ -152,15 +111,11 @@ export default function SumCategoryInfo({ month, year }) {
                 />
               </div>
             ) : (
-              <GraphMobile
-                categoryId={categoryId}
-                // chartsCategoryId={chartsCategoryId}
-              />
+              <GraphMobile categoryId={categoryId} />
             )}
           </>
         ) : (
           <>
-            {console.log("isLoading:", isLoading)}
             {isLoading ? (
               <div className={s.spinner}>
                 <Spinner
@@ -171,10 +126,7 @@ export default function SumCategoryInfo({ month, year }) {
                 />
               </div>
             ) : (
-              <Graph
-                categoryId={categoryId}
-                // chartsCategoryId={chartsCategoryId}
-              />
+              <Graph categoryId={categoryId} />
             )}
           </>
         )}

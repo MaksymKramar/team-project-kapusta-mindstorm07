@@ -14,10 +14,6 @@ export default function Graph({ categoryId }) {
   const description = useSelector(getDescription);
   const currentCategory = useSelector(getCategoriesExpenses)[0];
 
-  // const sortDescription = description.filter(
-  //   (desc) => desc.group.category === categoryId,
-  // )
-
   function ExpSort() {
     if (description) {
       /// Сумма

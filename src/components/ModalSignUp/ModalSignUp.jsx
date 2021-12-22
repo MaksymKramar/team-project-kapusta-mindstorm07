@@ -25,21 +25,6 @@ export default function ModalSignUp() {
 
   const isErrorSignUp = useSelector(authSelector.getIsErrorSignUp);
 
-  const handleChange = ({ target: { name, value } }) => {
-    console.log(name);
-    console.log(value);
-    switch (name) {
-      case "name":
-        return setName(value);
-      case "email":
-        return setEmail(value);
-      case "password":
-        return setPassword(value);
-      default:
-        return;
-    }
-  };
-
   useEffect(() => {
     if (emailError || passwordError || nameError) {
       setFormValid(false);
@@ -49,7 +34,6 @@ export default function ModalSignUp() {
   }, [emailError, passwordError, nameError]);
 
   const handlerEmail = (e) => {
-    // console.log(e.target.value);
     setEmail(e.target.value);
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(String(e.target.value).toLowerCase())) {
@@ -94,6 +78,8 @@ export default function ModalSignUp() {
       case "name":
         setNameDirty(true);
         break;
+      default:
+        return;
     }
   };
 

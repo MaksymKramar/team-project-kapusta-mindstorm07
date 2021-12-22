@@ -2,16 +2,12 @@ import styles from "./ModalLogIn.module.scss";
 import sprite from "../../images/sprite.svg";
 
 import { useState, useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { logIn, authGoogle } from "../../redux/auth/auth-operation";
 import authSelector from "../../redux/auth/auth-selector";
 import { NavLink } from "react-router-dom";
 
 import Spinner from "../Spinner/Spinner";
-
-// import GoogleAuth from "../GoogleAuth/GoogleAuth";
-// import { useLocation } from 'react-router-dom'
 
 export default function ModalLogIn() {
   const dispatch = useDispatch();
@@ -29,8 +25,6 @@ export default function ModalLogIn() {
   const [passwordError, setPasswordError] = useState("Это обязательное поле");
   const [formValid, setFormValid] = useState(true);
 
-  // const search = useLocation().search
-
   useEffect(() => {
     if (emailError || passwordError) {
       setFormValid(false);
@@ -40,7 +34,6 @@ export default function ModalLogIn() {
   }, [emailError, passwordError]);
 
   const handlerEmail = (e) => {
-    // console.log(e.target.value);
     setEmail(e.target.value);
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(String(e.target.value).toLowerCase())) {
@@ -78,19 +71,10 @@ export default function ModalLogIn() {
       case "password":
         setPasswordDirty(true);
         break;
+      default:
+        return;
     }
   };
-
-  // const handleGoogle = (e) => {
-  //   e.preventDefault()
-
-  //   console.log(search)
-  //   const useremail = new URLSearchParams(search).get('useremail')
-  //   dispatch(authGoogle(useremail))
-  //   setEmail('')
-  //   setPassword('')
-  // }
-
   return (
     <div className={styles.modal}>
       <div className={styles.wrapper}>
@@ -101,9 +85,6 @@ export default function ModalLogIn() {
 
         <a
           href="https://kapusta-backend-project.herokuapp.com/api/auth/google"
-          // onClick={() => {
-          //   dispatch(handleGoogle)
-          // }}
           className={styles.modalLink}
         >
           <svg className={styles.logoGoogle} width="18px" height="18px">
@@ -182,7 +163,6 @@ export default function ModalLogIn() {
             to="/signup"
             exact
             className={isLoggedIn ? styles.disabled : styles.button}
-            //  className={styles.button}
           >
             Регистрация
           </NavLink>

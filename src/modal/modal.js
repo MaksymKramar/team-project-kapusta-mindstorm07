@@ -5,8 +5,7 @@ import { useDispatch } from "react-redux";
 
 import { deleteTransactionById } from "../redux/transactions";
 
-const Modal = ({ active, setActive, onCancel, transactionId }) => {
-  // console.log('aljo', transactionId)
+const Modal = ({ active, setActive, transactionId }) => {
   const dispatch = useDispatch();
 
   const onEscModalClose = () => {
@@ -53,7 +52,6 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
             type="button"
             className="modal-button"
             onClick={() => {
-              // console.log(transactionId, dispatch, deleteTransactionById);
               if (transactionId) {
                 dispatch(deleteTransactionById(transactionId));
               }

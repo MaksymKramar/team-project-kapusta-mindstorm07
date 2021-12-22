@@ -11,7 +11,6 @@ import authSelector from "../../redux/auth/auth-selector";
 import { getSummary } from "../../redux/transactions";
 
 import Spinner from "../Spinner/Spinner";
-import ProjectLoader from "../ProjectLoader/ProjectLoader";
 
 const Summary = ({ clickedTabId }) => {
   const dispatch = useDispatch();
@@ -56,18 +55,6 @@ const Summary = ({ clickedTabId }) => {
             </li>
           ))
         )}
-
-        {/* {summary.length > 0 &&
-          summary.map(({ _id: { month, year }, total }) => (
-            <li key={month} className={s.summaryItem}>
-              <p className={s.summaryDescription}> */}
-        {/* {formatter.format(new Date(year, month - 1)).toUpperCase()} */}
-        {/* {formatData(year, month)}
-              </p>
-
-              <p className={s.summaryDescription}>{total}</p>
-            </li>
-          ))} */}
       </ul>
     </div>
   );

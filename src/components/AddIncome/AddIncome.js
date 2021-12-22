@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as operations from "../../redux/transactionAdd/transactionAdd-operations";
 import * as selectors from "../../redux/transactionAdd/transactionADD-selectors";
@@ -11,7 +11,6 @@ import DateCalendar from "../Date/Date";
 import { getBalance } from "../../redux/auth/auth-operation";
 
 export default function AddIncome() {
-  const [startDate, setStartDate] = useState(new Date());
   const [description, setDescription] = useState("");
   const [sum, setSum] = useState("");
   const [category, setCategory] = useState("");
@@ -19,11 +18,6 @@ export default function AddIncome() {
   const [value, setValue] = useState("Категория дохода");
 
   const dispatch = useDispatch();
-
-  const date = `${startDate.getDate()}.${
-    startDate.getMonth() + 1
-  }.${startDate.getFullYear()}`;
-  console.log(date);
 
   const categories = useSelector(selectors.getCategoriesAll);
   const incomeCategories = categories.filter((cat) => cat.type === true);
@@ -41,6 +35,7 @@ export default function AddIncome() {
         setCategory(i._id);
         setType(i.type);
       }
+      return console.log("i.title !== e.target.textContent");
     }, setShowCategs(false));
 
     setValue(e.target.textContent);

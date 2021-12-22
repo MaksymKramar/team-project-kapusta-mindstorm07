@@ -7,7 +7,6 @@ import { NavLink } from "react-router-dom";
 
 export default function Header({ setActive }) {
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
-  // const token = useSelector(authSelector.getToken);
 
   return (
     <>

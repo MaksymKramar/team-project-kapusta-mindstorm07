@@ -11,7 +11,7 @@ import DateCalendar from "../Date/Date";
 import { getBalance } from "../../redux/auth/auth-operation";
 
 export default function AddExpense() {
-  const [startDate, setStartDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState(new Date());
   const [description, setDescription] = useState("");
   const [sum, setSum] = useState("");
   const [category, setCategory] = useState("");
@@ -20,14 +20,13 @@ export default function AddExpense() {
 
   const dispatch = useDispatch();
 
-  const date = `${startDate.getDate()}.${
-    startDate.getMonth() + 1
-  }.${startDate.getFullYear()}`;
+  // const date = `${startDate.getDate()}.${
+  //   startDate.getMonth() + 1
+  // }.${startDate.getFullYear()}`;
 
   const categories = useSelector(selectors.getCategoriesAll);
   const expenseCategories = categories.filter((cat) => cat.type === false);
   const getDatas = useSelector(selectors.getData);
-  // const getDescription = useSelector(selectors.getDescription);
 
   const [showCategs, setShowCategs] = useState(false);
 
@@ -35,12 +34,18 @@ export default function AddExpense() {
     setShowCategs(!showCategs);
   };
 
+  function upperFirstLetter(str) {
+    if (!str) return str;
+    return str[0].toUpperCase() + str.slice(1);
+  }
+
   const change = (e) => {
     categories.map((i) => {
       if (i.title === e.target.textContent) {
         setCategory(i._id);
         setType(i.type);
       }
+      return i;
     }, setShowCategs(false));
 
     setValue(e.target.textContent);
@@ -48,7 +53,7 @@ export default function AddExpense() {
   const handleChange = (e) => {
     switch (e.target.name) {
       case "description":
-        return setDescription(e.target.value);
+        return setDescription(upperFirstLetter(e.target.value));
       case "sum":
         return setSum(e.target.value);
       default:

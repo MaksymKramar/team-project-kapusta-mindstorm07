@@ -1,14 +1,8 @@
 import { useState } from "react";
-
 import s from "./CategoryInfo.module.scss";
 import sprite from "../../images/sprite.svg";
-import { getAllCategories } from "../../redux/report";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Spinner from "../Spinner/Spinner";
-
-// import { getFullTransInfo } from "../../redux/report";
-// import { getDescription } from "../../redux/report";
-// import { getData } from "../../redux/transactionAdd/transactionADD-selectors";
 import { getCategorySums } from "../../redux/report/reportSelectors";
 import { isLoadingValue } from "../../redux/report";
 
@@ -44,7 +38,6 @@ export default function CategoryInfo({ trans, handleClick, onClick }) {
                 key={item._id}
                 className={s.item}
                 onClick={() => {
-                  // onClick(item._id);
                   handleClick(item._id);
                   setIsActiveId(item._id);
                 }}
@@ -54,6 +47,7 @@ export default function CategoryInfo({ trans, handleClick, onClick }) {
                     if (i.group === item._id) {
                       return i.totalCategory;
                     }
+                    return i;
                   })}
                 </span>
 

@@ -3,7 +3,6 @@ import BackBtn from "../../components/BackBtn/BackBtn";
 import ExpensesIncome from "../../components/ExpensesIncome/ExpensesIncome";
 import BackgrounUser from "../../components/BackgroundUser/BackgroundUser";
 import BalanceForReports from "../../components/BalanceForReports/BalanceForReports";
-import Balance from "../../components/Balance/Balance";
 import CurrentPeriod from "../../components/CurrentPeriod/CurrentPeriod";
 import s from "./ReportPage.module.scss";
 

@@ -1,10 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  goBackOneMonth,
-  goForwardOneMonth,
-} from "../../redux/report/reportSlices";
-import { getMonth, getYear } from "../../redux/report";
-import arrMonths from "../../data/Month.json";
 import sprite from "../../images/sprite.svg";
 import s from "./CurrentPeriod.module.scss";
 

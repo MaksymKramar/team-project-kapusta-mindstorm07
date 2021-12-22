@@ -25,9 +25,9 @@ export default function DateCalendar() {
     updateDate(date);
   };
 
-  const date = `${startDate.getDate()}.${
-    startDate.getMonth() + 1
-  }.${startDate.getFullYear()}`;
+  // const date = `${startDate.getDate()}.${
+  //   startDate.getMonth() + 1
+  // }.${startDate.getFullYear()}`;
 
   return (
     <div className={styles.dateWrapper}>

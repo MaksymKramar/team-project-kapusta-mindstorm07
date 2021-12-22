@@ -4,12 +4,11 @@ import styles from "./TableHistory.module.scss";
 import sprite from "../../images/sprite.svg";
 import TableHistoryMobile from "../TabelHistoryMobile/TableHistoryMobile";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import LinesEllipsis from "react-lines-ellipsis";
 import {
   getTransByMonthMinus,
   getTransByMonthPlus,
-  deleteTransactionById,
 } from "../../redux/transactions/";
 import {
   getTransactionsListTrue,
@@ -32,25 +31,18 @@ export default function TableHistory({ clickedTabId, setActiveDelete, setId }) {
   const isloading = useSelector(getLoading);
 
   const date = useSelector(getData);
-
   const month = date.split(".")[1];
   const year = date.split(".")[2];
 
   const dispatch = useDispatch();
-  // const date = new Date()
 
   useEffect(() => {
     dispatch(getTransByMonthPlus(`${month}.${year}`));
-  }, [dispatch, balance, date]);
+  }, [dispatch, balance, date, month, year]);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     getTransByMonthPlus(`${date.getMonth() + 1}.${date.getFullYear()}`),
-  //   )
-  // }, [dispatch, balance])
   useEffect(() => {
     dispatch(getTransByMonthMinus(`${month}.${year}`));
-  }, [dispatch, balance, date]);
+  }, [dispatch, balance, date, month, year]);
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
@@ -159,10 +151,10 @@ export default function TableHistory({ clickedTabId, setActiveDelete, setId }) {
                   <button
                     className={styles.TrashIcon}
                     type="button"
-                     onClick={(e) => {
-                          deleteHandler(_id);
-                          document.body.style.overflow = "hidden";
-                        }}
+                    onClick={(e) => {
+                      deleteHandler(_id);
+                      document.body.style.overflow = "hidden";
+                    }}
                   >
                     <svg
                       className={styles.iconDelete}

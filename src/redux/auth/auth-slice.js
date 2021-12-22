@@ -1,4 +1,3 @@
-// import { createReducer, combineReducers } from '@reduxjs/toolkit'
 import { createSlice } from "@reduxjs/toolkit";
 import {
   signUp,
@@ -26,7 +25,6 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [signUp.fulfilled](state, action) {
-      // state.user = { ...action.payload.data };
       state.user.name = action.payload.data.name;
       state.user.email = action.payload.data.email;
 
@@ -45,11 +43,9 @@ const authSlice = createSlice({
     [signUp.rejected](state, action) {
       state.isLoading = false;
       state.isErrorSignUp = true;
-      // state.isLoggedIn = false
     },
 
     [logIn.fulfilled](state, action) {
-      // state.user = { ...action.payload.data }
       state.user.name = action.payload.data.name;
       state.user.email = action.payload.data.email;
       state.balance = action.payload.data.balance;
@@ -89,7 +85,6 @@ const authSlice = createSlice({
     [authGoogle.rejected](state, action) {
       state.isLoading = false;
       state.isErrorSignUp = true;
-      // state.isLoggedIn = false
     },
 
     [logOut.fulfilled](state, action) {
@@ -107,7 +102,6 @@ const authSlice = createSlice({
     },
 
     [fetchCurrentUser.fulfilled](state, action) {
-      // state.user = { ...action.payload }
       state.user.name = action.payload.name;
       state.user.email = action.payload.email;
       state.balance = action.payload.balance;
@@ -130,15 +124,6 @@ const authSlice = createSlice({
     [createBalance.fulfilled](state, action) {
       state.balance = action.payload.balance;
     },
-    // [createBalance.pending](state, action) {
-    //   state.isLoading = true
-    //   state.isErrorLogIn = false
-    //   state.isErrorSignUp = false
-    // },
-    // [createBalance.rejected](state, action) {
-    //   state.isLoading = false
-    //   state.isErrorLogIn = true
-    // },
 
     [getBalance.fulfilled](state, action) {
       state.balance = action.payload.balance;

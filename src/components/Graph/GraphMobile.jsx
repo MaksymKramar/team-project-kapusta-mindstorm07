@@ -13,10 +13,6 @@ function ChartReportMobile({ categoryId }) {
   const description = useSelector(getDescription);
   const currentCategory = useSelector(getCategoriesExpenses)[0];
 
-  // const sortDescription = description.filter(
-  //   (desc) => desc.group.category === categoryId
-  // );
-
   function ExpSort() {
     if (description) {
       /// Сумма
@@ -107,11 +103,11 @@ function ChartReportMobile({ categoryId }) {
     },
     layout: {
       // autoPadding: "true",
-      // padding: {
-      //   // left: 15,
-      //   right: 30,
-      //   top:25,
-      // },
+      padding: {
+        // left: 15,
+        right: 30,
+        top: 25,
+      },
     },
     elements: {
       bar: {
@@ -154,15 +150,15 @@ function ChartReportMobile({ categoryId }) {
 
   return (
     <div className={`${s.charterReport} ${s.scrollBar}`}>
-      {/* {currentCategory?.type ? (
+      {currentCategory?.type ? (
         <>
           <Bar data={dataIncomings} options={options} />
         </>
-      ) : ( */}
-      <>
-        <Bar data={dataExpenses} options={options} height={400} width={320} />
-      </>
-      {/* )} */}
+      ) : (
+        <>
+          <Bar data={dataExpenses} options={options} height={400} width={320} />
+        </>
+      )}
     </div>
   );
 }

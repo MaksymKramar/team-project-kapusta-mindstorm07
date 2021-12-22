@@ -1,6 +1,4 @@
 export {
-  // getFullTransInfoMinus,
-  // getFullTransInfoPlus,
   getTransByMonthMinus,
   getTransByMonthPlus,
   addTransaction,
@@ -8,7 +6,6 @@ export {
   getSummary,
 } from "./transactionsOperations";
 export {
-  // getTransactionsList,
   isLoadingValue,
   getTransactionsTotalAmountTrue,
   getTransactionsTotalAmountFalse,
