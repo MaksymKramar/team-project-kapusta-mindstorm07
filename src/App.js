@@ -35,11 +35,11 @@ function App() {
           </PubliceRoute>
 
           <PubliceRoute path="/login" restricted redirectTo="/main">
-            {<LogInPage setActive={setModalExitActive} />}
+            <LogInPage setActive={setModalExitActive} />
           </PubliceRoute>
 
           <PubliceRoute path="/signup" restricted redirectTo="/main">
-            {<SignUpPage />}
+            <SignUpPage />
           </PubliceRoute>
 
           <PubliceRoute
@@ -48,11 +48,11 @@ function App() {
             redirectTo="/main"
             restricted
           >
-            {<LoadingPage />}
+            <LoadingPage />
           </PubliceRoute>
 
           <PrivateRoute path="/report">
-            {<ReportPage setActive={setModalExitActive} />}
+            <ReportPage setActive={setModalExitActive} />
           </PrivateRoute>
 
           <PrivateRoute path="/main">

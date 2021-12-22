@@ -1,32 +1,45 @@
-@media screen and (min-width: 320px) {
-  .expBtn {
-    margin-right: 2px;
-  }
-  .expBtn,
-  .incomeBtn {
-    width: 159px;
-    height: 53px;
-    padding: 7px, 30px;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 1.17px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: #000000;
+.expBtn {
+  margin-right: 2px;
+}
+.expBtn,
+.incomeBtn {
+  width: 159px;
+  height: 53px;
+  padding: 7px, 30px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1.17px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #000000;
 
-    border: none;
-    background: #f5f6fb;
-  }
+  border: none;
+  background: #f5f6fb;
+}
 
-  .expBtn:hover,
-  .expBtn:focus,
-  .incomeBtn:hover,
-  .incomeBtn:focus {
-    color: #ffffff;
-    background: #ff751d;
-    cursor: pointer;
-    transition-duration: 500ms;
-  }
+.expBtn:hover,
+.expBtn:focus,
+.incomeBtn:hover,
+.incomeBtn:focus {
+  color: #ffffff;
+  background: #ff751d;
+  cursor: pointer;
+  transition-duration: 500ms;
+}
+
+.active {
+  width: 159px;
+  height: 53px;
+  padding: 7px, 30px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1.17px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border: none;
+  color: #ffffff;
+  background: #ff751d;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -52,11 +65,25 @@
     background: #ffffff;
     transition-duration: 500ms;
   }
+
+  .active {
+    width: 159px;
+    height: 40px;
+    padding: 7px, 20px;
+
+    background: #fafbfd;
+    color: #ff751d;
+    border-radius: 20px 20px 0 0;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .expBtn,
   .incomeBtn {
+    width: 138px;
+  }
+
+  .active {
     width: 138px;
   }
 }
