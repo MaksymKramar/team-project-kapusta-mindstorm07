@@ -15,6 +15,7 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
     function onEscKeyPress(e) {
       if (e.code === "Escape") {
         setActive(false);
+        document.body.style.overflow = "auto";
       }
     }
   };
@@ -36,7 +37,10 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
             type="button"
             className="close-button "
             aria-expanded="false"
-            onClick={() => setActive(false)}
+            onClick={(e) => {
+              setActive(false);
+              document.body.style.overflow = "auto";
+            }}
           >
             <svg width="12" height="12" className="cloce-button-icon">
               <use className="" href={sprite + "#icon-close_24px"}></use>
@@ -54,6 +58,7 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
                 dispatch(deleteTransactionById(transactionId));
               }
               setActive(false);
+              document.body.style.overflow = "auto";
             }}
           >
             ДА
@@ -61,7 +66,10 @@ const Modal = ({ active, setActive, onCancel, transactionId }) => {
           <button
             type="button"
             className="modal-button"
-            onClick={() => setActive(false)}
+            onClick={(e) => {
+              setActive(false);
+              document.body.style.overflow = "auto";
+            }}
           >
             НЕТ
           </button>

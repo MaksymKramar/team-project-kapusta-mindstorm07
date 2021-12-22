@@ -159,7 +159,10 @@ export default function TableHistory({ clickedTabId, setActiveDelete, setId }) {
                   <button
                     className={styles.TrashIcon}
                     type="button"
-                    onClick={() => deleteHandler(_id)}
+                     onClick={(e) => {
+                          deleteHandler(_id);
+                          document.body.style.overflow = "hidden";
+                        }}
                   >
                     <svg
                       className={styles.iconDelete}
