@@ -29,13 +29,18 @@ export default function AddIncome() {
     setShowCategs(!showCategs);
   };
 
+  function upperFirstLetter(str) {
+    if (!str) return str;
+    return str[0].toUpperCase() + str.slice(1);
+  }
+
   const change = (e) => {
     categories.map((i) => {
       if (i.title === e.target.textContent) {
         setCategory(i._id);
         setType(i.type);
       }
-      return console.log("i.title !== e.target.textContent");
+      return i;
     }, setShowCategs(false));
 
     setValue(e.target.textContent);
@@ -43,7 +48,7 @@ export default function AddIncome() {
   const handleChange = (e) => {
     switch (e.target.name) {
       case "description":
-        return setDescription(e.target.value);
+        return setDescription(upperFirstLetter(e.target.value));
       case "sum":
         return setSum(e.target.value);
       default:

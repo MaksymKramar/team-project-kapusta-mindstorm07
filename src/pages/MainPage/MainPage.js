@@ -46,7 +46,7 @@ export default function MainPage({ setActive, setActiveDelete, setId }) {
           <section className={s.section}>
             <Balance />
 
-            <div className={s.btn1} active>
+            <div className={s.btn1}>
               <ExpIncomeBtns onClick={eventBtn} active={clickedTabId} />
             </div>
             <div className={s.tableWraper}>
