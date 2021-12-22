@@ -45,7 +45,6 @@ export default function AddExpense() {
         setCategory(i._id);
         setType(i.type);
       }
-      return i;
     }, setShowCategs(false));
 
     setValue(e.target.textContent);

@@ -47,7 +47,6 @@ export default function CategoryInfo({ trans, handleClick, onClick }) {
                     if (i.group === item._id) {
                       return i.totalCategory;
                     }
-                    return i;
                   })}
                 </span>
 

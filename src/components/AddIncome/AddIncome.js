@@ -40,7 +40,6 @@ export default function AddIncome() {
         setCategory(i._id);
         setType(i.type);
       }
-      return i;
     }, setShowCategs(false));
 
     setValue(e.target.textContent);
