@@ -17,10 +17,20 @@ import {
 } from "../../redux/transactions";
 import { useDispatch, useSelector } from "react-redux";
 
+import { addDate } from "../../redux/transactionAdd/transactionAdd-slice";
+
 export default function ReportPage({ setActive }) {
   let date = new Date();
   const [month, setMonth] = useState(date.getMonth() + 1);
   const [year, setYear] = useState(date.getFullYear());
+
+  const currentYear = date.getFullYear();
+  const currentMonth = date.getMonth() + 1;
+  const currentDay = date.getDate();
+
+  useEffect(() => {
+    dispatch(addDate(`${currentDay}.${currentMonth}.${currentYear}`));
+  }, []);
 
   const totalIncomes = useSelector(getTransactionsTotalAmountTrue);
   const totalExpences = useSelector(getTransactionsTotalAmountFalse);
