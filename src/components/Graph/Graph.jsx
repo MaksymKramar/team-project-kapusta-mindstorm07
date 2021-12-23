@@ -61,6 +61,7 @@ export default function Graph({ categoryId }) {
           color: "#52555F",
           anchor: "end",
           align: "top",
+          rotation: -45,
         },
         plugins: [ChartDataLabels],
       },
@@ -79,8 +80,6 @@ export default function Graph({ categoryId }) {
         borderWidth: 1,
         datalabels: {
           formatter: function (value, context) {
-            console.log(context.chart.data.datasets);
-
             return `${
               context.chart.data.datasets[0].data[context.dataIndex].total
             } грн`;
@@ -88,6 +87,7 @@ export default function Graph({ categoryId }) {
           color: "#52555F",
           anchor: "end",
           align: "top",
+          rotation: -45,
         },
         plugins: [ChartDataLabels],
       },

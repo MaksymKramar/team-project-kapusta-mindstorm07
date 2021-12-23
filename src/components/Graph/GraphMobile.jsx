@@ -42,24 +42,25 @@ function ChartReportMobile({ categoryId }) {
   const dataIncomings = {
     datasets: [
       {
+        barPercentage: 1, // используется для настройки толщины в процентах от доступной ширины группы.
+        categoryPercentage: 0.4, //Настраиваем categoryPercentage на более низкое значение, чтобы увеличить расстояние между столбцами
         data: IncSort(),
+        // barThickness:10, // используется для настройки толщины столбцов в пикселях
         maxBarThickness: 15,
         borderRadius: 20,
-        minBarLength: 100,
+        // minBarLength: 100, ///минимальная длина столбца, получается что они одинаковые 50 грн =100 грн :(
         backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
         borderColor: ["rgba(0, 0, 0, 0)"],
         borderWidth: 1,
         datalabels: {
           formatter: function (value, context) {
-            console.log(context.chart.data.datasets);
-
             return `${
               context.chart.data.datasets[0].data[context.dataIndex].total
             } грн`;
           },
           color: "#52555F",
           anchor: "end",
-          align: "top",
+          align: "end",
         },
         plugins: [ChartDataLabels],
       },
@@ -75,7 +76,7 @@ function ChartReportMobile({ categoryId }) {
         // barThickness:10, // используется для настройки толщины столбцов в пикселях
         maxBarThickness: 15,
         borderRadius: 20,
-        minBarLength: 100, ///минимальная длина столбца, получается что они одинаковые 50=100 :(
+        // minBarLength: 100, ///минимальная длина столбца, получается что они одинаковые одинаковые 50 грн =100 грн :(
         backgroundColor: ["#FF751D", "#FFDAC0", "#FFDAC0"],
         borderColor: ["rgba(0, 0, 0, 0)"],
         borderWidth: 1,
@@ -87,7 +88,7 @@ function ChartReportMobile({ categoryId }) {
           },
           color: "#52555F",
           anchor: "end",
-          // align: "bottom", /// Позиция текста цена
+          align: "end", /// Позиция текста цена
         },
         plugins: [ChartDataLabels],
       },
