@@ -23,6 +23,11 @@ export default function MainPage({ setActive, setActiveDelete, setId }) {
   const transactionsTrue = useSelector(getTransactionsTrue);
   const dispatch = useDispatch();
 
+  const currentTime = new Date();
+  const year1 = currentTime.getFullYear();
+  const month1 = currentTime.getMonth() + 1;
+  const day1 = currentTime.getDate();
+
   useEffect(() => {
     dispatch(getBalance());
   }, [dispatch, transactionsFalse, transactionsTrue]);
