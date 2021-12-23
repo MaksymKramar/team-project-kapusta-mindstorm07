@@ -53,6 +53,10 @@
   height: 20px;
 }
 
+.hidden {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .currentPeriodWrapper {
     margin: 0;

@@ -22,7 +22,12 @@ export default function CurrentPeriod({
     "Декабрь",
   ];
 
+  // let date = new Date()
+
   const currentMonth = mouths[month - 1];
+  // console.log(year)
+  // const checkForTheCurrentDate = () =>
+  //   month === date.getMonth() + 1 && year === date.getFullYear()
 
   return (
     <div className={s.currentPeriodWrapper}>
@@ -41,6 +46,7 @@ export default function CurrentPeriod({
           {currentMonth} {year}
         </p>
         <button
+          // className={checkForTheCurrentDate === false ? s.hidden : s.button}
           className={s.button}
           type="button"
           onClick={() => onHandleClickRight()}
